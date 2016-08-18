@@ -1,0 +1,154 @@
+<div ba-panel ba-panel-class="profile-page">
+  <div class="panel-content">
+    <h3 class="with-line">General Information</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Picture</label>
+
+          <div class="col-sm-9">
+            <div class="userpic">
+              <div class="userpic-wrapper">
+                <img ng-src="{{ picture }}" ng-click="uploadPicture()">
+              </div>
+              <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i>
+              <a href class="change-userpic" ng-click="uploadPicture()">Change Profile Picture</a>
+              <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Tittle</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Known Name</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputLastName" placeholder="" value="">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Full Name</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">NIC Number</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputLastName" placeholder="" value="">
+          </div>
+        </div>
+      </div>
+
+    <h3 class="with-line">Change Password</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputPassword" placeholder="" value="12345678">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Contact Information</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+
+          <div class="col-sm-9">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="" value="contact@akveo.com">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputPhone" placeholder="" value="+1 (23) 456 7890">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Address</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputLastName" placeholder="" value="">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputRoom" class="col-sm-3 control-label">Tel No</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputRoom" placeholder="" value="303">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Social Profiles</h3>
+
+    <div class="social-profiles row clearfix">
+      <div class="col-md-3 col-sm-4" ng-repeat="item in socialProfiles">
+
+        <a class="sn-link" href ng-click="showModal(item)" ng-if="!item.href">
+          <i class="socicon {{ item.icon }}"></i>
+          <span>{{ item.name }}</span>
+        </a>
+
+        <a class="sn-link connected" href="{{ item.href }}" target="_blank" ng-if="item.href">
+          <i class="socicon {{ item.icon }}"></i>
+          <span>{{ item.name }}</span>
+          <em class="ion-ios-close-empty sn-link-close" ng-mousedown="unconnect(item)"></em>
+        </a>
+      </div>
+    </div>
+
+   <div class="widgets">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Editable Rows" ba-panel-class="with-scroll">
+        <div include-with-scope="app/pages/tables/internGoal/interngoal.html"></div>
+      </div>
+    </div>
+  </div>
+
+  
+
+</div>
+    </div>
+    <button type="button" class="btn btn-primary btn-with-icon save-profile">
+      <i class="ion-android-checkmark-circle"></i>Conform
+  </div>
+</div>
