@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.viewReview', [])
+  angular.module('BlurAdmin.pages.dashboard.viewReview', [])
       .config(routeConfig);
 
   /** @ngInject */

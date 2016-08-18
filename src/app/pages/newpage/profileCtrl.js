@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.myNewPage')
+  angular.module('BlurAdmin.pages.dashboard.myNewPage')
     .controller('ProfileCtrl', ProfileCtrl);
 
   /** @ngInject */

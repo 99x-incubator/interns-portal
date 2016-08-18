@@ -7,19 +7,20 @@
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
-    'BlurAdmin.pages.dashboard',
-    'BlurAdmin.pages.form',
-    'BlurAdmin.pages.profile',
-    'BlurAdmin.pages.myNewPage',
-    'BlurAdmin.pages.login',
-    'BlurAdmin.pages.viewReview',
-    'BlurAdmin.pages.currentInterns',
+    'BlurAdmin.pages.dashboard.dashboard',
+    'BlurAdmin.pages.dashboard.form',
+    'BlurAdmin.pages.dashboard.profile',
+    'BlurAdmin.pages.dashboard.myNewPage',
+    'BlurAdmin.pages.dashboard.login',
+    'BlurAdmin.pages.signin',
+    'BlurAdmin.pages.dashboard.viewReview',
+    'BlurAdmin.pages.dashboard.currentInterns',
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/myNewPage');
+    $urlRouterProvider.otherwise('/dashboard');
 
     baSidebarServiceProvider.addStaticItem({
       title: 'Pages',

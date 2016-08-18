@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.ui.buttons', [])
+  angular.module('BlurAdmin.pages.dashboard.ui.buttons', [])
       .config(routeConfig);
 
   /** @ngInject */

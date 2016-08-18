@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.currentInterns', [])
+  angular.module('BlurAdmin.pages.dashboard.currentInterns', [])
       .config(routeConfig);
 
   /** @ngInject */

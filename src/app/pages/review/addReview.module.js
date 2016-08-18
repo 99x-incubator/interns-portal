@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.addReview', [])
+  angular.module('BlurAdmin.pages.dashboard.addReview', [])
       .config(routeConfig);
 
   /** @ngInject */

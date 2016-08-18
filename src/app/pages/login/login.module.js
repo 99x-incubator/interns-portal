@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.login', [])
+  angular.module('BlurAdmin.pages.dashboard.login', [])
       .config(routeConfig);
 
   /** @ngInject */
@@ -15,7 +15,8 @@
           sidebarMeta: {
             order: 800,
           },
-        });
+        })
   }
+
 
 })();
