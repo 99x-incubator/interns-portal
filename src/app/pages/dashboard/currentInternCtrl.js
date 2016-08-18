@@ -22,7 +22,8 @@
 
     $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/")
     .then(function(response) {
-        vm.tabs = response.data;
+        vm.tabs = response.data.records;
+        console.log(vm.tabs);
     });
 
 

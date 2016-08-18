@@ -1,16 +1,16 @@
-<dashboard-pie-chart></dashboard-pie-chart>
 <div class="row">
   <div class="col-md-12">
     <div ba-panel ba-panel-title="Current Interns" ba-panel-class="with-scroll">
-      <div class="slider-box"  ng-repeat="t in internCtrl.tabs" >
+      <div class="slider-box" ng-repeat="t in internCtrl.tabs">
         <table>
           <tr >
             <td  ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})">
             <td >
               <div class="name-container">
-                <div><span class="name">{{t.name}} </span></div>
+                <div><span class="name">{{t.firstname}} </span></div>
               </div>
             </td>
+          </tr>
         </table>
         <ion-slider type="double"
                     grid="true"
@@ -25,6 +25,4 @@
                     disable="false">
         </ion-slider>
       </div>
-
-
   </div
