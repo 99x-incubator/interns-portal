@@ -2,27 +2,28 @@
 <div class="row">
   <div class="col-md-12">
     <div ba-panel ba-panel-title="Current Interns" ba-panel-class="with-scroll">
-      <div class="slider-box"  ng-repeat="t in internCtrl.tabs" >
+      <div class="slider-box"  ng-repeat="t in internCtrl.tabs.records" >
         <table>
           <tr >
             <td  ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})">
             <td >
               <div class="name-container">
-                <div><span class="name">{{t.name}} </span></div>
+                <div><span class="name">{{t.firstname}} {{t.lastname}}  </span></div>
               </div>
             </td>
         </table>
         <ion-slider type="double"
                     grid="true"
+                    start="900"
                     min="900"
                     max="1200"
-                    from="900"
-                    to="900"
+                    from="t.startdate | split:'-':1"
+                    to="t.startdate | split:'-':1"
                     values="['January', 'February', 'March',
                             'April', 'May', 'June',
                             'July', 'August', 'September',
                             'October', 'November', 'December']"
-                    disable="false">
+                    disable="true">
         </ion-slider>
       </div>
 

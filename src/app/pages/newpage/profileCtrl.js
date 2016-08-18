@@ -21,7 +21,7 @@
      AWSCognito.config.region = 'us-west-2'; //This is required to derive the endpoint
 
     var poolData = { UserPoolId : 'us-west-2_Wx15G37Co',
-        ClientId : '3evshgjbkn7hu1ojrctsp8elus'
+        ClientId : '50s9gm3dpvki6bsjhj9eijgsou'
     };
     var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 

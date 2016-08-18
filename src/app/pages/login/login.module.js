@@ -10,7 +10,8 @@
         .state('login', {
           url: '/login',
           templateUrl: 'app/pages/login/login.html',
-          ontroller: 'LoginCtrl',
+          Controller: 'LoginCtrl',
+          controllerAs: 'vm',
           sidebarMeta: {
             order: 800,
           },

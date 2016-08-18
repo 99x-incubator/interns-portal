@@ -2,7 +2,14 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.dashboard')
+  .filter('split', function() {
+       return function(input, splitChar, splitIndex) {
+           // do some bounds checking here to ensure it has that index
+           return input.split(splitChar)[splitIndex];
+       }
+   })
       .controller('CurrentInternCtrl', CurrentInternCtrl);
+
 
   /** @ngInject */
   function CurrentInternCtrl($http) {
@@ -23,6 +30,7 @@
     $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/")
     .then(function(response) {
         vm.tabs = response.data;
+      
     });
 
 
