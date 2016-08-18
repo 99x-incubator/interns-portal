@@ -29,8 +29,13 @@
 
     $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/")
     .then(function(response) {
+<<<<<<< HEAD
         vm.tabs = response.data;
       
+=======
+        vm.tabs = response.data.records;
+        console.log(vm.tabs);
+>>>>>>> 11ffb98ac9bb64aa2decd03729721761e91818d2
     });
 
 
