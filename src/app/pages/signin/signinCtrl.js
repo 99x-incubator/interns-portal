@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.signin')
+  angular.module('BlurAdmin.signin')
     .controller('LoginCtrl', LoginCtrl);
 
   /** @ngInject */

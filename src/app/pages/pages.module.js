@@ -12,7 +12,6 @@
     'BlurAdmin.pages.dashboard.profile',
     'BlurAdmin.pages.dashboard.myNewPage',
     'BlurAdmin.pages.dashboard.login',
-    'BlurAdmin.pages.signin',
     'BlurAdmin.pages.dashboard.viewReview',
     'BlurAdmin.pages.dashboard.currentInterns',
   ])
