@@ -16,17 +16,12 @@
 
 
    vm.submitform= function(){
-    console.log(vm.generalInfo );
-     console.log(vm.contactInfo );
-     console.log(vm.eduInsInfo);
-     console.log(vm.internshipInfo);
-
-     //vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
+     vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
      //vm.signUp(vm.contactInfo.email,vm.generalInfo.firstname,"gUtyh@gsduUGD^86ugygsd>iudh");
 
    };
 
-   vm.createNewIntern= function(general,contact,internship){
+   vm.createNewIntern= function(general,contact,internship, $http){
 
      // create json for store user dataEmail
      var data={
@@ -45,15 +40,17 @@
      };
 
 
+     var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            };
      $http.post('https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/', data, config)
            .success(function (data, status, headers, config) {
-               $scope.PostDataResponse = data;
+              alert('success');
            })
            .error(function (data, status, header, config) {
-               $scope.ResponseDetails = "Data: " + data +
-                   "<hr />status: " + status +
-                   "<hr />headers: " + header +
-                   "<hr />config: " + config;
+               alert('error');
            });
 
 
