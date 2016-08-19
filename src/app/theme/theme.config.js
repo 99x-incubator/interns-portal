@@ -13,7 +13,7 @@
     baConfigProvider.changeTheme({blur: true});
 
     baConfigProvider.changeColors({
-     default: 'rgba(#ffffff, 0.8)',
+     default: 'rgba(#000000, 0.5)',
      defaultText: '#FFFFFF',
      dashboard: {
        white: '#ffffff',
