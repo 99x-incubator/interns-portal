@@ -8,8 +8,8 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('dashboard.currentInterns', {
-          url: '/currentInterns',
-          templateUrl: 'app/pages/interns/currentInterns.html',
+          url: '/current',
+          templateUrl: 'app/pages/currentInterns/currentInterns.html',
           title: 'Current Interns',
           controller: 'ProfilePageCtrl',
           sidebarMeta: {
