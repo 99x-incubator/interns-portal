@@ -7,7 +7,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('myNewPage', {
+        .state('dashboard.myNewPage', {
           url: '/myNewPage',
           templateUrl: 'app/pages/newpage/newpage.html',
           title: 'My New Page',

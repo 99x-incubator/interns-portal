@@ -7,7 +7,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('viewReview', {
+        .state('dashboard.viewReview', {
           url: '/viewReview',
           templateUrl: 'app/pages/review/viewReview.html',
           title: 'View Review',

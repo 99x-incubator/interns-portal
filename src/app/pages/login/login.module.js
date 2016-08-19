@@ -7,7 +7,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('login', {
+        .state('dashboard.login', {
           url: '/login',
           templateUrl: 'app/pages/login/login.html',
           Controller: 'LoginCtrl',

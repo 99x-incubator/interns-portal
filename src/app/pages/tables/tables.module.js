@@ -11,7 +11,7 @@
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state('tables', {
+        .state('dashboard.tables', {
           url: '/tables',
           template : '<ui-view></ui-view>',
           abstract: true,
@@ -21,14 +21,14 @@
             icon: 'ion-grid',
             order: 300,
           },
-        }).state('tables.basic', {
+        }).state('dashboard.tables.basic', {
           url: '/basic',
           templateUrl: 'app/pages/tables/basic/tables.html',
           title: 'Basic Tables',
           sidebarMeta: {
             order: 0,
           },
-        }).state('tables.smart', {
+        }).state('dashboard.tables.smart', {
           url: '/smart',
           templateUrl: 'app/pages/tables/smart/tables.html',
           title: 'Smart Tables',

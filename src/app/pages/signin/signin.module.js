@@ -9,7 +9,7 @@
     $stateProvider
         .state('signin', {
           url: '/signin',
-          templateUrl: 'app/pages/login/login.html',
+          templateUrl: 'app/pages/signin/signin.html',
           // Controller: 'SignInCtrl',
           // controllerAs: 'vm',
 

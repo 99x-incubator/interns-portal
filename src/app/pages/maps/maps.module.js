@@ -11,7 +11,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('maps', {
+        .state('dashboard.maps', {
           url: '/maps',
           templateUrl: 'app/pages/maps/maps.html',
           abstract: true,
@@ -21,7 +21,7 @@
             order: 500,
           },
         })
-        .state('maps.gmap', {
+        .state('dashboard.maps.gmap', {
           url: '/gmap',
           templateUrl: 'app/pages/maps/google-maps/google-maps.html',
           controller: 'GmapPageCtrl',
@@ -30,7 +30,7 @@
             order: 0,
           },
         })
-        .state('maps.leaflet', {
+        .state('dashboard.maps.leaflet', {
           url: '/leaflet',
           templateUrl: 'app/pages/maps/leaflet/leaflet.html',
           controller: 'LeafletPageCtrl',
@@ -39,7 +39,7 @@
             order: 100,
           },
         })
-        .state('maps.bubble', {
+        .state('dashboard.maps.bubble', {
           url: '/bubble',
           templateUrl: 'app/pages/maps/map-bubbles/map-bubbles.html',
           controller: 'MapBubblePageCtrl',
@@ -48,7 +48,7 @@
             order: 200,
           },
         })
-        .state('maps.line', {
+        .state('dashboard.maps.line', {
           url: '/line',
           templateUrl: 'app/pages/maps/map-lines/map-lines.html',
           controller: 'MapLinesPageCtrl',

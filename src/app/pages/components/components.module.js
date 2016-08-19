@@ -15,7 +15,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('components', {
+        .state('dashboard.components', {
           url: '/components',
           template : '<ui-view></ui-view>',
           abstract: true,

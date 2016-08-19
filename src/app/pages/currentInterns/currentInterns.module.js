@@ -7,7 +7,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('currentInterns', {
+        .state('dashboard.currentInterns', {
           url: '/currentInterns',
           templateUrl: 'app/pages/interns/currentInterns.html',
           title: 'Current Interns',
