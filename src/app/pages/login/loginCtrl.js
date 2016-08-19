@@ -7,12 +7,10 @@
   /** @ngInject */
   function LoginCtrl($scope) {
 
-      alert('sjsj');
+    console.log('access token + ');
     var vm= this;
     vm.signIn = function () {
-
-
-
+           
         console.log('access token + ');
          var authenticationData = {
           Username : 'niroshanr',
