@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.components.timeline')
+  angular.module('BlurAdmin.pages.dashboard.components.timeline')
       .controller('TimelineCtrl', TimelineCtrl);
 
   /** @ngInject */

@@ -5,14 +5,14 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard', [])
+  angular.module('BlurAdmin.pages.dashboard.home', [])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('dashboard', {
-          url: '/dashboard',
+        .state('dashboard.home', {
+          url: '/home',
           templateUrl: 'app/pages/dashboard/dashboard.html',
           title: 'Dashboard',
           controller: "CurrentInternCtrl",

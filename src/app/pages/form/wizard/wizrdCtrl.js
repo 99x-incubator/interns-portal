@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.form')
+  angular.module('BlurAdmin.pages.dashboard.form')
       .controller('WizardCtrl', WizardCtrl);
 
   /** @ngInject */
@@ -18,4 +18,3 @@
   }
 
 })();
-

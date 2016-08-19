@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.form')
+  angular.module('BlurAdmin.pages.dashboard.form')
       .controller('internRegCtrl',internRegCtrl);
 
   /** @ngInject */
@@ -17,7 +17,7 @@
      return vm.personalInfo.confirmPassword && vm.personalInfo.password == vm.personalInfo.confirmPassword;
    };
 
-   
+
 
 
   }

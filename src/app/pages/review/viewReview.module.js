@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.viewReview', [])
+  angular.module('BlurAdmin.pages.dashboard.viewReview', [])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('viewReview', {
+        .state('dashboard.viewReview', {
           url: '/viewReview',
           templateUrl: 'app/pages/review/viewReview.html',
           title: 'View Review',

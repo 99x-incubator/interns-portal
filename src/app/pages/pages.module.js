@@ -8,18 +8,19 @@
   angular.module('BlurAdmin.pages', [
     'ui.router',
     'BlurAdmin.pages.dashboard',
-    'BlurAdmin.pages.form',
-    'BlurAdmin.pages.profile',
-    'BlurAdmin.pages.myNewPage',
-    'BlurAdmin.pages.login',
-    'BlurAdmin.pages.viewReview',
-    'BlurAdmin.pages.currentInterns',
+    'BlurAdmin.pages.dashboard.home',
+    'BlurAdmin.pages.dashboard.form',
+    'BlurAdmin.pages.dashboard.profile',
+    'BlurAdmin.pages.dashboard.myNewPage',
+    'BlurAdmin.pages.dashboard.login',
+    'BlurAdmin.pages.dashboard.viewReview',
+    'BlurAdmin.pages.dashboard.currentInterns',
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/myNewPage');
+    $urlRouterProvider.otherwise('/dashboard/home');
 
     baSidebarServiceProvider.addStaticItem({
       title: 'Pages',
@@ -34,7 +35,7 @@
         blank: true
       }, {
         title: 'User Profile',
-        stateRef: 'profile'
+        stateRef: 'dashboard.profile'
       }, {
         title: '404 Page',
         fixedHref: '404.html',

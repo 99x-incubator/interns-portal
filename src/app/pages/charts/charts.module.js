@@ -5,18 +5,18 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.charts', [
-      'BlurAdmin.pages.charts.amCharts',
-      'BlurAdmin.pages.charts.chartJs',
-      'BlurAdmin.pages.charts.chartist',
-      'BlurAdmin.pages.charts.morris'
+  angular.module('BlurAdmin.pages.dashboard.charts', [
+      'BlurAdmin.pages.dashboard.charts.amCharts',
+      'BlurAdmin.pages.dashboard.charts.chartJs',
+      'BlurAdmin.pages.dashboard.charts.chartist',
+      'BlurAdmin.pages.dashboard.charts.morris'
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('charts', {
+        .state('dashboard.charts', {
           url: '/charts',
           abstract: true,
           template: '<div ui-view></div>',

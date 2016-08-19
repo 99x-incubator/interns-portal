@@ -12,6 +12,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
 
+  <link href='sass/auth.css' rel='stylesheet' type='text/css'>
+
    <script src="assets/script/jsbn.js"></script>
    <script src="assets/script/jsbn2.js"></script>
    <script src="assets/script/sjcl.js"></script>
@@ -49,22 +51,25 @@
   <link rel="stylesheet" href="app/main.css">
   <!-- endinject -->
   <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="app/main.css">
+  <!-- endinject -->
+  <!-- endbuild -->
 </head>
 <body>
-<div class="body-bg"></div>
-<main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
+<!-- <div class="body-bg"></div> -->
 
-  <ba-sidebar></ba-sidebar>
-  <page-top></page-top>
 
-  <div class="al-main">
-    <div class="al-content">
-      <content-top></content-top>
+
+
+
+
       <div ui-view></div>
-    </div>
-  </div>
 
-  <footer class="al-footer clearfix">
+
+  <!-- <footer class="al-footer clearfix">
     <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
     <div class="al-footer-main clearfix">
       <div class="al-copy"ownSoft 2016</div>
@@ -75,14 +80,11 @@
         <li><i class="socicon socicon-github"></i></li>
       </ul>
     </div>
-  </footer>
+  </footer> -->
 
-  <back-top></back-top>
-</main>
 
-<div id="preloader" ng-show="!$pageFinishedLoading">
-  <div></div>
-</div>
+
+
 
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
@@ -147,27 +149,29 @@
 <!-- inject:js -->
 <script src="app/pages/pages.module.js"></script>
 <script src="app/theme/theme.module.js"></script>
-<script src="app/pages/components/components.module.js"></script>
 <script src="app/pages/charts/charts.module.js"></script>
+<script src="app/pages/components/components.module.js"></script>
 <script src="app/pages/currentInterns/currentInterns.module.js"></script>
 <script src="app/pages/dashboard/dashboard.module.js"></script>
 <script src="app/pages/form/form.module.js"></script>
-<script src="app/pages/maps/maps.module.js"></script>
 <script src="app/pages/login/login.module.js"></script>
+<script src="app/pages/maps/maps.module.js"></script>
 <script src="app/pages/newpage/myNewPage.module.js"></script>
 <script src="app/pages/profile/profile.module.js"></script>
 <script src="app/pages/review/addReview.module.js"></script>
 <script src="app/pages/review/viewReview.module.js"></script>
+<script src="app/pages/signin/signin.module.js"></script>
 <script src="app/pages/tables/tables.module.js"></script>
 <script src="app/pages/ui/ui.module.js"></script>
+<script src="app/pages/surround/dashboard.module.js"></script>
 <script src="app/theme/components/components.module.js"></script>
-<script src="app/pages/components/mail/mail.module.js"></script>
-<script src="app/pages/components/timeline/timeline.module.js"></script>
-<script src="app/pages/components/tree/tree.module.js"></script>
 <script src="app/pages/charts/amCharts/amCharts.module.js"></script>
 <script src="app/pages/charts/chartJs/chartJs.module.js"></script>
 <script src="app/pages/charts/chartist/chartist.module.js"></script>
 <script src="app/pages/charts/morris/morris.module.js"></script>
+<script src="app/pages/components/mail/mail.module.js"></script>
+<script src="app/pages/components/timeline/timeline.module.js"></script>
+<script src="app/pages/components/tree/tree.module.js"></script>
 <script src="app/pages/ui/alerts/alerts.module.js"></script>
 <script src="app/pages/ui/buttons/buttons.module.js"></script>
 <script src="app/pages/ui/grid/grid.module.js"></script>
@@ -188,11 +192,13 @@
 <script src="app/pages/currentInterns/currentInternsController.js"></script>
 <script src="app/pages/dashboard/currentInternCtrl.js"></script>
 <script src="app/pages/dashboard/currentintern.js"></script>
-<script src="app/pages/login/loginCtrl.js"></script>
 <script src="app/pages/newpage/profileCtrl.js"></script>
 <script src="app/pages/profile/ProfileModalCtrl.js"></script>
 <script src="app/pages/profile/ProfilePageCtrl.js"></script>
+<script src="app/pages/signin/signinCtrl.js"></script>
 <script src="app/pages/tables/TablesPageCtrl.js"></script>
+<script src="app/pages/surround/currentInternCtrl.js"></script>
+<script src="app/pages/surround/currentintern.js"></script>
 <script src="app/theme/directives/animatedChange.js"></script>
 <script src="app/theme/directives/autoExpand.js"></script>
 <script src="app/theme/directives/autoFocus.js"></script>
@@ -207,15 +213,15 @@
 <script src="app/theme/services/fileReader.js"></script>
 <script src="app/theme/services/preloader.js"></script>
 <script src="app/theme/services/stopableInterval.js"></script>
-<script src="app/pages/components/mail/MailTabCtrl.js"></script>
-<script src="app/pages/components/mail/mailMessages.js"></script>
-<script src="app/pages/components/timeline/TimelineCtrl.js"></script>
-<script src="app/pages/components/tree/treeCtrl.js"></script>
 <script src="app/pages/charts/chartJs/chartJs1DCtrl.js"></script>
 <script src="app/pages/charts/chartJs/chartJs2DCtrl.js"></script>
 <script src="app/pages/charts/chartJs/chartJsWaveCtrl.js"></script>
 <script src="app/pages/charts/chartist/chartistCtrl.js"></script>
 <script src="app/pages/charts/morris/morrisCtrl.js"></script>
+<script src="app/pages/components/mail/MailTabCtrl.js"></script>
+<script src="app/pages/components/mail/mailMessages.js"></script>
+<script src="app/pages/components/timeline/TimelineCtrl.js"></script>
+<script src="app/pages/components/tree/treeCtrl.js"></script>
 <script src="app/pages/form/registerIntern/internRegCtrl.js"></script>
 <script src="app/pages/form/wizard/wizrdCtrl.js"></script>
 <script src="app/pages/maps/google-maps/GmapPageCtrl.js"></script>
@@ -226,32 +232,28 @@
 <script src="app/pages/ui/icons/IconsPageCtrl.js"></script>
 <script src="app/pages/ui/modals/ModalsPageCtrl.js"></script>
 <script src="app/pages/ui/notifications/NotificationsPageCtrl.js"></script>
+<script src="app/theme/filters/image/appImage.js"></script>
+<script src="app/theme/filters/image/kameleonImg.js"></script>
+<script src="app/theme/filters/image/profilePicture.js"></script>
+<script src="app/theme/filters/text/removeHtml.js"></script>
 <script src="app/theme/components/baPanel/baPanel.directive.js"></script>
 <script src="app/theme/components/baPanel/baPanel.service.js"></script>
 <script src="app/theme/components/baPanel/baPanelBlur.directive.js"></script>
 <script src="app/theme/components/baPanel/baPanelBlurHelper.service.js"></script>
 <script src="app/theme/components/baPanel/baPanelSelf.directive.js"></script>
-<script src="app/theme/components/baWizard/baWizard.directive.js"></script>
-<script src="app/theme/components/baWizard/baWizardCtrl.js"></script>
-<script src="app/theme/components/baWizard/baWizardStep.directive.js"></script>
 <script src="app/theme/components/baSidebar/BaSidebarCtrl.js"></script>
 <script src="app/theme/components/baSidebar/baSidebar.directive.js"></script>
 <script src="app/theme/components/baSidebar/baSidebar.service.js"></script>
 <script src="app/theme/components/baSidebar/baSidebarHelpers.directive.js"></script>
+<script src="app/theme/components/baWizard/baWizard.directive.js"></script>
+<script src="app/theme/components/baWizard/baWizardCtrl.js"></script>
+<script src="app/theme/components/baWizard/baWizardStep.directive.js"></script>
 <script src="app/theme/components/backTop/backTop.directive.js"></script>
 <script src="app/theme/components/contentTop/contentTop.directive.js"></script>
 <script src="app/theme/components/msgCenter/MsgCenterCtrl.js"></script>
 <script src="app/theme/components/msgCenter/msgCenter.directive.js"></script>
 <script src="app/theme/components/pageTop/pageTop.directive.js"></script>
 <script src="app/theme/components/widgets/widgets.directive.js"></script>
-<script src="app/theme/filters/image/appImage.js"></script>
-<script src="app/theme/filters/image/kameleonImg.js"></script>
-<script src="app/theme/filters/image/profilePicture.js"></script>
-<script src="app/theme/filters/text/removeHtml.js"></script>
-<script src="app/pages/components/mail/composeBox/composeBoxCtrl.js"></script>
-<script src="app/pages/components/mail/composeBox/composeModal.js"></script>
-<script src="app/pages/components/mail/detail/MailDetailCtrl.js"></script>
-<script src="app/pages/components/mail/list/MailListCtrl.js"></script>
 <script src="app/pages/charts/amCharts/areaChart/AreaChartCtrl.js"></script>
 <script src="app/pages/charts/amCharts/barChart/BarChartCtrl.js"></script>
 <script src="app/pages/charts/amCharts/combinedChart/combinedChartCtrl.js"></script>
@@ -259,6 +261,10 @@
 <script src="app/pages/charts/amCharts/ganttChart/ganttChartCtrl.js"></script>
 <script src="app/pages/charts/amCharts/lineChart/LineChartCtrl.js"></script>
 <script src="app/pages/charts/amCharts/pieChart/PieChartCtrl.js"></script>
+<script src="app/pages/components/mail/composeBox/composeBoxCtrl.js"></script>
+<script src="app/pages/components/mail/composeBox/composeModal.js"></script>
+<script src="app/pages/components/mail/detail/MailDetailCtrl.js"></script>
+<script src="app/pages/components/mail/list/MailListCtrl.js"></script>
 <script src="app/pages/ui/modals/notifications/NotificationsCtrl.js"></script>
 <script src="app/theme/components/backTop/lib/jquery.backTop.min.js"></script>
 <script src="app/pages/form/inputs/widgets/select/SelectpickerPanelCtrl.js"></script>

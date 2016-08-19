@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.components.mail')
+  angular.module('BlurAdmin.pages.dashboard.components.mail')
     .service('composeModal', composeModal);
 
   /** @ngInject */

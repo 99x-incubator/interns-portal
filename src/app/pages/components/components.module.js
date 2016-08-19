@@ -5,17 +5,17 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.components', [
-    'BlurAdmin.pages.components.mail',
-    'BlurAdmin.pages.components.timeline',
-    'BlurAdmin.pages.components.tree',
+  angular.module('BlurAdmin.pages.dashboard.components', [
+    'BlurAdmin.pages.dashboard.components.mail',
+    'BlurAdmin.pages.dashboard.components.timeline',
+    'BlurAdmin.pages.dashboard.components.tree',
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('components', {
+        .state('dashboard.components', {
           url: '/components',
           template : '<ui-view></ui-view>',
           abstract: true,

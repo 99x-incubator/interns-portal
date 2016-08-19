@@ -12,6 +12,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
 
+  <link href='sass/auth.css' rel='stylesheet' type='text/css'>
+
    <script src="assets/script/jsbn.js"></script>
    <script src="assets/script/jsbn2.js"></script>
    <script src="assets/script/sjcl.js"></script>
@@ -31,22 +33,25 @@
   <!-- css files will be automatically insert here -->
   <!-- endinject -->
   <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
 </head>
 <body>
-<div class="body-bg"></div>
-<main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
+<!-- <div class="body-bg"></div> -->
 
-  <ba-sidebar></ba-sidebar>
-  <page-top></page-top>
 
-  <div class="al-main">
-    <div class="al-content">
-      <content-top></content-top>
+
+
+
+
       <div ui-view></div>
-    </div>
-  </div>
 
-  <footer class="al-footer clearfix">
+
+  <!-- <footer class="al-footer clearfix">
     <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
     <div class="al-footer-main clearfix">
       <div class="al-copy"ownSoft 2016</div>
@@ -57,14 +62,11 @@
         <li><i class="socicon socicon-github"></i></li>
       </ul>
     </div>
-  </footer>
+  </footer> -->
 
-  <back-top></back-top>
-</main>
 
-<div id="preloader" ng-show="!$pageFinishedLoading">
-  <div></div>
-</div>
+
+
 
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
