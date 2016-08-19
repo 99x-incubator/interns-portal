@@ -10,8 +10,10 @@
         .state('signin', {
           url: '/signin',
           templateUrl: 'app/pages/signin/signin.html',
-          // Controller: 'SignInCtrl',
-          // controllerAs: 'vm',
+          controller: 'SignInCtrl',
+
+          controllerAs: 'vm'
+
 
         })
         ;
