@@ -5,16 +5,16 @@
     .controller('SignInCtrl', SignInCtrl);
 
   /** @ngInject */
-  function SignInCtrl($scope){
+  function SignInCtrl($scope,  $window){
       var vm= this;
-
+        console.log('access token + ');
       vm.signIn = function () {
 
          AWSCognito.config.region = 'us-west-2';
 
            var authenticationData = {
-            Username : 'niroshanr',
-            Password : '7870@VvV99XT@se',
+            Username : vm.username,
+            Password : vm.Password,
         };
         var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
         var poolData = { UserPoolId : 'us-west-2_Wx15G37Co',
@@ -29,6 +29,8 @@
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 console.log('access token + ' + result.getAccessToken().getJwtToken());
+                 $window.location.href = '/index.html';
+
             },
 
             onFailure: function(err) {
