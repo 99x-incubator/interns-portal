@@ -6,14 +6,21 @@
   'use strict';
 
   angular.module('BlurAdmin.theme.components')
+      .controller('SignOutCtrl',SignOutCtrl)
       .directive('pageTop', pageTop);
 
   /** @ngInject */
   function pageTop() {
     return {
       restrict: 'E',
-      templateUrl: 'app/theme/components/pageTop/pageTop.html'
+      templateUrl: 'app/theme/components/pageTop/pageTop.html',
+      controller: 'SignOutCtrl',
+      controllerAs: 'vm',
     };
+  }
+
+  function SignOutCtrl($scope) {
+    console.log('Logout code');
   }
 
 })();
