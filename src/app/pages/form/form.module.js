@@ -20,6 +20,19 @@
             icon: 'ion-compose',
             order: 250,
           },
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
         })
 
         .state('dashboard.form.reg', {
@@ -36,7 +49,7 @@
             only: ['AUTHORIZED'],
             redirectTo: function() {
               return {
-                state: 'dashboard.home',
+                state: 'signin',
                 options: {
                   reload: true
                 }

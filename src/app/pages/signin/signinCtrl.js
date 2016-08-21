@@ -5,7 +5,7 @@
     .controller('SignInCtrl', SignInCtrl);
 
   /** @ngInject */
-  function SignInCtrl($scope,$state,$window,appConf){
+  function SignInCtrl($scope,$state,$window,AuthenticationService){
       var vm= this;
         //console.log('access token + ');
 
@@ -24,8 +24,8 @@
         // hard coded credentials for the test!
         if (vm.username == "nadun" && vm.password == "nadun"){
             $state.go('dashboard.home');
-            appConf.isAuthorized = true;
-
+            //appConf.isAuthorized = true;
+            AuthenticationService.setLoggedIn(true);
         }
         else {
           console.log("wrong credentials");

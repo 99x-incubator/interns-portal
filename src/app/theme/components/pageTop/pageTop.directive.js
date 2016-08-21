@@ -19,8 +19,13 @@
     };
   }
 
-  function SignOutCtrl($scope) {
+  function SignOutCtrl($scope,AuthenticationService) {
     console.log('Logout code');
+
+    $scope.signOut = function(){
+      AuthenticationService.setLoggedIn(false);
+      console.log('inside signOut');
+    };
   }
 
 })();
