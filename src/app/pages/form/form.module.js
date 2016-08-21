@@ -31,6 +31,19 @@
           sidebarMeta: {
             order: 100,
           },
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'dashboard.home',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
         })
         .state('dashboard.form.wizard',
         {
