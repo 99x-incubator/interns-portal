@@ -11,9 +11,9 @@
           url: '/viewReview',
           templateUrl: 'app/pages/review/viewReview.html',
           title: 'View Review',
-          sidebarMeta: {
-            order: 800,
-          },
+          // sidebarMeta: {
+          //   order: 800,
+          // },
         });
   }
 

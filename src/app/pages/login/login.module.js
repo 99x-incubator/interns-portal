@@ -12,9 +12,9 @@
           templateUrl: 'app/pages/login/login.html',
           Controller: 'LoginCtrl',
           controllerAs: 'vm',
-          sidebarMeta: {
-            order: 800,
-          },
+          // sidebarMeta: {
+          //   order: 800,
+          // },
         })
   }
 

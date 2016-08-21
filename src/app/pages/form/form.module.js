@@ -16,10 +16,10 @@
           template : '<ui-view></ui-view>',
           abstract: true,
           title: 'Registration',
-          sidebarMeta: {
-            icon: 'ion-compose',
-            order: 250,
-          },
+          // sidebarMeta: {
+          //   icon: 'ion-compose',
+          //   order: 250,
+          // },
         })
 
         .state('dashboard.form.reg', {
@@ -28,9 +28,9 @@
           title: 'New Intern',
           controller: 'internRegCtrl',
           controllerAs: 'vm',
-          sidebarMeta: {
-            order: 100,
-          },
+          // sidebarMeta: {
+          //   order: 100,
+          // },
         })
         .state('dashboard.form.wizard',
         {
@@ -39,9 +39,9 @@
           controller: 'WizardCtrl',
           controllerAs: 'vm',
           title: 'Form Wizard',
-          sidebarMeta: {
-            order: 200,
-          },
+          // sidebarMeta: {
+          //   order: 200,
+          // },
         });
   }
 })();

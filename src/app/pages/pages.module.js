@@ -11,37 +11,36 @@
     'BlurAdmin.pages.dashboard.home',
     'BlurAdmin.pages.dashboard.form',
     'BlurAdmin.pages.dashboard.profile',
-    'BlurAdmin.pages.dashboard.myNewPage',
     'BlurAdmin.pages.dashboard.login',
     'BlurAdmin.pages.dashboard.viewReview',
-    'BlurAdmin.pages.dashboard.currentInterns',
+    
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard/home');
+    $urlRouterProvider.otherwise('/signin');
 
-    baSidebarServiceProvider.addStaticItem({
-      title: 'Pages',
-      icon: 'ion-document',
-      subMenu: [{
-        title: 'Sign In',
-        fixedHref: 'auth.html',
-        blank: true
-      }, {
-        title: 'Sign Up',
-        fixedHref: 'reg.html',
-        blank: true
-      }, {
-        title: 'User Profile',
-        stateRef: 'dashboard.profile'
-      }, {
-        title: '404 Page',
-        fixedHref: '404.html',
-        blank: true
-      }]
-    });
+    // baSidebarServiceProvider.addStaticItem({
+    //   title: 'Pages',
+    //   icon: 'ion-document',
+    //   subMenu: [{
+    //     title: 'Sign In',
+    //     fixedHref: 'auth.html',
+    //     blank: true
+    //   }, {
+    //     title: 'Sign Up',
+    //     fixedHref: 'reg.html',
+    //     blank: true
+    //   }, {
+    //     title: 'User Profile',
+    //     stateRef: 'dashboard.profile'
+    //   }, {
+    //     title: '404 Page',
+    //     fixedHref: '404.html',
+    //     blank: true
+    //   }]
+    // });
 
   }
 

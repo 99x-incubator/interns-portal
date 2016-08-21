@@ -12,8 +12,8 @@
           templateUrl: 'app/pages/currentInterns/currentInterns.html',
           title: 'Current Interns',
           controller: 'ProfilePageCtrl',
-
           
+
         });
   }
 
