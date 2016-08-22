@@ -46,7 +46,7 @@
     angular.forEach(interns.records, function(item){
         data.push({id: item.id, content: item.firstname, start: item.startdate, end:item.enddate});
                    console.log(item.firstname);
-               })
+    })
 
 
    // Create a DataSet (allows two way data-binding)
