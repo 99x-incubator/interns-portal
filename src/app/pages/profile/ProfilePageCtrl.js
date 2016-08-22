@@ -54,6 +54,7 @@
         techs : techs
 
       };
+      
       console.log(internDetails);
     };
 
