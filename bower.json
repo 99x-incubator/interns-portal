@@ -54,7 +54,8 @@
     "textAngular": "~1.4.6",
     "angular-xeditable": "~0.1.9",
     "ng-js-tree": "~0.0.7",
-    "angular-permission": "^4.0.3"
+    "angular-permission": "^4.0.3",
+    "vis": "^4.16.1"
   },
   "resolutions": {
     "angular": "~1.4.8"
