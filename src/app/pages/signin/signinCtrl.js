@@ -32,10 +32,11 @@
             Username : vm.username,
             Pool : userPool
         };
-      
+
         var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
+                console.log(result);
                 console.log('access token + ' + result.getAccessToken().getJwtToken());
                  $window.location.href = '#/dashboard/home';
 
