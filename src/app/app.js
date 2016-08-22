@@ -27,16 +27,32 @@ angular.module('BlurAdmin', [
                 console.log("inside the null");
                 var loggedIn = false;
                 localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
+
+            }
+            else if (localStorage.getItem("isAdmin") === null) {
+                var isAdmin = false;
+                localStorage.setItem("isAdmin", JSON.stringify(isAdmin));
             }
 
             service.isLoggedIn = function(){
-                console.log("1 st in isloggedin = "+localStorage.loggedIn);
+                console.log("1 st in isloggedin = " + localStorage.loggedIn);
                 console.log("inside the isloggedin = " + JSON.parse(localStorage.loggedIn));
                 var login = JSON.parse(localStorage.loggedIn);
                 if (login){
                     return true;
                 }
                 return false;
+            };
+
+            service.isAdmin = function(){
+              console.log("1 st in isAdmin = " + localStorage.isAdmin);
+              var admin = JSON.parse(localStorage.isAdmin);
+              var login = JSON.parse(localStorage.loggedIn);
+              if (admin && login){
+                  return true;
+              }
+              return false;
+
             };
 
             service.setLoggedIn = function(state){
@@ -47,11 +63,22 @@ angular.module('BlurAdmin', [
                 console.log("then isloggedin = " + JSON.parse(localStorage.loggedIn));
             };
 
+            service.setAdmin = function(state){
+              var admin = state;
+              localStorage.setItem("isAdmin", JSON.stringify(admin));
+              console.log("then isAdmin = " + JSON.parse(localStorage.isAdmin));
+
+            };
+
             return service;
   }])
 .run(function($rootScope, $state,PermRoleStore, AuthenticationService) {
     PermRoleStore.defineRole('AUTHORIZED', function() {
       return AuthenticationService.isLoggedIn();
+    });
+
+    PermRoleStore.defineRole('ADMIN', function() {
+      return AuthenticationService.isAdmin();
     });
 
     $rootScope.$on('$stateChangeStart', function(evt, to, params) {

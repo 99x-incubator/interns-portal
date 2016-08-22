@@ -9,11 +9,11 @@
     .controller('BaSidebarCtrl', BaSidebarCtrl);
 
   /** @ngInject */
-  function BaSidebarCtrl($scope, baSidebarService) {
+  function BaSidebarCtrl($scope, baSidebarService,AuthenticationService) {
 
     $scope.menuItems = baSidebarService.getMenuItems();
     $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
-
+    $scope.admin = !AuthenticationService.isAdmin();
     $scope.hoverItem = function ($event) {
       $scope.showHoverElem = true;
       $scope.hoverElemHeight =  $event.currentTarget.clientHeight;

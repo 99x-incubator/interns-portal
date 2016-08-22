@@ -22,7 +22,7 @@
           },
           data: {
           permissions: {
-            only: ['AUTHORIZED'],
+            only: ['ADMIN'],
             redirectTo: function() {
               return {
                 state: 'signin',
@@ -46,7 +46,7 @@
           },
           data: {
           permissions: {
-            only: ['AUTHORIZED'],
+            only: ['ADMIN'],
             redirectTo: function() {
               return {
                 state: 'signin',
