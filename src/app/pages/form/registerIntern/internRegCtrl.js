@@ -17,12 +17,7 @@
 
    vm.submitform= function(){
      vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
-     console.log(vm.generalInfo);
-      console.log(vm.contactInfo);
-       console.log(vm.eduInsInfo);
-        console.log(vm.internshipInfo);
-
-     //vm.signUp(vm.contactInfo.email,vm.generalInfo.firstname,"gUtyh@gsduUGD^86ugygsd>iudh");
+     vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
    };
 
@@ -31,20 +26,22 @@
      // create json for store user dataEmail
      var data={
         "id": general.firstname,
-        "username": "niroshanr",
-   "firstname" : "Niroshan",
-   "lastname":"Ranapathi",
-   "personaldetails":{"mobile":"0772080907",
-  "address":"No 61, Summer Terace, Kananthippala, Kuliyapitiya",
-   "nic":"VV",
-   "skypeid":"niroshan8889",
-   "email":"niroshanrd.13@cse.mrt.ac.lk",
-    "facebookid":"https://www.facebook.com/niroshan.nrsh"},
-   "startdate":"2016-08-01",
-   "enddate":"2017-01-06",
-   "projects":{}
-
+        "username": "new",
+        "firstname" : general.firstname,
+        "lastname":general.lastname,
+        "personaldetails":
+        {"mobile":contact.mobile,
+        "address":contact.address,
+        "nic":general.nic,
+        "skypeid":" ",
+        "email":contact.email,
+        "facebookid":" "},
+        "startdate":"2016-08-09",
+        "enddate":"2016-09-01",
+        "projects":{}
      };
+
+
 
 
      var config = {
@@ -54,6 +51,9 @@
             };
      $http.post('https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/', data, config)
       .then(function(response) {
+
+        console.log(JSON.stringify(data));
+        ;
 
 
          console.log(response);
@@ -98,8 +98,8 @@
            alert(err);
            return;
        }
-       cognitoUser = result.user;
-       console.log('user name is ' + cognitoUser.getUsername());
+    //   cognitoUser = result.user;
+      // console.log('user name is ' + cognitoUser.getUsername());
    });
  };
 
