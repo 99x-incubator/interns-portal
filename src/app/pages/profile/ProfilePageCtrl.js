@@ -23,18 +23,45 @@
 
     };
 
+
+
+
+
+    $scope.update = function(){
+      var techs = JSON.parse(JSON.stringify($scope.techs));
+      // console.log(techs);
+      // $scope.vm.data = {
+      //   "techs" : techs
+      // };
+      var social = JSON.parse(JSON.stringify($scope.socialProfiles));
+      // $scope.vm.data = {
+      //     "social" : social
+      //
+      // };
+      console.log(social);
+      var internDetails = {
+        firstname : $scope.vm.data.firstname ,
+        lastname : $scope.vm.data.lastname ,
+        fullname : $scope.vm.data.fullname,
+        NIC : $scope.vm.data.nic,
+        password : $scope.vm.data.conformpassword,
+        email : $scope.vm.data.email,
+        mobile : $scope.vm.data.mobile,
+        tel : $scope.vm.data.tel,
+        address : $scope.vm.data.address,
+        goals : $scope.vm.data.goal,
+        social : social,
+        techs : techs
+
+      };
+      console.log(internDetails);
+    };
+
+
     $scope.socialProfiles = [
       {
         name: 'Facebook',
         icon: 'socicon-facebook'
-      },
-      {
-        name: 'Twitter',
-        icon: 'socicon-twitter'
-      },
-      {
-        name: 'Google',
-        icon: 'socicon-google'
       },
       {
         name: 'LinkedIn',
@@ -47,37 +74,8 @@
       {
         name: 'StackOverflow',
         icon: 'socicon-stackoverflow'
-      },
-      {
-        name: 'Dribbble',
-        icon: 'socicon-dribble'
-      },
-      {
-        name: 'Behance',
-        icon: 'socicon-behace'
       }
     ];
-
-    $scope.unconnect = function (item) {
-      item.href = undefined;
-    };
-
-    $scope.showModal = function (item) {
-      $uibModal.open({
-        animation: false,
-        controller: 'ProfileModalCtrl',
-        templateUrl: 'app/pages/profile/profileModal.html'
-      }).result.then(function (link) {
-          item.href = link;
-        });
-    };
-
-    $scope.getFile = function () {
-      fileReader.readAsDataUrl($scope.file, $scope)
-          .then(function (result) {
-            $scope.picture = result;
-          });
-    };
 
     $scope.techs = [
       {
@@ -92,6 +90,29 @@
       }
 
     ];
+
+    $scope.unconnect = function (item) {
+      item.href = undefined;
+    };
+
+    $scope.showModal = function (item) {
+      $uibModal.open({
+        animation: true,
+        controller: 'ProfileModalCtrl',
+        templateUrl: 'app/pages/profile/profileModal.html'
+      }).result.then(function (link) {
+          item.href = link;
+        });
+    };
+
+    $scope.getFile = function () {
+      fileReader.readAsDataUrl($scope.file, $scope)
+          .then(function (result) {
+            $scope.picture = result;
+          });
+    };
+
+
 
     $scope.showGroup = function(user) {
       if(tech.group && $scope.groups.length) {

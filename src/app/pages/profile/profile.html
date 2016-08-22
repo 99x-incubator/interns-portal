@@ -88,14 +88,14 @@
           <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
           <div class="col-sm-9">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="" value="contact@akveo.com">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="" value="email@gmail.com" ng-model="vm.data.email">
           </div>
         </div>
         <div class="form-group row clearfix">
           <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputPhone" placeholder="" value="+1 (23) 456 7890">
+            <input type="text" class="form-control" id="inputPhone" placeholder="" value="+94 71xxxxxxx" ng-model="vm.data.mobile">
           </div>
         </div>
       </div>
@@ -104,14 +104,14 @@
           <label for="inputLastName" class="col-sm-3 control-label">Address</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputLastName" placeholder="" value="">
+            <input type="text" class="form-control" id="inputLastName" placeholder="" value="" ng-model="vm.data.address">
           </div>
         </div>
         <div class="form-group row clearfix">
           <label for="inputRoom" class="col-sm-3 control-label">Tel No</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputRoom" placeholder="" value="303">
+            <input type="text" class="form-control" id="inputRoom" placeholder="" value="" ng-model="vm.data.tel">
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@
           <label for="goal" class="col-sm-2 control-label">state your goals:</label>
 
           <div class="col-sm-10">
-              <textarea class="form-control" id="goal"
+              <textarea class="form-control" id="goal" ng-model="vm.data.goal"
                value="goal">briefly state your goals and expectation form the internship............
               </textarea>
           </div>
@@ -166,7 +166,7 @@
 
 
     </div>
-    <button type="button" ng-click="vm.signIn()" class="btn btn-primary btn-with-icon save-profile">
+    <button type="button" ng-click="update()" class="btn btn-primary btn-with-icon save-profile">
       <i class="ion-android-checkmark-circle"></i>update profile
   </div>
 </div>
