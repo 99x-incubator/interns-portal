@@ -7,20 +7,20 @@
     <td>Technology</td>
     <td>Actions</td>
   </tr>
-  <tr ng-repeat="user in users" class="editable-row">
+  <tr ng-repeat="tech in techs" class="editable-row">
     <td>
         {{$index}}
     </td>
     <td>
-        <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
-          {{ user.name || 'empty' }}
+        <span editable-text="tech.name" e-name="name" e-form="rowform" e-required>
+          {{ tech.name || 'empty' }}
         </span>
     </td>
 
 
     <td>
       <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline"
-            shown="inserted == user">
+            shown="inserted == tech">
         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
           Save
         </button>

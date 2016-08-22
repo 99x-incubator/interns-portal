@@ -9,7 +9,7 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal,editableOptions,editableThemes) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
     $scope.removePicture = function () {
@@ -78,6 +78,56 @@
             $scope.picture = result;
           });
     };
+
+    $scope.techs = [
+      {
+        "id": 1,
+        "name": "Angular"
+
+      },
+      {
+        "id": 2,
+        "name": "React"
+
+      }
+
+    ];
+
+    $scope.showGroup = function(user) {
+      if(tech.group && $scope.groups.length) {
+        var selected = $filter('filter')($scope.groups, {id: tech.group});
+        return selected.length ? selected[0].text : 'Not set';
+      } else return 'Not set'
+    };
+
+    $scope.showStatus = function(user) {
+      var selected = [];
+      if(tech.status) {
+        selected = $filter('filter')($scope.statuses, {value: tech.status});
+      }
+      return selected.length ? selected[0].text : 'Not set';
+    };
+
+
+    $scope.removeUser = function(index) {
+      $scope.techs.splice(index, 1);
+    };
+
+    $scope.addUser = function() {
+      $scope.inserted = {
+        id: $scope.techs.length+1,
+        name: '',
+        status: null,
+        group: null
+      };
+      $scope.techs.push($scope.inserted);
+    };
+
+    editableOptions.theme = 'bs3';
+    editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
+    editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
+
+
 
     $scope.switches = [true, true, false, true, true, false];
   }
