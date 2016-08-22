@@ -5,7 +5,7 @@
     .controller('SignInCtrl', SignInCtrl);
 
   /** @ngInject */
-  function SignInCtrl($scope,$state,$window,AuthenticationService){
+  function SignInCtrl($scope,$state,$window,AuthenticationService,toastr){
       var vm= this;
         //console.log('access token + ');
 
@@ -42,7 +42,8 @@
             },
 
             onFailure: function(err) {
-                alert(err);
+                //alert(err);
+                toastr.error(err.message, 'Error');
             },
 
         });
