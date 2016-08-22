@@ -33,6 +33,7 @@
         var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
+                console.log(result);
                 console.log('access token + ' + result.getAccessToken().getJwtToken());
                 $state.go('dashboard.home');
                 //appConf.isAuthorized = true;
