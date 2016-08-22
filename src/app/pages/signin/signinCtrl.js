@@ -19,9 +19,6 @@
             Password : vm.password,
         };
 
-
-
-
         var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
         var poolData = {
             UserPoolId : 'us-west-2_Wx15G37Co',
@@ -32,12 +29,14 @@
             Username : vm.username,
             Pool : userPool
         };
-      
+
         var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 console.log('access token + ' + result.getAccessToken().getJwtToken());
-                 $window.location.href = '#/dashboard/home';
+                $state.go('dashboard.home');
+                //appConf.isAuthorized = true;
+                AuthenticationService.setLoggedIn(true);
 
             },
 
