@@ -4,32 +4,33 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step title="General info"  form="vm.generalInfoForm">
+                    <ba-wizard-step title="General info"  form="vm.personalInfoForm">
                         <form name="vm.personalInfoForm" ng-submit="vm.showFrom()" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback"
-                                         ng-class="{'has-error': vm.personalInfoForm.username.$invalid && (vm.personalInfoForm.username.$dirty || vm.personalInfoForm.$submitted)}">
+
+                                         ng-class="{'has-error': vm.personalInfoForm.firstName.$invalid && (vm.personalInfoForm.firstName.$dirty || vm.personalInfoForm.$submitted)}">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="vm.generalInfo.firstname" required>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="vm.generalInfo.firstName" required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-                                    <div class="form-group" ng-class="{'has-error': vm.personalInfoForm.email.$invalid && (vm.personalInfoForm.email.$dirty || vm.personalInfoForm.$submitted)}">
-                                        <label for="exampleInputEmail1">Full Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="fullname" placeholder="Fullname" ng-model="vm.generalInfo.fullname" required>
-                                        <span class="help-block error-block basic-block">Proper email required</span>
+                                    <div class="form-group" ng-class="{'has-error': vm.personalInfoForm.fullname.$invalid && (vm.personalInfoForm.fullname.$dirty || vm.personalInfoForm.$submitted)}">
+                                        <label for="fullname">Full Name</label>
+                                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname" ng-model="vm.generalInfo.fullname" required>
+                                        <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group" ng-class="{'has-error': vm.personalInfoForm.username.$invalid && (vm.personalInfoForm.username.$dirty || vm.personalInfoForm.$submitted)}">
+                                    <div class="form-group" ng-class="{'has-error': vm.personalInfoForm.LastName.$invalid && (vm.personalInfoForm.LastName.$dirty || vm.personalInfoForm.$submitted)}">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name"  ng-model="vm.generalInfo.lastname" required>
+                                        <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name"  ng-model="vm.generalInfo.LastName" required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
-                                    <div class="form-group"  ng-class="{'has-error': vm.personalInfoForm.username.$invalid && (vm.personalInfoForm.username.$dirty || vm.personalInfoForm.$submitted)}">
+                                    <div class="form-group"  ng-class="{'has-error': vm.personalInfoForm.nic.$invalid && (vm.personalInfoForm.nic.$dirty || vm.personalInfoForm.$submitted)}">
                                         <label for="nic">NIC Number</label>
                                         <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC Number" ng-model="vm.generalInfo.nic" required>
-                                        <span class="help-block error-block basic-block">Passwords should match</span>
+                                        <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                 </div>
 
@@ -101,8 +102,8 @@
                           <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="category">Category</label>
-                                    <select class="form-control" title="Category"  ng-model="vm.internshipInfo.category" selectpicker>
+                                    <label for="category">Inrernship Category</label>
+                                    <select class="form-control" title="Internship"  ng-model="vm.internshipInfo.category" selectpicker>
                                         <option selected>Internship</option>
                                         <option>In House Programe</option>
                                     </select>
@@ -118,9 +119,9 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="company">Company</label>
-                                    <select class="form-control" title="Category" ng-model="vm.internshipInfo.company" selectpicker>
-                                        <option selected>99XT-IT</option>
-                                        <option>((XT-KYT))</option>
+                                    <select class="form-control" title="Company" ng-model="vm.internshipInfo.company" selectpicker>
+                                        <option selected>99X Technology</option>
+                                        <!-- <option>((XT-KYT))</option> -->
                                     </select>
                                 </div>
 
