@@ -70,10 +70,11 @@
               })
               .map(function(s) {
                 var meta = s.sidebarMeta;
+                console.log(s.name.substr(10),s.title,(s.name.match(/\./g) || []).length,meta.order);
                 return {
-                  name: s.name,
+                  name: s.name.substr(10),
                   title: s.title,
-                  level: (s.name.match(/\./g) || []).length,
+                  level: (s.name.match(/\./g) || []).length -1,
                   order: meta.order,
                   icon: meta.icon,
                   stateRef: s.name,

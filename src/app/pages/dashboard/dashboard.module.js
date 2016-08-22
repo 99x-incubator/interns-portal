@@ -21,6 +21,19 @@
             icon: 'ion-android-home',
             order: 0,
           },
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
         });
   }
 

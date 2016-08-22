@@ -16,6 +16,23 @@
           title: 'Profile',
           templateUrl: 'app/pages/profile/profile.html',
           controller: 'ProfilePageCtrl',
+          sidebarMeta: {
+            icon: 'ion-person',
+            order: 800,
+          },
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
         });
   }
 

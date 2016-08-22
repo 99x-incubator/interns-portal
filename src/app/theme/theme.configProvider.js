@@ -37,7 +37,7 @@
   function configProvider(colorHelper) {
     var conf = {
       theme: {
-        blur: false,
+        blur: true,
       },
       colors: {
         default: basic.default,

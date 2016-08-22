@@ -14,7 +14,20 @@
         .state('dashboard', {
           url: '/dashboard',
           templateUrl: 'app/pages/surround/surround.html',
-
+          redirectTo: 'dashboard.home',
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
 
         });
   }

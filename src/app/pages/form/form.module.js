@@ -20,6 +20,19 @@
             icon: 'ion-compose',
             order: 250,
           },
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
         })
 
         .state('dashboard.form.reg', {
@@ -31,6 +44,19 @@
           sidebarMeta: {
             order: 100,
           },
+          data: {
+          permissions: {
+            only: ['AUTHORIZED'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
         })
         .state('dashboard.form.wizard',
         {
@@ -39,9 +65,9 @@
           controller: 'WizardCtrl',
           controllerAs: 'vm',
           title: 'Form Wizard',
-          sidebarMeta: {
-            order: 200,
-          },
+          // sidebarMeta: {
+          //   order: 200,
+          // },
         });
   }
 })();
