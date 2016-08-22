@@ -21,21 +21,24 @@
       </div>
       <div class="col-md-6"></div>
     </div>
-
+    <form name="profile" novalidate>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row clearfix">
-          <label for="inputFirstName" class="col-sm-3 control-label">First Name</label>
+          <label for="firstName" class="col-sm-3 control-label">First Name</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="firstName" placeholder="" ng-model="vm.data.firstname" >
+          <div class="col-sm-9" ng-class="{'has-error': profile.firstName.$invalid && (profile.firstName.$dirty || profile.firstName.$touched)}">
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" ng-model="vm.data.firstname" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
+
         <div class="form-group row clearfix">
           <label for="fullName" class="col-sm-3 control-label">Full Name</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="fullName" placeholder="" ng-model="vm.data.fullname"  >
+          <div class="col-sm-9" ng-class="{'has-error': profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) }">
+            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="" ng-model="vm.data.fullname" required >
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
       </div>
@@ -43,19 +46,22 @@
         <div class="form-group row clearfix">
           <label for="inputFirstName" class="col-sm-3 control-label">Last Name</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="lastName" placeholder="" ng-model="vm.data.lastname" >
+          <div class="col-sm-9" ng-class="{'has-error': profile.lastName.$invalid && (profile.lastName.$dirty || profile.lastName.$touched) }">
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" ng-model="vm.data.lastname" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
         <div class="form-group row clearfix">
           <label for="inputLastName" class="col-sm-3 control-label">NIC Number</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="nic" placeholder="" ng-model="vm.data.nic" >
+          <div class="col-sm-9" ng-class="{'has-error': profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched)}">
+            <input type="text" class="form-control" id="nic" name="nic" placeholder="" ng-model="vm.data.nic" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
       </div>
     </div>
+  </form>
 
     <h3 class="with-line">Change Password</h3>
 
@@ -166,6 +172,7 @@
 
 
     </div>
+
     <button type="button" ng-click="update()" class="btn btn-primary btn-with-icon save-profile">
       <i class="ion-android-checkmark-circle"></i>update profile
   </div>
