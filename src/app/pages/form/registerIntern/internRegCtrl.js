@@ -22,20 +22,21 @@
     vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
     vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
+
    };
 
    vm.createNewIntern= function(general,contact,internship){
 
      // create json for store user dataEmail
      var data={
-        "id": general.firstname,
+        "id": contact.email,
         "username": "new",
-        "firstname" : general.firstname,
-        "lastname":general.lastname,
+        "firstname" :vm.generalInfo.firstName,
+        "lastname":vm.generalInfo.LastName,
         "personaldetails":
-        {"mobile":contact.mobile,
-        "address":contact.address,
-        "nic":general.nic,
+        {"mobile":vm.contactInfo.mobile,
+        "address":vm.contactInfo.address,
+        "nic":vm.generalInfo.nic,
         "skypeid":" ",
         "email":contact.email,
         "facebookid":" "},
