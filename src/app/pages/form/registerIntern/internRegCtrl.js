@@ -15,9 +15,12 @@
    vm.internshipInfo ={};
 
 
+
    vm.submitform= function(){
-     vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
-     vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
+
+
+    vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
+    vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
    };
 
@@ -36,8 +39,8 @@
         "skypeid":" ",
         "email":contact.email,
         "facebookid":" "},
-        "startdate":"2016-08-09",
-        "enddate":"2016-09-01",
+        "startdate":convertDate(String(vm.internshipInfo.startDate)),
+        "enddate":convertDate(String(vm.internshipInfo.endDate)),
         "projects":{}
      };
 
@@ -67,6 +70,9 @@
    vm.arePersonalInfoPasswordsEqual = function () {
      return vm.personalInfo.confirmPassword && vm.personalInfo.password == vm.personalInfo.confirmPassword;
    };
+
+
+
 
 
 
@@ -106,6 +112,21 @@
 
 
 
-  }
+  };
+
+function convertDate(input) {
+    var date = input.split(" ");
+
+    var mnths = {
+        Jan:"01", Feb:"02", Mar:"03", Apr:"04", May:"05", Jun:"06",
+        Jul:"07", Aug:"08", Sep:"09", Oct:"10", Nov:"11", Dec:"12"
+    };
+
+      return  [date[3], mnths[date[1]], date[2] ].join("-");
+ }
+
+
+
+
 
 })();
