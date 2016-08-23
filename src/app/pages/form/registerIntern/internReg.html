@@ -50,7 +50,7 @@
                                   </div>
                                   <div class="form-group" ng-class="{'has-error': vm.contactInfoForm.mobile.$invalid && (vm.contactInfoForm.mobile.$dirty || vm.contactInfoForm.$submitted)}">
                                       <label for="mobile">Mobile</label>
-                                      <input type="mobile" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="vm.contactInfo.mobile" required>
+                                      <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="vm.contactInfo.mobile" required>
                                       <span class="help-block error-block basic-block">Required</span>
                                   </div>
                               </div>
@@ -62,7 +62,7 @@
                                   </div>
                                   <div class="form-group"  ng-class="{'has-error': vm.contactInfoForm.contactHome.$invalid && (vm.contactInfoForm.contactHome.$dirty || vm.contactInfoForm.$submitted)}">
                                       <label for="contactHome">Contact Home</label>
-                                      <input type="text" class="form-control" id="contactHome" name="contactHome" placeholder="Contact Home" ng-model="vm.contactInfo.contactHome" required>
+                                      <input type="number" class="form-control" id="contactHome" name="contactHome" placeholder="Contact Home" ng-model="vm.contactInfo.contactHome" required>
                                       <span class="help-block error-block basic-block">Required</span>
                                   </div>
                               </div>
@@ -135,7 +135,7 @@
                         </form>
                     </ba-wizard-step>
                     <ba-wizard-step title="Finish">
-                      </form>
+                      <form name="finish" novalidate>
                         <div class="row">
                           <button type="button" ng-click="vm.submitform()" class="btn btn-primary btn-with-icon save-profile">
                             <i class="ion-android-checkmark-circle"></i>Confirm

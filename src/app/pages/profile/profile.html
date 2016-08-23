@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-  </form>
+
 
     <h3 class="with-line">Change Password</h3>
 
@@ -70,8 +70,9 @@
         <div class="form-group row clearfix">
           <label for="inputPassword" class="col-sm-3 control-label">Password</label>
 
-          <div class="col-sm-9">
-            <input type="password" class="form-control" id="inputPassword" placeholder="" ng-model="vm.data.inputpassword" >
+          <div class="col-sm-9" ng-class="{'has-error': profile.inputPassword.$invalid && (profile.inputPassword.$dirty || profile.inputPassword.$touched)}">
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="" ng-model="vm.data.inputpassword" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
       </div>
@@ -79,8 +80,9 @@
         <div class="form-group row clearfix">
           <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
 
-          <div class="col-sm-9">
-            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="" ng-model="vm.data.conformpassword">
+          <div class="col-sm-9" ng-class="{'has-error': profile.inputConfirmPassword.$invalid && (profile.inputConfirmPassword.$dirty || profile.inputConfirmPassword.$touched)}">
+            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="" name="inputConfirmPassword" ng-model="vm.data.conformpassword" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
       </div>
@@ -93,15 +95,17 @@
         <div class="form-group row clearfix">
           <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
-          <div class="col-sm-9">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="" value="email@gmail.com" ng-model="vm.data.email">
+          <div class="col-sm-9" ng-class="{'has-error': profile.inputEmail.$invalid && (profile.inputEmail.$dirty || profile.inputEmail.$touched)}">
+            <input type="email" class="form-control" id="inputEmail" placeholder="" name="inputEmail" value="email@gmail.com" ng-model="vm.data.email" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
         <div class="form-group row clearfix">
           <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputPhone" placeholder="" value="+94 71xxxxxxx" ng-model="vm.data.mobile">
+          <div class="col-sm-9" ng-class="{'has-error': profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched)}">
+            <input type="number" max=10 class="form-control" id="inputPhone" placeholder="" name="inputPhone" value="" ng-model="vm.data.mobile" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
       </div>
@@ -109,19 +113,22 @@
         <div class="form-group row clearfix">
           <label for="inputLastName" class="col-sm-3 control-label">Address</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputLastName" placeholder="" value="" ng-model="vm.data.address">
+          <div class="col-sm-9" ng-class="{'has-error': profile.address.$invalid && (profile.address.$dirty || profile.address.$touched)}">
+            <input type="text" class="form-control" id="address" name="address" placeholder="" value="" ng-model="vm.data.address" required>
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
         <div class="form-group row clearfix">
           <label for="inputRoom" class="col-sm-3 control-label">Tel No</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputRoom" placeholder="" value="" ng-model="vm.data.tel">
+          <div class="col-sm-9" ng-class="{'has-error': profile.tel.$invalid && (profile.tel.$dirty || profile.tel.$touched)}">
+            <input type="number" max=10 class="form-control" id="tel" name="tel" placeholder="" value="" ng-model="vm.data.tel" required="">
+            <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
       </div>
     </div>
+    </form>
 
     <h3 class="with-line">Social Profiles</h3>
 
