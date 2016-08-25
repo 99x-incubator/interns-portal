@@ -10,13 +10,24 @@
         //console.log('access token + ');
 
         //sign in function starts from here
-      vm.signIn = function () {
+
+
+      vm.loginAuthenticate =function (cognitoUser) {
+
+
+
+      };
+
+      // forgot password
+
+      vm.forgot= function(){
+
 
         AWSCognito.config.region = 'us-west-2';
 
         var authenticationData = {
-            Username : vm.username,
-            Password : vm.password,
+            Username : "niroshanr@99x.lk",
+            Password : " dcvs",
         };
 
         var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
@@ -26,31 +37,92 @@
         };
         var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
         var userData = {
-            Username : vm.username,
+            Username : "niroshanr@99x.lk",
             Pool : userPool
         };
 
         var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
-        cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: function (result) {
-                console.log(result);
-                console.log('access token + ' + result.getAccessToken().getJwtToken());
-                $state.go('dashboard.home');
-                //appConf.isAuthorized = true;
-                AuthenticationService.setLoggedIn(true);
-                AuthenticationService.setAdmin(true);
+        console.log("kdjhd");
 
-            },
 
-            onFailure: function(err) {
-                //alert(err);
-                toastr.error(err.message, 'Error');
-            },
+        //veryfy
 
-        });
+/*
+        cognitoUser.resendConfirmationCode(function(err, result) {
+                 if (err) {
+                     console.log(err);;
+                     return;
+                    }
+                  console.log(result+"jdfjhdj");;
+             });
+             */
 
+            //
+
+/*
+            cognitoUser.confirmRegistration(274268, function(err, result) {
+                if (err) {
+                    alert(err);
+                    return;
+                }
+                alert(result);
+            });
+
+            */
+
+/*
+            cognitoUser.getAttributeVerificationCode('email', {
+                   onSuccess: function (result) {
+                       console.log('call result: ' + result);
+                   },
+                   onFailure: function(err) {
+                       alert(err);
+                   },
+                   inputVerificationCode() {
+                       var verificationCode = prompt('Please input verification code: ' ,'274268');
+                       cognitoUser.verifyAttribute('email', '274268', this);
+                   }
+               });
+*/
+/*
+        cognitoUser.getAttributeVerificationCode('email', {
+        onSuccess: function (result) {
+            console.log('call result: ' + result);
+        },
+        onFailure: function(err) {
+            alert(err);
+        },
+        inputVerificationCode() {
+            var verificationCode = prompt('Please input verification code: ' ,'');
+            cognitoUser.verifyAttribute('email', verificationCode, this);
+        }
+     });
+
+     */
+
+
+
+
+        cognitoUser.forgotPassword({
+       onSuccess: function (result) {
+           console.log('call result: ' + result);
+       },
+       onFailure: function(err) {
+           console.log(err);;
+       },
+       inputVerificationCode() {
+           var verificationCode = prompt('Please input verification code ' ,'');
+           var newPassword = prompt('Enter new password ' ,'');
+           cognitoUser.confirmPassword(verificationCode, newPassword, this);
        }
+   });
+
+
+
+      };
 
   };
+
+
 
 })();

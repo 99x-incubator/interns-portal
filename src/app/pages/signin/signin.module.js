@@ -16,8 +16,19 @@
 
 
         })
+
+        .state('forgotpwd', {
+          url: '/signin/forgot',
+          templateUrl: 'app/pages/signin/forgotpwd.html',
+          controller: 'SignInCtrl',
+          controllerAs: 'vm'
+
+
+        })
         ;
-  }
+  };
+
+
 
 
 })();
