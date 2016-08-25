@@ -2,7 +2,7 @@
 
 Interns management system is an Angular based web portal which can store and track interns' time period of staying in a company and store/read information of interns.
 
-**deploy the portal using:**
+***deploy the portal using:***
 
 `npm install`
 
