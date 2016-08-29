@@ -9,7 +9,7 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal,editableOptions,editableThemes) {
+  function ProfilePageCtrl($scope, fileReader, $filter, $http, $uibModal,editableOptions,editableThemes) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
     $scope.removePicture = function () {
@@ -38,24 +38,45 @@
       //     "social" : social
       //
       // };
-      console.log(social);
+
+      var sc = JSON.stringify($scope.socialProfiles);
+      console.log(sc);
       var internDetails = {
-        firstname : $scope.vm.data.firstname ,
-        lastname : $scope.vm.data.lastname ,
-        fullname : $scope.vm.data.fullname,
-        NIC : $scope.vm.data.nic,
-        password : $scope.vm.data.conformpassword,
-        email : $scope.vm.data.email,
-        mobile : $scope.vm.data.mobile,
-        tel : $scope.vm.data.tel,
-        address : $scope.vm.data.address,
-        goals : $scope.vm.data.goal,
-        social : social,
-        techs : techs
+        "id" : "f@f",
+        "firstname" : $scope.vm.data.firstname ,
+        "lastname" : $scope.vm.data.lastname ,
+        "fullname" : $scope.vm.data.fullname,
+        "NIC" : $scope.vm.data.nic,
+        "password" : $scope.vm.data.confirmpassword,
+        "email" : $scope.vm.data.email,
+        "mobile" : $scope.vm.data.mobile,
+        "tel" : $scope.vm.data.tel,
+        "address" : $scope.vm.data.address,
+        "goals" : $scope.vm.data.goal,
+        "social" : social,
+        "techs" : techs
 
       };
-      
-      console.log(internDetails);
+
+      //console.log(internDetails);
+
+      var config = {
+                 headers : {
+                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                 }
+             };
+      $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/updateUser', internDetails, config)
+       .then(function(response) {
+
+         console.log(JSON.stringify(internDetails));
+         console.log(response);
+
+      });
+
+
+
+
+      ////////////////////////////////////////////////////////////////////////////////
     };
 
 
