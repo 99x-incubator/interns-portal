@@ -9,7 +9,7 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $http, $uibModal,editableOptions,editableThemes) {
+  function ProfilePageCtrl($scope, fileReader, $filter, $http, $uibModal,AuthenticationService,editableOptions,editableThemes) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
     $scope.removePicture = function () {
@@ -24,9 +24,9 @@
     };
 
     $scope.getDetails = function(){
-
+      var name = AuthenticationService.getUser();
       var details = {
-          "id": "anuraa@99x.lk"
+          "id": name
       }
 
       var config = {
@@ -116,9 +116,11 @@
       // };
 
       var sc = JSON.stringify($scope.socialProfiles);
+      var name = AuthenticationService.getUser();
       console.log(sc);
+      
       var internDetails = {
-        "id" : "f@f",
+        "id" : name,
         "firstname" : $scope.vm.data.firstname ,
         "lastname" : $scope.vm.data.lastname ,
         "fullname" : $scope.vm.data.fullname,
