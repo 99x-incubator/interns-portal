@@ -11,15 +11,20 @@
           url: '/signin',
           templateUrl: 'app/pages/signin/signin.html',
           controller: 'SignInCtrl',
-
           controllerAs: 'vm'
-
-
         })
 
         .state('forgotpwd', {
           url: '/signin/forgot',
           templateUrl: 'app/pages/signin/forgotpwd.html',
+          controller: 'SignInCtrl',
+          controllerAs: 'vm'
+
+        })
+
+        .state('confirm', {
+          url: '/signin/confirm',
+          templateUrl: 'app/pages/signin/confirm.html',
           controller: 'SignInCtrl',
           controllerAs: 'vm'
 
