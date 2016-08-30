@@ -81,7 +81,7 @@
           <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
 
           <div class="col-sm-9" ng-class="{'has-error': profile.inputConfirmPassword.$invalid && (profile.inputConfirmPassword.$dirty || profile.inputConfirmPassword.$touched)}">
-            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="" name="inputConfirmPassword" ng-model="vm.data.conformpassword" required>
+            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="" name="inputConfirmPassword" ng-model="vm.data.confirmpassword" required>
             <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
@@ -104,7 +104,7 @@
           <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
 
           <div class="col-sm-9" ng-class="{'has-error': profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched)}">
-            <input type="number" max=10 class="form-control" id="inputPhone" placeholder="" name="inputPhone" value="" ng-model="vm.data.mobile" required>
+            <input type="number" max=9999999999 class="form-control" id="inputPhone" placeholder="" name="inputPhone" value="" ng-model="vm.data.mobile" required>
             <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>
@@ -122,7 +122,7 @@
           <label for="inputRoom" class="col-sm-3 control-label">Tel No</label>
 
           <div class="col-sm-9" ng-class="{'has-error': profile.tel.$invalid && (profile.tel.$dirty || profile.tel.$touched)}">
-            <input type="number" max=10 class="form-control" id="tel" name="tel" placeholder="" value="" ng-model="vm.data.tel" required="">
+            <input type="number" max=9999999999 class="form-control" id="tel" name="tel" placeholder="" value="" ng-model="vm.data.tel" required>
             <span class="help-block error-block basic-block">Required</span>
           </div>
         </div>

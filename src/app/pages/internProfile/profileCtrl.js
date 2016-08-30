@@ -11,41 +11,11 @@
     vm.data={};
     vm.isConformPasswords = function () {
       return vm.data.conformpassword && vm.data.inputpassword ==vm.data.conformpassword;
-      };
-
-
-    vm.signUp = function () {
-
-
-     AWSCognito.config.region = 'us-west-2'; //This is required to derive the endpoint
-
-    var poolData = { UserPoolId : 'us-west-2_Wx15G37Co',
-        ClientId : '50s9gm3dpvki6bsjhj9eijgsou'
-    };
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-
-    var attributeList = [];
-
-    var dataEmail = {
-        Name : 'email',
-        Value : 'niroshanrd.13@cse.mrt.ac.lk'
     };
 
-    var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
-
-
-    attributeList.push(attributeEmail);
-
-
-    userPool.signUp('niroshanr', '7870@VvV99XT@se', attributeList, null, function(err, result){
-        if (err) {
-            alert(err);
-            return;
-        }
-        cognitoUser = result.user;
-        console.log('user name is ' + cognitoUser.getUsername());
-    });
-  };
+    vm.submitForm = function(){
+      console.log(vm.data);
+    };
 
     $scope.picture = $filter('profilePicture')('Nasta');
 
