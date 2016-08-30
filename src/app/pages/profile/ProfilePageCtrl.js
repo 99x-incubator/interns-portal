@@ -48,7 +48,7 @@
         //  //$scope.vm.data.confirmpassword = response.data.Item.confirmpassword;
          $scope.vm.data.email = response.data.Item.email;
          $scope.vm.data.mobile = response.data.Item.mobile;
-         //$scope.vm.data.tel = response.data.Item.tel;
+         $scope.vm.data.tel = response.data.Item.tel;
          $scope.vm.data.address = response.data.Item.address;
          $scope.vm.data.goal = response.data.Item.goals;
 
@@ -118,7 +118,7 @@
       var sc = JSON.stringify($scope.socialProfiles);
       var name = AuthenticationService.getUser();
       console.log(sc);
-      
+
       var internDetails = {
         "id" : name,
         "firstname" : $scope.vm.data.firstname ,
