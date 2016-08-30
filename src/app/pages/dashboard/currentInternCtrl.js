@@ -24,12 +24,7 @@
       })
     };
 
-
-
-
-
-
-    $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/")
+    $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers")
     .then(function(response) {
         vm.tabs = response.data;
         internsTimeline(vm.tabs);
@@ -44,8 +39,10 @@
     var container = document.getElementById('visualization');
     var data=[];
     angular.forEach(interns.records, function(item){
-        data.push({id: item.id, content: item.firstname, start: item.startdate, end:item.enddate});
-                   console.log(item.firstname);
+        if (item.startdate != undefined && item.enddate != undefined){
+          data.push({id: item.id, content: item.firstname, start: item.startdate, end:item.enddate});
+                     console.log(item.firstname);
+        }
     })
 
 

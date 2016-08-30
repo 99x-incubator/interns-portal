@@ -60,7 +60,7 @@ angular.module('BlurAdmin', [
             };
 
             service.getUser = function(){
-              console.log("1 st in isAdmin = " + localStorage.username);
+              console.log("username is = " + localStorage.username);
               var user = JSON.parse(localStorage.username);
 
               return user;

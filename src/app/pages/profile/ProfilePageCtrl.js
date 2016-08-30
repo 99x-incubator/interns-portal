@@ -9,8 +9,10 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $http, $uibModal,AuthenticationService,editableOptions,editableThemes) {
+  function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal,AuthenticationService,editableOptions,editableThemes) {
     $scope.picture = $filter('profilePicture')('Nasta');
+
+
 
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
@@ -23,7 +25,7 @@
 
     };
 
-    $scope.getDetails = function(){
+    var getDetails = function(){
       var name = AuthenticationService.getUser();
       var details = {
           "id": name
@@ -40,17 +42,17 @@
 
          console.log(response.data.Item);
          //console.log(vm.data.firstname);
-        //$scope.vm.data = response.data.Item;
-         $scope.vm.data.firstname = response.data.Item.firstname;
-         $scope.vm.data.lastname = response.data.Item.lastname;
-         $scope.vm.data.fullname = response.data.Item.fullname;
-         $scope.vm.data.nic = response.data.Item.nic;
-        //  //$scope.vm.data.confirmpassword = response.data.Item.confirmpassword;
-         $scope.vm.data.email = response.data.Item.email;
-         $scope.vm.data.mobile = response.data.Item.mobile;
-         $scope.vm.data.tel = response.data.Item.tel;
-         $scope.vm.data.address = response.data.Item.address;
-         $scope.vm.data.goal = response.data.Item.goals;
+        $scope.vm.data = response.data.Item;
+        //  $scope.vm.data.firstname = response.data.Item.firstname;
+        //  $scope.vm.data.lastname = response.data.Item.lastname;
+        //  $scope.vm.data.fullname = response.data.Item.fullname;
+        //  $scope.vm.data.nic = response.data.Item.nic;
+        // //  //$scope.vm.data.confirmpassword = response.data.Item.confirmpassword;
+        //  $scope.vm.data.email = response.data.Item.email;
+        //  $scope.vm.data.mobile = response.data.Item.mobile;
+        //  $scope.vm.data.tel = response.data.Item.tel;
+        //  $scope.vm.data.address = response.data.Item.address;
+        //  $scope.vm.data.goal = response.data.Item.goals;
 
 
 
@@ -102,6 +104,7 @@
     };
 
 
+    getDetails();
 
     $scope.update = function(){
       var techs = JSON.parse(JSON.stringify($scope.techs));
@@ -130,7 +133,7 @@
         "mobile" : $scope.vm.data.mobile,
         "tel" : $scope.vm.data.tel,
         "address" : $scope.vm.data.address,
-        "goals" : $scope.vm.data.goal,
+        "goals" : $scope.vm.data.goals,
         "social" : social,
         "techs" : techs
 
@@ -148,6 +151,12 @@
 
          console.log(JSON.stringify(internDetails));
          console.log(response);
+         if (response.data == "It worked!"){
+           toastr.success('Your information has been saved successfully!');
+         }
+         else {
+           toastr.error(response.data);
+         }
 
       });
 
