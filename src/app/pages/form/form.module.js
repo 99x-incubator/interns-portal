@@ -58,6 +58,30 @@
           }
         }
         })
+
+        .state('dashboard.form.reguser', {
+          url: '/userReg',
+          templateUrl: 'app/pages/form/registerIntern/internReg.html',
+          title: 'New User',
+          controller: 'internRegCtrl',
+          controllerAs: 'vm',
+          sidebarMeta: {
+            order: 100,
+          },
+          data: {
+          permissions: {
+            only: ['ADMIN'],
+            redirectTo: function() {
+              return {
+                state: 'signin',
+                options: {
+                  reload: true
+                }
+              };
+            }
+          }
+        }
+        })
         .state('dashboard.form.wizard',
         {
           url: '/wizard',

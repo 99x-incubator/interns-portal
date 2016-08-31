@@ -5,7 +5,7 @@
       .controller('internRegCtrl',internRegCtrl);
 
   /** @ngInject */
-  function internRegCtrl($scope, $http) {
+  function internRegCtrl($scope, $http,$state) {
    var vm = this;
 
    vm.generalInfo ={};
@@ -14,13 +14,17 @@
    vm.eduInsInfo ={};
    vm.internshipInfo ={};
 
+   vm.state=$state.current.name;
+
 
 
    vm.submitform= function(){
 
+     
 
-    vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
-    vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
+
+  //  vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
+    //vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
 
    };
