@@ -1,0 +1,69 @@
+<div ba-panel ba-panel-class="profile-page">
+  <div class="panel-content">
+    <h3 class="with-line">Change Password</h3>
+
+
+    <form name="profile" novalidate>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="useremail" class="col-sm-3 control-label">User Email</label>
+
+          <div class="col-sm-9" ng-class="{'has-error': profile.useremail.$invalid && (profile.useremail.$dirty || profile.useremail.$touched)}">
+            <input type="text" class="form-control" id="useremail" name="useremail" placeholder="" ng-model="vm.data.useremail" required>
+            <span class="help-block error-block basic-block">Required</span>
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <label for="newPassword" class="col-sm-3 control-label">New Password</label>
+
+          <div class="col-sm-9" ng-class="{'has-error': profile.newPassword.$invalid && (profile.newPassword.$dirty || profile.newPassword.$touched) }">
+            <input type="text" class="form-control" id="newPassword" name="newPassword" placeholder="" ng-model="vm.data.newPassword" required >
+            <span class="help-block error-block basic-block">Required</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="currentPassword" class="col-sm-3 control-label">Current Pwd</label>
+
+          <div class="col-sm-9" ng-class="{'has-error': profile.currentPassword.$invalid && (profile.currentPassword.$dirty || profile.currentPassword.$touched) }">
+            <input type="text" class="form-control" id="currentPassword" name="currentPassword" placeholder="" ng-model="vm.data.currentPassword" required>
+            <span class="help-block error-block basic-block">Required</span>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="confirmPassword" class="col-sm-3 control-label">Confirm Pwd</label>
+
+          <div class="col-sm-9" ng-class="{'has-error': profile.confirmPassword.$invalid && (profile.confirmPassword.$dirty || profile.confirmPassword.$touched)}">
+            <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="" ng-model="vm.data.confirmPassword" required>
+            <span class="help-block error-block basic-block">Required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </form>
+
+
+   <!-- <div class="widgets">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="Familier Technoloiges" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/profile/techs.html"></div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+    </div>
+
+    <button type="button" ng-click="update()" class="btn btn-primary btn-with-icon save-profile">
+      <i class="ion-android-checkmark-circle"></i>update profile</button>
+      <!-- <button type="button" ng-click="getDetails()" class="btn btn-primary btn-with-icon save-profile">
+        <i class="ion-android-checkmark-circle"></i>get</button> -->
+  </div>
+</div>
