@@ -14,7 +14,7 @@
           controller: 'settingsCtrl',
           controllerAs: 'vm',
           sidebarMeta: {
-            icon: 'ion-person',
+            icon: 'fa fa-cog',
             order: 800,
           },
         });
