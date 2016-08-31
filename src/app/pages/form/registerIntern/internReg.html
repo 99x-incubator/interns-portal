@@ -52,6 +52,7 @@
                                       <label for="mobile">Mobile</label>
                                       <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="vm.contactInfo.mobile" required>
                                       <span class="help-block error-block basic-block">Required</span>
+                                      <label>Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /></label>
                                   </div>
                               </div>
                               <div class="col-md-6">
@@ -69,7 +70,7 @@
                           </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="Edu Institute Info"  form="vm.eduInsInfoForm">
+                    <ba-wizard-step ng-if="vm.state=='dashboard.form.reg'"  title="Edu Institute Info"  form="vm.eduInsInfoForm">
                         <form name="vm.eduInsInfoForm" novalidate>
                           <div class="row">
                               <div class="col-md-6">
@@ -97,7 +98,7 @@
                           </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="Internship Info">
+                    <ba-wizard-step ng-if="vm.state=='dashboard.form.reg'"  title="Internship Info">
                         <form name="vm.internshipInfoForm" novalidate>
                           <div class="row">
                               <div class="col-md-6">
@@ -134,7 +135,7 @@
                           </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="Finish">
+                    <ba-wizard-step title="Finish" ng-if="vm.state=='dashboard.form.reg' || vm.state=='dashboard.form.reguser'">
                       <form name="finish" novalidate>
                         <div class="row">
                           <button type="button" ng-click="vm.submitform()" class="btn btn-primary btn-with-icon save-profile">
