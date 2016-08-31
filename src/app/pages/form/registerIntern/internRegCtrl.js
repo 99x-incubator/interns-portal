@@ -80,10 +80,10 @@
    vm.signUp = function (email,username,password) {
 
 
-    AWSCognito.config.region = 'us-west-2'; //This is required to derive the endpoint
+    AWSCognito.config.region = 'us-east-1'; //This is required to derive the endpoint
 
-   var poolData = { UserPoolId : 'us-west-2_Wx15G37Co',
-       ClientId : '50s9gm3dpvki6bsjhj9eijgsou'
+   var poolData = { UserPoolId : 'us-east-1_axj5uw9kj',
+       ClientId : '1blbmqslmk42i22u1258i7gmgi'
    };
    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
@@ -94,10 +94,17 @@
        Value : email
    };
 
+   var dataRole ={
+     Name: 'role',
+     value: 'intern'
+   }
+
    var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
+   var attributeRole =new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRole);
 
 
    attributeList.push(attributeEmail);
+   attributeList.push(attributeRole);
 
 
    userPool.signUp(username, password, attributeList, null, function(err, result){
