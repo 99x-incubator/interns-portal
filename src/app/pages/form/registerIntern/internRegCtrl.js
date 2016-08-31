@@ -32,14 +32,15 @@
         "id": contact.email,
         "username": "new",
         "firstname" :vm.generalInfo.firstName,
+        "fullname" : vm.generalInfo.fullName,
         "lastname":vm.generalInfo.LastName,
-        "personaldetails":
-        {"mobile":vm.contactInfo.mobile,
+        "mobile":vm.contactInfo.mobile,
+        "instInfo" : vm.eduInsInfo,
+        "intshpInfo" : vm.internshipInfo,
+        "tel": vm.contactInfo.contactHome,
         "address":vm.contactInfo.address,
         "nic":vm.generalInfo.nic,
-        "skypeid":" ",
         "email":contact.email,
-        "facebookid":" "},
         "startdate":convertDate(String(vm.internshipInfo.startDate)),
         "enddate":convertDate(String(vm.internshipInfo.endDate)),
         "projects":{}
@@ -53,7 +54,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-     $http.post('https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/', data, config)
+     $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
       .then(function(response) {
 
         console.log(JSON.stringify(data));

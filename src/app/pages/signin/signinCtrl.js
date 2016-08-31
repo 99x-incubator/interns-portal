@@ -91,6 +91,7 @@
                 $state.go('dashboard.home');
                 //appConf.isAuthorized = true;
                 AuthenticationService.setLoggedIn(true);
+                AuthenticationService.setUser(vm.username);
                 AuthenticationService.setAdmin(true);
 
             },
