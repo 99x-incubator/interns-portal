@@ -12,11 +12,11 @@
           templateUrl: 'app/pages/settings/settings.html',
           title: 'Settings',
           controller: 'settingsCtrl',
-          controllerAs: 'vm'
-          // sidebarMeta: {
-          //   icon: 'ion-person',
-          //   order: 800,
-          // },
+          controllerAs: 'vm',
+          sidebarMeta: {
+            icon: 'ion-person',
+            order: 800,
+          },
         });
   }
 

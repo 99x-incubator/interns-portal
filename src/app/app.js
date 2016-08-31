@@ -37,6 +37,10 @@ angular.module('BlurAdmin', [
                 var user = "NadunI";
                 localStorage.setItem("isAdmin", JSON.stringify(user));
             }
+            else if (localStorage.getItem("cogUser") === null) {
+                var user = "NadunI";
+                localStorage.setItem("cogUser", JSON.stringify(user));
+            }
 
             service.isLoggedIn = function(){
                 console.log("1 st in isloggedin = " + localStorage.loggedIn);
@@ -87,6 +91,17 @@ angular.module('BlurAdmin', [
               localStorage.setItem("username", JSON.stringify(user));
               console.log("user is  = " + JSON.parse(localStorage.username));
 
+            };
+
+            service.setCogUser = function(user){
+              localStorage.setItem("cogUser", JSON.stringify(user));
+
+            };
+
+            service.getCogUser = function(){
+              var user = JSON.parse(localStorage.cogUser);
+
+              return user;
             };
 
             return service;
