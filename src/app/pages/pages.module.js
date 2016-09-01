@@ -15,6 +15,9 @@
     'BlurAdmin.pages.dashboard.login',
     'BlurAdmin.pages.dashboard.viewReview',
 
+    'BlurAdmin.pages.dashboard.settings'
+
+
   ])
       .config(routeConfig);
 

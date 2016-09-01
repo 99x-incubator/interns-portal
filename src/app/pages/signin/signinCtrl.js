@@ -84,6 +84,7 @@
         };
 
         var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 console.log(result);
@@ -93,6 +94,7 @@
                 AuthenticationService.setLoggedIn(true);
                 AuthenticationService.setUser(vm.username);
                 AuthenticationService.setAdmin(true);
+                AuthenticationService.setCogUser(cognitoUser);
 
             },
 

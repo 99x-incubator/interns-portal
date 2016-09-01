@@ -29,12 +29,11 @@
 
     var config ={headers:  {
         'Authorization': 'Basic d2VudHdvcnRobWFuOkNoYW5nZV9tZQ==',
-        'Accept': 'application/json;odata=verbose',
-        "X-Testing" : "testing"
+
     }
 };
 
-    $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/interns" ,config)
+    $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/interns",config)
     .then(function(response) {
         vm.tabs = response.data;
         internsTimeline(vm.tabs);
