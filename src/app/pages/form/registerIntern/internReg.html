@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step title="General info"  form="vm.personalInfoForm">
+                    <ba-wizard-step ng-if="vm.state=='dashboard.form.reg' || vm.state=='dashboard.form.reguser'" title="General info"  form="vm.personalInfoForm">
                         <form name="vm.personalInfoForm" ng-submit="vm.showFrom()" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
@@ -38,7 +38,7 @@
                             </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="Contact Info" form="vm.contactInfoForm">
+                    <ba-wizard-step ng-if="vm.state=='dashboard.form.reg' || vm.state=='dashboard.form.reguser'" title="Contact Info" form="vm.contactInfoForm">
                         <form name="vm.contactInfoForm"  novalidate>
                           <div class="row">
                               <div class="col-md-6">
@@ -52,7 +52,7 @@
                                       <label for="mobile">Mobile</label>
                                       <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="vm.contactInfo.mobile" required>
                                       <span class="help-block error-block basic-block">Required</span>
-                                      <label>Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /></label>
+                                      <!-- <label>Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /></label> -->
                                   </div>
                               </div>
                               <div class="col-md-6">
