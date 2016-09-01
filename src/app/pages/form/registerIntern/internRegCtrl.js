@@ -9,22 +9,18 @@
    var vm = this;
 
    vm.generalInfo ={};
-
    vm.contactInfo ={};
    vm.eduInsInfo ={};
    vm.internshipInfo ={};
-
    vm.state=$state.current.name;
-
-
 
    vm.submitform= function(){
 
-     
 
 
-  //  vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
-    //vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
+
+   vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
+   vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
 
    };
@@ -99,8 +95,8 @@
        Value : email
    };
 
-   var dataRole ={
-     Name: 'role',
+  var dataRole ={
+     Name: 'name',
      value: 'intern'
    }
 
@@ -114,11 +110,10 @@
 
    userPool.signUp(username, password, attributeList, null, function(err, result){
        if (err) {
-           alert(err);
+          console.log(err);
            return;
        }
-    //   cognitoUser = result.user;
-      // console.log('user name is ' + cognitoUser.getUsername());
+
    });
  };
 
