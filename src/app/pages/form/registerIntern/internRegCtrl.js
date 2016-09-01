@@ -74,8 +74,8 @@
 
     AWSCognito.config.region = 'us-east-1'; //This is required to derive the endpoint
 
-   var poolData = { UserPoolId : 'us-east-1_axj5uw9kj',
-       ClientId : '1blbmqslmk42i22u1258i7gmgi'
+   var poolData = { UserPoolId : 'us-east-1_vivy8Tb0Q',
+       ClientId : '1f4qsiknh7p3th045vf1tv2r4d'
    };
    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
@@ -86,14 +86,15 @@
        Value : email
    };
 
-  var dataRole ={
-     Name: 'name',
-     value: 'intern'
-   }
+
+
+   var dataRole = {
+        Name : 'name',
+        Value : 'intern'
+    };
 
    var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
-   var attributeRole =new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRole);
-
+   var attributeRole = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRole);
 
    attributeList.push(attributeEmail);
    attributeList.push(attributeRole);

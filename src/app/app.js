@@ -125,4 +125,21 @@ angular.module('BlurAdmin', [
       }
     });
   })
+
+/*
+  .factory('httpRequestInterceptor', function () {
+  return {
+    request: function (config) {
+    config.headers["Authorization"] = 'application/json';
+    config.headers["Content-Type"] =JSON.parse(localStorage.token);
+    return config;
+    }
+  };
+})
+.config(function ($httpProvider) {
+$httpProvider.interceptors.push('httpRequestInterceptor');
+})
+*/
+
+
 ;
