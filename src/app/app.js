@@ -35,7 +35,11 @@ angular.module('BlurAdmin', [
             }
             else if (localStorage.getItem("username") === null) {
                 var user = "NadunI";
-                localStorage.setItem("isAdmin", JSON.stringify(user));
+                localStorage.setItem("username", JSON.stringify(user));
+            }
+            else if (localStorage.getItem("token") === null) {
+                var token = "NadunI";
+                localStorage.setItem("token", JSON.stringify(token));
             }
 
             service.isLoggedIn = function(){
@@ -52,6 +56,7 @@ angular.module('BlurAdmin', [
               console.log("1 st in isAdmin = " + localStorage.isAdmin);
               var admin = JSON.parse(localStorage.isAdmin);
               var login = JSON.parse(localStorage.loggedIn);
+
               if (admin && login){
                   return true;
               }
@@ -89,6 +94,19 @@ angular.module('BlurAdmin', [
 
             };
 
+            service.setToken = function(token){
+              console.log("token is  = " + JSON.parse(localStorage.token));
+              localStorage.setItem("token", JSON.stringify(token));
+              console.log("token is  = " + JSON.parse(localStorage.token));
+
+            };
+
+            service.getToken = function(){
+              var token = JSON.parse(localStorage.token);
+
+              return token;
+            };
+
             return service;
   }])
 .run(function($rootScope, $state,PermRoleStore, AuthenticationService) {
@@ -108,6 +126,7 @@ angular.module('BlurAdmin', [
     });
   })
 
+
   .factory('httpRequestInterceptor', function () {
   return {
     request: function (config) {
@@ -120,6 +139,7 @@ angular.module('BlurAdmin', [
 .config(function ($httpProvider) {
 $httpProvider.interceptors.push('httpRequestInterceptor');
 })
+
 
 
 ;
