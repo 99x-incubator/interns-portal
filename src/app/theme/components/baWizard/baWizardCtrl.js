@@ -5,12 +5,14 @@
     .controller('baWizardCtrl', baWizardCtrl);
 
   /** @ngInject */
-  function baWizardCtrl($scope) {
+  function baWizardCtrl($scope,$rootScope) {
     var vm = this;
     vm.tabs = [];
 
     vm.tabNum = 0;
     vm.progress = 0;
+
+    // $rootScope.progress = 0;
 
     vm.addTab = function(tab) {
       tab.setPrev(vm.tabs[vm.tabs.length - 1]);
@@ -47,8 +49,15 @@
     };
 
     function calcProgress() {
+
+      // if (((vm.tabNum + 1) / vm.tabs.length) * 100 == 100){
+      //   vm.tabNum = 100;
+      // }
+      // else {
+      //   vm.progress = ((vm.tabNum) / vm.tabs.length) * 100;
+      // }
       vm.progress = ((vm.tabNum + 1) / vm.tabs.length) * 100;
+
     }
   }
 })();
-

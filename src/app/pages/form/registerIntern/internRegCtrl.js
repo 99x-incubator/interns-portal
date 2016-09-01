@@ -5,7 +5,7 @@
       .controller('internRegCtrl',internRegCtrl);
 
   /** @ngInject */
-  function internRegCtrl($scope, $http,$state) {
+  function internRegCtrl($scope, $http,$state,$rootScope,toastr) {
    var vm = this;
 
    vm.generalInfo ={};
@@ -19,51 +19,59 @@
 
 
 
-   vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
-   vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
+     vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
+     vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
 
-   };
-
-   vm.createNewIntern= function(general,contact,internship){
-
-     // create json for store user dataEmail
-     var data={
-        "id": contact.email,
-        "username": "new",
-        "firstname" :vm.generalInfo.firstName,
-        "fullname" : vm.generalInfo.fullName,
-        "lastname":vm.generalInfo.LastName,
-        "mobile":vm.contactInfo.mobile,
-        "instInfo" : vm.eduInsInfo,
-        "intshpInfo" : vm.internshipInfo,
-        "tel": vm.contactInfo.contactHome,
-        "address":vm.contactInfo.address,
-        "nic":vm.generalInfo.nic,
-        "email":contact.email,
-        "startdate":convertDate(String(vm.internshipInfo.startDate)),
-        "enddate":convertDate(String(vm.internshipInfo.endDate)),
-        "projects":{}
      };
 
+     vm.createNewIntern= function(general,contact,internship){
+
+       // create json for store user dataEmail
+       var data={
+          "id": contact.email,
+          "username": "new",
+          "firstname" :vm.generalInfo.firstName,
+          "fullname" : vm.generalInfo.fullName,
+          "lastname":vm.generalInfo.LastName,
+          "mobile":vm.contactInfo.mobile,
+          "instInfo" : vm.eduInsInfo,
+          "intshpInfo" : vm.internshipInfo,
+          "tel": vm.contactInfo.contactHome,
+          "address":vm.contactInfo.address,
+          "nic":vm.generalInfo.nic,
+          "email":contact.email,
+          "startdate":convertDate(String(vm.internshipInfo.startDate)),
+          "enddate":convertDate(String(vm.internshipInfo.endDate)),
+          "projects":{}
+       };
 
 
 
-     var config = {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            };
-     $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
-      .then(function(response) {
 
-        console.log(JSON.stringify(data));
-        ;
+       var config = {
+                  headers : {
+                      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                  }
+              };
+       $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
+        .then(function(response) {
+
+          console.log(JSON.stringify(data));
 
 
-         console.log(response);
 
-     });
+           console.log(response);
+           if (response.data == "It worked!"){
+             toastr.success('Your information has been saved successfully!');
+           }
+           else {
+             toastr.error(response.data);
+           }
+
+       });
+
+
 
 
    };
