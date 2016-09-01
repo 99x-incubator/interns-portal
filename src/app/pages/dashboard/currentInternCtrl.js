@@ -36,7 +36,7 @@
     }
 };
 
-    $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/interns")
+    $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers")
 
     .then(function(response) {
         vm.tabs = response.data;
