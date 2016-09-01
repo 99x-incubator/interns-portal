@@ -94,8 +94,9 @@
                 AuthenticationService.setLoggedIn(true);
                 AuthenticationService.setUser(vm.username);
                 AuthenticationService.setAdmin(true);
-                AuthenticationService.setCogUser(result.getIdToken().getJwtToken());
-                
+                var token = result.getIdToken().getJwtToken();
+                AuthenticationService.setToken(token);
+
 
             },
 
