@@ -37,10 +37,6 @@ angular.module('BlurAdmin', [
                 var user = "NadunI";
                 localStorage.setItem("isAdmin", JSON.stringify(user));
             }
-            else if (localStorage.getItem("cogUser") === null) {
-                var user = "NadunI";
-                localStorage.setItem("cogUser", JSON.stringify(user));
-            }
 
             service.isLoggedIn = function(){
                 console.log("1 st in isloggedin = " + localStorage.loggedIn);
@@ -93,17 +89,6 @@ angular.module('BlurAdmin', [
 
             };
 
-            service.setCogUser = function(user){
-              localStorage.setItem("cogUser", JSON.stringify(user));
-
-            };
-
-            service.getCogUser = function(){
-              var user = JSON.parse(localStorage.cogUser);
-
-              return user;
-            };
-
             return service;
   }])
 .run(function($rootScope, $state,PermRoleStore, AuthenticationService) {
@@ -122,4 +107,19 @@ angular.module('BlurAdmin', [
       }
     });
   })
+
+  .factory('httpRequestInterceptor', function () {
+  return {
+    request: function (config) {
+      config.headers['Content-Type'] = 'application/json';
+
+      return config;
+    }
+  };
+})
+.config(function ($httpProvider) {
+$httpProvider.interceptors.push('httpRequestInterceptor');
+})
+
+
 ;

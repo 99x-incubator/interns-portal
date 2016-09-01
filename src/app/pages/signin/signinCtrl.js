@@ -88,13 +88,14 @@
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 console.log(result);
-                console.log('access token + ' + result.getAccessToken().getJwtToken());
+                console.log('access token + ' + result.getIdToken().getJwtToken());
                 $state.go('dashboard.home');
                 //appConf.isAuthorized = true;
                 AuthenticationService.setLoggedIn(true);
                 AuthenticationService.setUser(vm.username);
                 AuthenticationService.setAdmin(true);
-                AuthenticationService.setCogUser(cognitoUser);
+                AuthenticationService.setCogUser(result.getIdToken().getJwtToken());
+                
 
             },
 
