@@ -24,7 +24,8 @@
       })
     };
 
-    $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers")
+
+    $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers",config)
     .then(function(response) {
         vm.tabs = response.data;
         internsTimeline(vm.tabs);
