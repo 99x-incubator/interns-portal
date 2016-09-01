@@ -12,6 +12,7 @@
     "gulp-angular-filesort": "~1.1.1",
     "gulp-angular-templatecache": "~1.8.0",
     "gulp-autoprefixer": "~3.0.2",
+    "gulp-awspublish": "^3.3.0",
     "gulp-eslint": "~1.0.0",
     "gulp-filter": "~3.0.1",
     "gulp-flatten": "~0.2.0",
@@ -45,7 +46,5 @@
   "scripts": {
     "postinstall": "bower install"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }
