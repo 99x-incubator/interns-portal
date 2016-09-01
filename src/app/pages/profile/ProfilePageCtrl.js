@@ -27,6 +27,7 @@
 
     var getDetails = function(){
       var name = AuthenticationService.getUser();
+
       var details = {
           "id": name
       }
@@ -117,7 +118,12 @@
       //     "social" : social
       //
       // };
+      console.log("goals");
+      if ($scope.vm.data.goals == undefined){
+        $scope.vm.data.goals = "future goals here";
 
+      }
+      console.log($scope.vm.data.goals);
       var sc = JSON.stringify($scope.socialProfiles);
       var name = AuthenticationService.getUser();
       console.log(sc);

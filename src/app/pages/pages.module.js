@@ -10,7 +10,7 @@
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.dashboard.home',
     'BlurAdmin.pages.dashboard.form',
-    'BlurAdmin.pages.dashboard.action',
+    // 'BlurAdmin.pages.dashboard.action',
     'BlurAdmin.pages.dashboard.profile',
     'BlurAdmin.pages.dashboard.login',
     'BlurAdmin.pages.dashboard.viewReview',
