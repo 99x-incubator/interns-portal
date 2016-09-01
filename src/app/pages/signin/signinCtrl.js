@@ -12,7 +12,7 @@
         //sign in function starts from here
       vm.signIn = function () {
 
-        AWSCognito.config.region = 'us-west-2';
+        AWSCognito.config.region = 'us-east-1';
 
         var authenticationData = {
             Username : vm.username,
@@ -21,8 +21,8 @@
 
         var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
         var poolData = {
-            UserPoolId : 'us-west-2_Wx15G37Co',
-            ClientId : '50s9gm3dpvki6bsjhj9eijgsou'
+            UserPoolId : ' us-east-1_axj5uw9kj',
+            ClientId : '1blbmqslmk42i22u1258i7gmgi'
         };
         var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
         var userData = {
@@ -34,9 +34,7 @@
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 console.log(result);
-                console.log('access token + ' + result.getAccessToken().getJwtToken());
                 $state.go('dashboard.home');
-                //appConf.isAuthorized = true;
                 AuthenticationService.setLoggedIn(true);
                 AuthenticationService.setAdmin(true);
 
