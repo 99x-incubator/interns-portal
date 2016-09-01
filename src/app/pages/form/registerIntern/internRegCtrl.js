@@ -16,9 +16,6 @@
 
    vm.submitform= function(){
 
-
-
-
      vm.createNewIntern(vm.generalInfo,vm.contactInfo,vm.eduInsInfo,vm.internshipInfo);
      vm.signUp(vm.contactInfo.email,vm.contactInfo.email,"99Xt@intern");
 
@@ -46,9 +43,6 @@
           "projects":{}
        };
 
-
-
-
        var config = {
                   headers : {
                       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -57,9 +51,7 @@
        $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
         .then(function(response) {
 
-          console.log(JSON.stringify(data));
-
-
+            console.log(JSON.stringify(data));
 
            console.log(response);
            if (response.data == "It worked!"){
@@ -70,21 +62,12 @@
            }
 
        });
-
-
-
-
    };
 
 
    vm.arePersonalInfoPasswordsEqual = function () {
      return vm.personalInfo.confirmPassword && vm.personalInfo.password == vm.personalInfo.confirmPassword;
    };
-
-
-
-
-
 
    vm.signUp = function (email,username,password) {
 
