@@ -28,12 +28,13 @@
 
 
     var config ={headers:  {
-        'Authorization': 'Basic d2VudHdvcnRobWFuOkNoYW5nZV9tZQ==',
+        'Content-Type': 'application/json',
+
 
     }
 };
 
-    $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/interns",config)
+    $http.get("https://58f6jw3pl0.execute-api.us-east-1.amazonaws.com/dev/interns")
     .then(function(response) {
         vm.tabs = response.data;
         internsTimeline(vm.tabs);
