@@ -59,7 +59,7 @@
         .state('dashboard.form.reguser', {
           url: '/userReg',
           templateUrl: 'app/pages/form/registerIntern/internReg.html',
-          title: 'New User',
+          title: 'New Supervisor',
           controller: 'internRegCtrl',
           controllerAs: 'vm',
           sidebarMeta: {

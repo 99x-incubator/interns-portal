@@ -10,13 +10,13 @@
         .state('dashboard.settings', {
           url: '/settings',
           templateUrl: 'app/pages/settings/settings.html',
-          title: 'Settings',
+          title: 'Change Password',
           controller: 'settingsCtrl',
-          controllerAs: 'vm',
-          sidebarMeta: {
-            icon: 'fa fa-cog',
-            order: 800,
-          },
+          controllerAs: 'vm'
+          // sidebarMeta: {
+          //   icon: 'fa fa-cog',
+          //   order: 800,
+          // },
         });
   }
 
