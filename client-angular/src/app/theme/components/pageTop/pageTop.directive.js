@@ -26,6 +26,8 @@
       AuthenticationService.setLoggedIn(false);
       console.log('inside signOut');
     };
+
+    $scope.username = AuthenticationService.getUser();
   }
 
 })();

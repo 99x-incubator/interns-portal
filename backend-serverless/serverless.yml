@@ -1,0 +1,71 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    v1.docs.serverless.com
+#
+# Happy Coding!
+
+service: new-interns-lambda # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+# you can overwrite defaults here
+#defaults:
+#  stage: dev
+#  region: us-east-1
+
+# you can add packaging information here
+#package:
+#  include:
+#    - include-me.js
+#  exclude:
+#    - exclude-me.js
+#  artifact: my-service-code.zip
+
+functions:
+  getUsers:
+    handler: handler.getUsers
+
+#   you can add any of the following events
+    events:
+      - http:
+          path: getUsers
+          method: get
+#     - s3: ${bucket}
+#     - schedule: rate(10 minutes)
+#     - sns: greeter-topic
+  postUser:
+    handler: handler.postUser
+    events:
+      - http:
+          path: createUser
+          method: post
+          
+  updateUser:
+    handler: handler.updateUser
+    events:
+      - http:
+          path: updateUser
+          method: post
+  getUser:
+    handler: handler.getUser
+    events:
+      - http:
+          path: getUser
+          method: post
+
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    newResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: newBucket
