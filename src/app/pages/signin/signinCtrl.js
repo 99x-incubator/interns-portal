@@ -45,20 +45,30 @@
                     return;
                 }
                 console.log(result);
-                for (i = 0; i < result.length; i++) {
+                for (var i = 0; i < result.length; i++) {
                     console.log(result);
                     console.log('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
                 }
+
+                if (result[2].getValue() == 'ADMIN'){
+                  AuthenticationService.setAdmin(true);
+
+                }
+                else {
+                  AuthenticationService.setAdmin(false);
+                }
+
+                AuthenticationService.setUser(result[3].getValue());
               });
 
 
 
                 $state.go('dashboard.home');
                 AuthenticationService.setLoggedIn(true);
-                AuthenticationService.setAdmin(true);
+
+
 
             },
-
 
 
             onFailure: function(err) {
@@ -67,11 +77,6 @@
             },
 
         });
-
-
-
-
-
 
 
        }
