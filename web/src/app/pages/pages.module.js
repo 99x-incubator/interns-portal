@@ -2,50 +2,23 @@
  * @author v.lugovsky
  * created on 16.12.2015
  */
-(function () {
-  'use strict';
+(function() {
+    'use strict';
+    angular.module('BlurAdmin.pages', [
+            'ui.router',
+            'BlurAdmin.pages.sides',
+            'BlurAdmin.pages.home',
+            'BlurAdmin.pages.register',
+            'BlurAdmin.pages.profile',
+            'BlurAdmin.pages.viewReview',
+            'BlurAdmin.pages.settings'
+        ])
+        .config(routeConfig);
 
-  angular.module('BlurAdmin.pages', [
-    'ui.router',
-    'BlurAdmin.pages.dashboard',
-    'BlurAdmin.pages.dashboard.home',
-    'BlurAdmin.pages.dashboard.form',
-    // 'BlurAdmin.pages.dashboard.action',
-    'BlurAdmin.pages.dashboard.profile',
-    'BlurAdmin.pages.dashboard.login',
-    'BlurAdmin.pages.dashboard.viewReview',
+    /** @ngInject */
+    function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
+        $urlRouterProvider.otherwise('/signin');
 
-    'BlurAdmin.pages.dashboard.settings'
-
-
-  ])
-      .config(routeConfig);
-
-  /** @ngInject */
-  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/signin');
-
-    // baSidebarServiceProvider.addStaticItem({
-    //   title: 'Pages',
-    //   icon: 'ion-document',
-    //   subMenu: [{
-    //     title: 'Sign In',
-    //     fixedHref: 'auth.html',
-    //     blank: true
-    //   }, {
-    //     title: 'Sign Up',
-    //     fixedHref: 'reg.html',
-    //     blank: true
-    //   }, {
-    //     title: 'User Profile',
-    //     stateRef: 'dashboard.profile'
-    //   }, {
-    //     title: '404 Page',
-    //     fixedHref: '404.html',
-    //     blank: true
-    //   }]
-    // });
-
-  }
+    }
 
 })();

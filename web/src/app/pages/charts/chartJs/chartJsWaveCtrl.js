@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard.charts.chartJs')
+  angular.module('BlurAdmin.pages.charts.chartJs')
     .controller('chartJsWaveCtrl', chartJsWaveCtrl);
 
   /** @ngInject */
@@ -17,7 +17,7 @@
 
     stopableInterval.start($interval, function(){
       $scope.data[0].unshift($scope.data[0].pop());
-    }, 300)
+    }, 300);
   }
 
 })();

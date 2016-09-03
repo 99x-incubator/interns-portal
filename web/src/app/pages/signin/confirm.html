@@ -1,32 +1,22 @@
-<main class="auth-main" style="padding-top:150px;">  <div class="auth-block">
-    <h1>Conform Email</h1>
-
-
-    <form class="form-horizontal">
-      <div class="form-group">
-
-
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="username" ng-model="vm.username" placeholder="User Name" required>
-        </div>
-      </div>
-
-      <div class="form-group">
-
-
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="code" ng-model="vm.code" placeholder="Confirmation Code" required>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit"  ng-click="vm.confirm()" class="btn btn-default btn-auth">Confirm</button>
-        </div>
-      </div>
-
-    </form>
-
-  </div>
+<main class="auth-main" style="padding-top:150px;">
+    <div class="auth-block">
+        <h1>Conform Email</h1>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" ng-model="username" placeholder="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="code" ng-model="code" placeholder="Confirmation Code" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" ng-click="confirm()" class="btn btn-default btn-auth">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </main>

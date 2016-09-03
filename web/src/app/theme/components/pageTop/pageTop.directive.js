@@ -2,32 +2,31 @@
  * @author v.lugovksy
  * created on 16.12.2015
  */
-(function () {
-  'use strict';
+(function() {
+    'use strict';
 
-  angular.module('BlurAdmin.theme.components')
-      .controller('SignOutCtrl',SignOutCtrl)
-      .directive('pageTop', pageTop);
+    angular.module('BlurAdmin.theme.components')
+        .controller('SignOutCtrl', SignOutCtrl)
+        .directive('pageTop', pageTop);
 
-  /** @ngInject */
-  function pageTop() {
-    return {
-      restrict: 'E',
-      templateUrl: 'app/theme/components/pageTop/pageTop.html',
-      controller: 'SignOutCtrl',
-      controllerAs: 'vm',
-    };
-  }
+    /** @ngInject */
+    function pageTop() {
+        return {
+            restrict: 'E',
+            templateUrl: 'app/theme/components/pageTop/pageTop.html',
+            controller: 'SignOutCtrl',
+            controllerAs: 'vm',
+        };
+    }
 
-  function SignOutCtrl($scope,AuthenticationService) {
-    console.log('Logout code');
+    function SignOutCtrl($scope, AuthenticationService, printService) {
+        printService.print('Logout code');
 
-    $scope.signOut = function(){
-      AuthenticationService.setLoggedIn(false);
-      console.log('inside signOut');
-    };
+        $scope.signOut = function() {
+            AuthenticationService.setLoggedIn(false);
+        };
 
-    $scope.username = AuthenticationService.getUser();
-  }
+        $scope.username = AuthenticationService.getUser();
+    }
 
 })();

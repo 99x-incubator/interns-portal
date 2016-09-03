@@ -4,9 +4,12 @@ Interns management system is an Angular based web portal which can store and tra
 
 ***deploy the portal using:***
 
-`npm install`
+```
+npm install
 
-`gulp serve`
+gulp serve
+```
+
 
 interns profiles will be created by admins and a random user will not be able to enter to the system
 

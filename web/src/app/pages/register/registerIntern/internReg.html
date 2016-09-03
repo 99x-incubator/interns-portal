@@ -1,0 +1,182 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
+                <ba-wizard>
+                    <ba-wizard-step ng-if="state=='dashboard.register.intern' || state=='dashboard.register.supervisor'" title="General info" form="data.personalInfoForm">
+                        <form name="data.personalInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': data.personalInfoForm.firstName.$invalid && (data.personalInfoForm.firstName.$dirty || data.personalInfoForm.$submitted)}">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="data.generalInfo.firstName" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': data.personalInfoForm.fullName.$invalid && (data.personalInfoForm.fullName.$dirty || data.personalInfoForm.$submitted)}">
+                                        <label for="fullName">Full Name</label>
+                                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="data.generalInfo.fullName" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': data.personalInfoForm.LastName.$invalid && (data.personalInfoForm.LastName.$dirty || data.personalInfoForm.$submitted)}">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name" ng-model="data.generalInfo.LastName" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': data.personalInfoForm.nic.$invalid && (data.personalInfoForm.nic.$dirty || data.personalInfoForm.$submitted)}">
+                                        <label for="nic">NIC Number</label>
+                                        <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC Number" ng-model="data.generalInfo.nic" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step ng-if="state=='dashboard.register.intern' || state=='dashboard.register.supervisor'" title="Contact Info" form="data.contactInfoForm">
+                        <form name="data.contactInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': data.contactInfoForm.address.$invalid && (data.contactInfoForm.address.$dirty || data.contactInfoForm.$submitted)}">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" ng-model="data.contactInfo.address" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': data.contactInfoForm.mobile.$invalid && (data.contactInfoForm.mobile.$dirty || data.contactInfoForm.$submitted)}">
+                                        <label for="mobile">Mobile</label>
+                                        <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="data.contactInfo.mobile" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                        <!-- <label>Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /></label> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': data.contactInfoForm.email.$invalid && (data.contactInfoForm.email.$dirty || data.contactInfoForm.$submitted)}">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="email" ng-model="data.contactInfo.email" required>
+                                        <span class="help-block error-block basic-block">Required a proper email</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': data.contactInfoForm.contactHome.$invalid && (data.contactInfoForm.contactHome.$dirty || data.contactInfoForm.$submitted)}">
+                                        <label for="contactHome">Contact Home</label>
+                                        <input type="number" class="form-control" id="contactHome" name="contactHome" placeholder="Contact Home" ng-model="data.contactInfo.contactHome" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step ng-if="state=='dashboard.register.intern'" title="Edu Institute Info" form="data.eduInsInfoForm">
+                        <form name="data.eduInsInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': data.eduInsInfoForm.instituteName.$invalid && (data.eduInsInfoFormForm.instituteName.$dirty || data.eduInsInfoForm.$submitted)}">
+                                        <label for="instituteName">Institute Name</label>
+                                        <input type="text" class="form-control" id="instituteName" name="instituteName" placeholder="Institute Name" ng-model="data.eduInsInfo.instituteName" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': data.eduInsInfoForm.eduContact.$invalid && (data.eduInsInfoForm.eduContact.$dirty || data.eduInsInfoForm.$submitted)}">
+                                        <label for="instituteContact">Contact</label>
+                                        <input type="text" class="form-control" id="eduContact" name="eduContact" placeholder="Institute Contact" ng-model="data.eduInsInfo.eduContact" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': data.eduInsInfoForm.instituteAddress.$invalid && (data.eduInsInfoForm.instituteAddress.$dirty || data.eduInsInfoForm.$submitted)}">
+                                        <label for="instituteAddress">Address</label>
+                                        <input type="text" class="form-control" id="instituteAddress" name="instituteAddress" placeholder="Institute Address" ng-model="data.eduInsInfo.instituteAddress" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step ng-if="state=='dashboard.register.intern'" title="Internship Info" form="data.internshipInfoForm">
+                        <form name="data.internshipInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="category">Inrernship Category</label>
+                                        <select class="form-control" title="Internship" ng-model="data.internshipInfo.category" selectpicker>
+                                        <option selected>Internship</option>
+                                        <option>In House Programe</option>
+                                    </select>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': data.internshipInfoForm.startDate.$invalid && (data.internshipInfoForm.startDate.$dirty ||data.internshipInfoForm.$submitted)}">
+                                        <label for="startDate">Start Date</label>
+                                        <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Start Date" ng-model="data.internshipInfo.startDate" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="company">Company</label>
+                                        <select class="form-control" title="Company" ng-model="data.internshipInfo.company" selectpicker>
+                                        <option selected>99X Technology</option>
+                                        <!-- <option>((XT-KYT))</option> -->
+                                    </select>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error':data.internshipInfoForm.endDate.$invalid &&  data.showFrom && (data.internshipInfoForm.endDate.$dirty || data.internshipInfoForm.endDate.$submitted)}">
+                                        <label for="endDate">End Date</label>
+                                        <input type="date" class="form-control" id="endDate" name="endDate" placeholder="End Date" ng-model="data.internshipInfo.endDate" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="Finish" ng-if="state=='dashboard.register.intern' || state=='dashboard.register.supervisor'">
+                        <form class="form-horizontal" name="data.finish" novalidate>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="with-line">Summary</h3>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            First Name: {{data.generalInfo.firstName}}
+                                        </div>
+                                        <div class="form-group">
+                                            Last Name: {{data.generalInfo.LastName}}
+                                        </div>
+                                        <div class="form-group">
+                                            Full Name: {{data.generalInfo.fullName}}
+                                        </div>
+                                        <div class="form-group">
+                                            NIC: {{data.generalInfo.nic}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+
+                                            Address: {{data.contactInfo.address}}
+                                        </div>
+                                        <div class="form-group">
+                                            Mobile: {{data.contactInfo.mobile}}
+                                        </div>
+                                        <div class="form-group">
+                                            E-mail: {{data.contactInfo.email}}
+                                        </div>
+                                        <div class="form-group">
+                                            Tel : {{data.contactInfo.contactHome}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" ng-click="submitform()" class="btn btn-primary btn-with-icon save-profile">
+                                          <i class="ion-android-checkmark-circle"></i>Confirm
+                                        </button>
+                                </div>
+                        </form>
+                    </ba-wizard-step>
+                </ba-wizard>
+                </div>
+            </div>
+        </div>
+
+    </div>

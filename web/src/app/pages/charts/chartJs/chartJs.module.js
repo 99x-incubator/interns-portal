@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard.charts.chartJs', [])
+  angular.module('BlurAdmin.pages.charts.chartJs', [])
       .config(routeConfig).config(chartJsConfig);
 
   /** @ngInject */

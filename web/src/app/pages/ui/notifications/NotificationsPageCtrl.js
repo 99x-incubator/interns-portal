@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard.ui.notifications')
+  angular.module('BlurAdmin.pages.ui.notifications')
       .controller('NotificationsPageCtrl', NotificationsPageCtrl);
 
   /** @ngInject */
@@ -105,7 +105,7 @@
 
     $scope.$on('$destroy', function iVeBeenDismissed() {
       angular.extend(toastrConfig, defaultConfig);
-    })
+    });
   }
 
 })();
