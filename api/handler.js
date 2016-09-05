@@ -2,7 +2,9 @@ var DOC = require('dynamodb-doc');
 var docClient = new DOC.DynamoDB();
 
 var table = "interns";
-
+/*
+set user details
+*/
 module.exports.postUser = function(event, context) {
     console.log(JSON.stringify(event, null, ' '));
     var datetime = new Date().getTime().toString();
