@@ -10,7 +10,7 @@
             'BlurAdmin.pages.home',
             'BlurAdmin.pages.register',
             'BlurAdmin.pages.profile',
-            'BlurAdmin.pages.viewReview',
+            // 'BlurAdmin.pages.viewReview',
             'BlurAdmin.pages.settings'
         ])
         .config(routeConfig);
