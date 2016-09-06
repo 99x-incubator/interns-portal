@@ -45,7 +45,8 @@
         var container = document.getElementById('visualization');
         var data = [];
         angular.forEach(interns.records, function(item) {
-            if (item.startdate !== null && item.enddate !== null) {
+            // temp solution for error of startdate doesn't exist.
+            if (item.startdate != null && item.enddate != null) {
                 data.push({
                     id: item.id,
                     content: item.firstname,

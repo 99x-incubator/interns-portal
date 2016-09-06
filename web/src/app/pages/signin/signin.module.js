@@ -10,9 +10,10 @@
             .state('signin', {
                 url: '/signin',
                 templateUrl: 'app/pages/signin/signin.html',
-                controller: 'SignInCtrl',
-                controllerAs: 'vm'
+                controller: 'SignInCtrl'
+
             })
+
 
         .state('forgotpwd', {
             url: '/signin/forgot',

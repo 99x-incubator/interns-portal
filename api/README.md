@@ -1,9 +1,18 @@
 # SERVERLESS for Interns-Portal
 
-install aws CLI from [here](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
-,then set up your environment for aws
+use this link as a guide to [SERVERLESS](https://github.com/serverless/serverless#quick-start)
 
-install node dependencies by
+## insatall serverless
+
+Install Serverless CLI
+```
+npm install -g serverless@beta
+```
+
+create aws profile [guide](https://github.com/serverless/serverless/blob/master/docs/guide/provider-account-setup.md#amazon-web-services)
+
+
+install node dependencies in api folder
 
 ```
 npm install
