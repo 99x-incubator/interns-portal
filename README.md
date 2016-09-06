@@ -17,4 +17,6 @@ web - consists with the client side of the application which was developed using
 
 For begin, download this project and run the following commands in your terminal:
 
-$git clone https://github.com/99xt/interns-portal.git
+|  1.  | `git clone https://github.com/99xt/interns-portal.git` | clone intern-portal project |
+|  2.  | `cd interns-portal` | clone intern-portal project
+|  3.  | `cd web` | clone intern-portal project
