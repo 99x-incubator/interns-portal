@@ -12,7 +12,7 @@ This is a web portal that visualize working period and feedback for interns
 
 ## Architechture
 
-Directory structure:
+###Directory structure:
 ```
 ├── api 
 │   ├── lib
@@ -34,7 +34,7 @@ Directory structure:
 
 *web - consists with the client side of the application which was developed using angularJS*
 
-System Architecture
+###System Architecture
 
 ![Alt text](https://github.com/niroshannrsh/interns-portal/blob/master/aws%20archi.png)
 
