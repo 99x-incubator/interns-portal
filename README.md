@@ -12,9 +12,32 @@ This is a web portal that visualize working period and feedback for interns
 
 ## Architechture
 
-api - consists with the serverless code for aws lambda functions
+Directory structure:
+```
+├── api 
+│   ├── lib
+│   |   |
+|   |   |──users
+|   |── serverless.yml
+|   |── serverless.env.yml
+|   |── handlder.yml
+|──web
+|  |──src
+|  |  |──app
+|  |  |──assert
+|  |  |──sass
+|  |──docs
+|  |──gulp
+```
 
-web - consists with the client side of the application which was developed using angularJS
+*api - consists with the serverless code for aws lambda functions*
+
+*web - consists with the client side of the application which was developed using angularJS*
+
+System Architecture
+
+![Alt text](https://github.com/niroshannrsh/interns-portal/blob/master/aws%20archi.png)
+
 
 ## Used Technologies
 *1. Angularjs* (Frontend)
@@ -27,7 +50,7 @@ web - consists with the client side of the application which was developed using
 
 *5. AWS Cognito User Pool*
 
-*6. Serverless Framework *
+*6. Serverless Framework*
 
 
 
