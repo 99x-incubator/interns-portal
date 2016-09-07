@@ -11,7 +11,8 @@
             'BlurAdmin.pages.register',
             'BlurAdmin.pages.profile',
             'BlurAdmin.pages.viewReview',
-            'BlurAdmin.pages.settings'
+            'BlurAdmin.pages.settings',
+            'BlurAdmin.pages.viewtasks'
         ])
         .config(routeConfig);
 
