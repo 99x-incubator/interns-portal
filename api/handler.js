@@ -1,9 +1,16 @@
 var AWS = require("aws-sdk");
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+<<<<<<< HEAD
 //set user details
+=======
+var table = "interns";
+/*
+99xt interns portal
+*/
+>>>>>>> cfc72e0f9436c8d380647a97e43265a6be19a1a2
 module.exports.postUser = function(event, context) {
-
+    console.log(JSON.stringify(event, null, ' '));
     var datetime = new Date().getTime().toString();
     var params = {};
     params.TableName = "interns";
@@ -26,7 +33,7 @@ module.exports.postUser = function(event, context) {
         "lastUpdated": datetime
     };
 
-
+    console.log(params.Item);
 
     var pfunc = function(err, data) {
         if (err) {
@@ -70,7 +77,7 @@ module.exports.updateUser = function(event, context) {
 
     };
 
-
+    console.log("Updating the item...");
 
 
     var pf = function(err, data) {
@@ -151,7 +158,6 @@ module.exports.getAllActiveTask = function(event,context){
       if (err)
           console.error(JSON.stringify(err, null, 2));
       else
-          //data = data.Item.Task;
           console.log(JSON.stringify(data, null, 2));
           context.succeed(data);
   });
@@ -181,7 +187,11 @@ module.exports.getUserTask = function(event,context){
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 //update active task admin
+=======
+
+>>>>>>> cfc72e0f9436c8d380647a97e43265a6be19a1a2
 module.exports.updateTaskAdmin = function(event,context){
   var AWS = require("aws-sdk");
   var docClient = new AWS.DynamoDB.DocumentClient();

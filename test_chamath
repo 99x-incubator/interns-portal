@@ -1,0 +1,243 @@
+table query sample
+
+var params = {
+    TableName: "interns",
+    Item: {
+        "id": "123",
+        "username": "maneesha",
+        "firstname": "maneesha",
+        "fullname": "Kota maneesha",
+        "lastname": "Kota maneesha",
+        "mobile": "Kota maneesha",
+        "tel": "Kota maneesha",
+        "address": "Kota maneesha",
+        "nic": "Kota maneesha",
+        "Task": {
+            "Task1": [
+                  "2016-01-12",
+                  "2016-05-12"
+            ],
+            "Task2": [
+                  "2016-05-22",
+                  "2016-11-72"
+            ],
+            "Task3": [
+                  "2016-12-89",
+                  "2016-05-12"
+            ]
+
+        }
+    }
+};
+
+docClient.put(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        console.log(JSON.stringify(data, null, 2));
+});
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+get user's task
+
+var params = {
+    TableName: "interns",
+    Key: {
+        "id": "123",
+    },
+    ProjectionExpression: "Task"
+};
+
+docClient.get(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        console.log(JSON.stringify(data, null, 2));
+});
+
+////////////////////////////////////////////////////////////////////////////////
+update task (delete ,insert and delete )
+var params = {
+    TableName: "interns",
+    Key: {
+        "id":"123"
+        },
+    UpdateExpression: "SET Task = :Task",
+    ExpressionAttributeValues: {
+        ":Task": {
+            "Task7": [
+                  "2016-01-12",
+                  "2016-05-12"
+            ],
+            "Task8": [
+                  "2016-05-22",
+                  "2016-11-72"
+            ],
+            "Task9": [
+                  "2016-12-89",
+                  "2016-05-12"
+            ]
+
+        }
+    },
+    ReturnValues: "ALL_NEW"
+};
+
+docClient.update(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        console.log(JSON.stringify(data, null, 2));
+});
+
+///////////////////////////////////////////////////////////////////////////////
+//config  table creation
+
+var params = {
+    TableName : "config",
+    KeySchema: [
+        { AttributeName: "id", KeyType: "HASH" }
+            ],
+    AttributeDefinitions: [
+        { AttributeName: "id", AttributeType: "S" },
+    ],
+    ProvisionedThroughput: {
+        ReadCapacityUnits: 1,
+        WriteCapacityUnits: 1
+    }
+};
+
+dynamodb.createTable(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        console.log(JSON.stringify(data, null, 2));
+});
+
+///////////////////////////////////////////////////////////////////////////////
+insert initial task- todo
+
+var params = {
+    TableName: "config",
+    Item: {
+        "id": "activeTask",
+        "Task": [
+            "Task1",
+            "Task2",
+            "Task3",
+            "Task4",
+            "Task5",
+            "Task6",
+            "Task7",
+            "Task8",
+            "Task9",
+            "Task10"
+
+        ]
+    }
+};
+
+docClient.put(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        console.log(JSON.stringify(data, null, 2));
+});
+////////////////////////////////////////////////////////////////////////////////
+get all tasks
+var params = {
+    TableName: "config",
+    Key: {
+        "id": "activeTask",
+    },
+    ProjectionExpression: "Task"
+};
+
+docClient.get(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        data = data.Item.Task;
+        console.log(JSON.stringify(data, null, 2));
+});
+
+////////////////////////////////////////////////////////////////////////////////
+add new task - admin
+var params = {
+    TableName: "config",
+    Key: {
+        "id": "activeTask",
+    },
+    ProjectionExpression: "Task"
+};
+
+var newTask = "My New Task8";
+
+
+docClient.get(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        data = data["Item"]["Task"];
+        data.push(newTask);
+
+        console.log(JSON.stringify(data, null, 2));
+
+
+        var params2 = {
+            TableName: "config",
+            Key: {
+                "id":"activeTask"
+                },
+            UpdateExpression: "SET Task = :Task",
+            ExpressionAttributeValues: {
+                ":Task": data
+            },
+            ReturnValues: "ALL_NEW"
+        };
+
+        docClient.update(params2, function(err, data) {
+            if (err)
+                console.log(JSON.stringify(err, null, 2));
+            else
+                console.log(JSON.stringify(data, null, 2));
+        });
+
+
+});
+
+////////////////////////////////////////////////////////////////////////////////
+update task - admin (update and Delete)
+
+var newArray = [
+      "Task1",
+      "Task2",
+      "Task3",
+      "Task4",
+      "Task5"];
+
+var params = {
+    TableName: "config",
+    Key: {
+        "id":"activeTask"
+        },
+    UpdateExpression: "SET Task = :Task",
+    ExpressionAttributeValues: {
+        ":Task": newArray
+    },
+    ReturnValues: "ALL_NEW"
+};
+
+docClient.update(params, function(err, data) {
+    if (err)
+        console.log(JSON.stringify(err, null, 2));
+    else
+        console.log(JSON.stringify(data, null, 2));
+});

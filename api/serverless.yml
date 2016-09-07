@@ -13,8 +13,6 @@
 
 service: new-interns-lambda # NOTE: update this with your service name
 
-
-
 provider:
   name: aws
   runtime: nodejs4.3
@@ -78,6 +76,7 @@ functions:
           path: getUserTask
           method: post
 
+
   updateTaskAdmin:
     handler: handler.updateTaskAdmin
     events:
@@ -98,6 +97,7 @@ functions:
       - http:
           path: updateTaskUser
           method: post
+
 
 
 # you can add CloudFormation resource templates here
