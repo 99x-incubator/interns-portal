@@ -48,7 +48,7 @@ functions:
       - http:
           path: createUser
           method: post
-          
+
   updateUser:
     handler: handler.updateUser
     events:
@@ -61,6 +61,28 @@ functions:
       - http:
           path: getUser
           method: post
+
+  getAllActiveTask:
+    handler: handler.getAllActiveTask
+    events:
+      - http:
+          path: getAllActiveTask
+          method: get
+
+  getUserTask:
+    handler: handler.getUserTask
+    events:
+      - http:
+          path: getUserTask
+          method: post
+
+  updateTaskAdmin:
+    handler: handler.updateTaskAdmin
+    events:
+      - http:
+          path: updateTaskAdmin
+          method: post
+
 
 # you can add CloudFormation resource templates here
 #resources:
