@@ -6,12 +6,11 @@ var table = "interns";
 set user details
 */
 module.exports.postUser = function(event, context) {
-
+    console.log(JSON.stringify(event, null, ' '));
     var datetime = new Date().getTime().toString();
     var params = {};
     params.TableName = "interns";
     params.Item = {
-
         "id": event.id,
         "username": event.username,
         "firstname": event.firstname,
@@ -30,7 +29,7 @@ module.exports.postUser = function(event, context) {
         "lastUpdated": datetime
     };
 
-
+    console.log(params.Item);
 
     var pfunc = function(err, data) {
         if (err) {
@@ -75,7 +74,7 @@ module.exports.updateUser = function(event, context) {
 
     };
 
-
+    console.log("Updating the item...");
 
 
     var pf = function(err, data) {
@@ -138,3 +137,51 @@ module.exports.getUser = function(event, context) {
         }
     });
 };
+
+///////////////////////////////////Task Related/////////////////////////////////
+
+//get all active task
+
+module.exports.getAllActiveTask = function(event,context){
+  var params = {
+    TableName: "config",
+    Key: {
+        "id": "activeTask",
+    },
+    ProjectionExpression: "Task"
+  };
+
+  docClient.get(params, function(err, data) {
+      if (err)
+          console.error(JSON.stringify(err, null, 2));
+      else
+          data = data.Item.Task;
+          console.log(JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+};
+////////////////////////////////////////////////////////////////////////////////
+
+// get user's task
+module.exports.getUserTask = function(event,context){
+  console.log(event.id);
+
+  var params = {
+    TableName: "interns",
+    Key: {
+        "id": event.id
+    },
+    ProjectionExpression: "Task"
+  };
+
+  docClient.get(params, function(err, data) {
+      if (err)
+          console.error(JSON.stringify(err, null, 2));
+      else
+          data = data.Item.Task;
+          console.log(JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+};
+
+////////////////////////////////////////////////////////////////////////////////
