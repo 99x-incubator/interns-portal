@@ -1,37 +1,93 @@
-
-
-
-  <div class="row">
-      <div class="col-md-12">
-          <div ba-panel ba-panel-title="Current Interns" ba-panel-class="with-scroll">
-            <div class="messages">
-                <table>
-                  <tr ng-repeat="(key,value) in tabs.records track by $index" class="side-message-navigation-item little-human shineHover ">
-
-                    <td  class="photo-td" ><img ng-src="{{m.name.split(' ')[0] | profilePicture}}" class="little-human-picture"></td>
-                    <td  ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})">
-                      <div class="name-container">
-                        <div><span class="name"gsufk</span></div>
-                        <div><span class="tag label label-primary {{m.tag}}">{{key}}</span></div>
-                      </div>
-                    </td>
-                    <td  ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})">
-                      <div class="additional-info">
-                        <span class="subject">{{value.firstname}} {{value.lastname}}</span>
-                      </div>
-                    </td>
-                  
-                  </tr>
-                </table>
-              </div>
-      </div>
-  </div>
-
-</div>
 <div class="row">
     <div class="col-md-12">
-        <div ba-panel ba-panel-title="Internship Period" ba-panel-class="with-scroll">
-            <div id="visualization"></div>
+        <div ba-panel ba-panel-title="Current Interns" ba-panel-class="with-scroll">
+            <div class="messages">
+                <table>
+                    <tr ng-repeat="(key,value) in tabs.records track by $index" class="side-message-navigation-item little-human shineHover ">
+
+                        <td class="photo-td"><img ng-src="https://avatars1.githubusercontent.com/u/12439172?v=3&s=460" class="little-human-picture"></td>
+                        <td href="#/dashboard/home/user">
+                            <div class="name-container">
+                                <div><span class="name" gsufk></span></div>
+                                <div><span class="tag label label-primary {{m.tag}}">{{key}}</span></div>
+
+                                </td>
+                        <td href="#/dashboard/home/user">
+                            <div class="additional-info">
+                                <span class="subject">{{value.firstname}} {{value.lastname}}</span>
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Internship Period" ba-panel-class="with-scroll">
+                <div id="visualization"></div>
+            </div>
         </div>
     </div>
-</div>
+
+
+    <div class="person-info row">
+          <div class="col-lg-4 col-md-12  no-padding">
+            <img ng-src="https://avatars1.githubusercontent.com/u/12439172?v=3&s=460" class="human-picture">
+
+            <div class="name">
+              <h2 class="name-h">Niroshan</h2>
+
+              <h2 class="name-h second-name">Ranapthi</h2>
+
+              <div>
+                <span class="mail-tag tag label">df</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-xs-12 no-padding">
+            <div class="contact-info phone-email">
+              <div>
+                <i class="ion-iphone"></i>
+                <span class="phone">dfgdzgdg</span>
+              </div>
+              <div>
+                <i class="ion-email"></i>
+                <span class="email">dgdgdg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 col-xs-12 no-padding">
+            <div class="contact-info position-address">
+              <div>
+                <span class="position">dgdgdg</span>
+              </div>
+              <div>
+                <span class="address">gdgzdgdgdg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="line"></div>
+        <div class="message-details">
+          <span class="subject">gzxdfgg </span>
+          <span class="date">• gzdgdg</span>
+        </div>
+        <div class="line"></div>
+        <div ng-bind-html="detailCtrl.mail.body" class="message-body">
+
+        </div>
+        <div class="line"></div>
+        <div class="attachment" ng-show="detailCtrl.mail.attachment">
+          <span class="file-links">1 Attachment - <a href>View</a> | <a href>Download</a></span>
+          <div>
+            <i class="file-icon ion-document"></i>
+            <span class="file-name">{{detailCtrl.mail.attachment}}</span>
+          </div>
+        </div>
