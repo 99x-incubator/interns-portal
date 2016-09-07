@@ -14,6 +14,7 @@
     /** @ngInject */
     function HomeCtrl($http, $scope, printService) {
 
+
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
             composeModal.open({

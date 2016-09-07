@@ -7,6 +7,8 @@
     /** @ngInject */
     function internRegCtrl($scope, $http, $state, $rootScope, toastr, printService) {
 
+        console.log(IG());
+
         $scope.data = {
             'generalInfo': {},
             'contactInfo': {},
@@ -50,7 +52,9 @@
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-            $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
+
+            //(IG.url('createUser')
+            $http.post('https://interns.99xtechnology.net/dev/createUser', data, config)
                 .then(function(response) {
 
                     printService.print(JSON.stringify(data));
@@ -67,11 +71,11 @@
 
         $scope.signUp = function(email, username, password) {
 
-            AWSCognito.config.region = 'us-east-1'; //This is required to derive the endpoint
+            AWSCognito.config.region = IG().cognitoConfigRegion; //This is required to derive the endpoint
 
             var poolData = {
-                UserPoolId: 'us-east-1_vivy8Tb0Q',
-                ClientId: '1f4qsiknh7p3th045vf1tv2r4d'
+                UserPoolId: IG().cognitoUserPoolId,
+                ClientId: IG().cognitoClientId
             };
 
             var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
@@ -81,31 +85,6 @@
             _.each(attributes,function(attribute){
               attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
             } );
-
-/*
-            var dataEmail = {
-                Name: 'email',
-                Value: email
-            };
-
-            var dataRole = {
-                Name: 'name',
-                Value: 'INTERN'
-            };
-
-            var dataProfile = {
-                Name: 'profile',
-                value: '/'
-            };
-
-            var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
-            var attributeRole = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRole);
-            var attributeProfile = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataProfile);
-
-            attributeList.push(attributeEmail);
-            attributeList.push(attributeRole);
-            attributeList.push(attributeProfile);
-*/
 
 
             userPool.signUp(username, password, attributeList, null, function(err, result) {
