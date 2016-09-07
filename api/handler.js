@@ -3,7 +3,7 @@ var docClient = new DOC.DynamoDB();
 
 var table = "interns";
 /*
-set user details
+99xt interns portal
 */
 module.exports.postUser = function(event, context) {
     console.log(JSON.stringify(event, null, ' '));
@@ -151,11 +151,10 @@ module.exports.getAllActiveTask = function(event,context){
     ProjectionExpression: "Task"
   };
 
-  docClient.get(params, function(err, data) {
+  docClient.getItem(params, function(err, data) {
       if (err)
           console.error(JSON.stringify(err, null, 2));
       else
-          data = data.Item.Task;
           console.log(JSON.stringify(data, null, 2));
           context.succeed(data);
   });
@@ -174,14 +173,41 @@ module.exports.getUserTask = function(event,context){
     ProjectionExpression: "Task"
   };
 
-  docClient.get(params, function(err, data) {
+  docClient.getItem(params, function(err, data) {
       if (err)
-          console.error(JSON.stringify(err, null, 2));
+          console.error("ERROR" + JSON.stringify(err, null, 2));
       else
-          data = data.Item.Task;
-          console.log(JSON.stringify(data, null, 2));
+          //data = data.Item.Task;
+          console.log("OK" + JSON.stringify(data, null, 2));
           context.succeed(data);
   });
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+
+module.exports.updateTaskAdmin = function(event,context){
+  var AWS = require("aws-sdk");
+  var docClient = new AWS.DynamoDB.DocumentClient();
+
+  console.log(event.taskArray);
+  var params = {
+      TableName: "config",
+      Key: {
+          "id":"activeTask"
+          },
+      UpdateExpression: "SET Task = :Task",
+      ExpressionAttributeValues: {
+          ":Task": event.taskArray
+      },
+      ReturnValues: "ALL_NEW"
+  };
+
+console.log("Updating.........");
+  docClient.update(params, function(err, data) {
+      if (err)
+          console.error("ERROR" + JSON.stringify(err, null, 2));
+      else
+          console.log("OK" + JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+};

@@ -1,6 +1,6 @@
 # interns-portal
 
-[![Join the chat at https://gitter.im/99xt/interns-portal](https://gitter.im/99xt/interns-portal.svg)](https://gitter.im/99xt/interns-portal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat](https://img.shields.io/badge/%E2%8A%AA%20GITTER%20-JOIN%20CHAT%20%E2%86%92-brightgreen.svg?style=flat)](https://gitter.im/99xt/interns-portal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
 
@@ -10,10 +10,34 @@ Intern management portal frontend was developed using AngularJs and Backend was 
 
 This is a web portal that visualize working period and feedback for interns
 
+## Architechture
 
-api - consists with the serverless code for aws lambda functions
+###Directory structure:
+```
+├── api 
+│   ├── lib
+│   |   |
+|   |   |──users
+|   |── serverless.yml
+|   |── serverless.env.yml
+|   |── handlder.yml
+|──web
+|  |──src
+|  |  |──app
+|  |  |──assert
+|  |  |──sass
+|  |──docs
+|  |──gulp
+```
 
-web - consists with the client side of the application which was developed using angularJS
+*api - consists with the serverless code for aws lambda functions*
+
+*web - consists with the client side of the application which was developed using angularJS*
+
+###System Architecture
+
+![Alt text](https://github.com/niroshannrsh/interns-portal/blob/master/aws%20archi.png)
+
 
 ## Used Technologies
 *1. Angularjs* (Frontend)
@@ -24,9 +48,9 @@ web - consists with the client side of the application which was developed using
 
 *4. AWS DynamoDB* (Dababase)
 
-*4. AWS Cognito User Pool*
+*5. AWS Cognito User Pool*
 
-*5. Serverless Framework *
+*6. Serverless Framework*
 
 
 
@@ -44,7 +68,7 @@ For begin run the following commands in your terminal:
 |  3.  | `npm install` | install npm packages
 |  4.  | `gulp serve` | run gulp server in local host
 
-Now application is working on your local machine (http://localhost:3000)
+Now application is working on your local machine ([http://localhost:3000](http://localhost:3000))
 
 
 ###2. AWS Lambda Function ( Backend )
@@ -52,16 +76,16 @@ Now application is working on your local machine (http://localhost:3000)
 
 | **Step** |**Description**|
 |---|------|
-|  1.  |  install AWS CLI in your local machine. Use [this procedure](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)|
-|  2.  |  configure AWS CLI . This is [a procedure] (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
-|  3.  | `npm install -g serverless@beta` This is [a detailed description](https://github.com/serverless/serverless/blob/master/docs/01-guide/01-installing-serverless.md) |
+|  1.  |  [install AWS CLI in your local machine](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)|
+|  2.  |  [configure AWS CLI ] (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+|  3.  |  [Install serveless V1](https://github.com/serverless/serverless/blob/master/docs/01-guide/01-installing-serverless.md) |
 |  4.  | `cd interns-portal\api`  move to node.js lambda directory|
 |  5.  | `serverless deploy`  Deploy AWS Lambda function|
 
 ### 3. Create and Configure Cognito UserPool
 | **Step** |**Description**|
 |---|------|
-|  1.  | Create Cognito user Pool. Detailed description is [here](http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html)|
+|  1.  | [Create Cognito user Pool](http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html)|
 | 2.   | Add Cognito Userpool Appclient id,client id and region to _ file
 
 

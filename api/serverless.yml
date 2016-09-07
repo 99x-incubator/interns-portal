@@ -77,6 +77,15 @@ functions:
           method: post
 
 
+  updateTaskAdmin:
+    handler: handler.updateTaskAdmin
+    events:
+      - http:
+          path: updateTaskAdmin
+          method: post
+
+
+
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:
