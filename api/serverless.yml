@@ -13,6 +13,8 @@
 
 service: new-interns-lambda # NOTE: update this with your service name
 
+
+
 provider:
   name: aws
   runtime: nodejs4.3

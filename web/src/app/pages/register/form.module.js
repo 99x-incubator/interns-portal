@@ -14,7 +14,7 @@
                 title: 'Registration',
                 sidebarMeta: {
                     icon: 'ion-compose',
-                    order: 250,
+                    order: 950,
                 },
                 data: {
                     permissions: {
@@ -33,7 +33,7 @@
 
         .state('dashboard.register.intern', {
             url: '/intern',
-            templateUrl: 'app/pages/register/registerIntern/internReg.html',
+            templateUrl: 'app/pages/register/internReg.html',
             title: 'New Intern',
             controller: 'internRegCtrl',
             sidebarMeta: {
@@ -56,7 +56,7 @@
 
         .state('dashboard.register.supervisor', {
             url: '/supervisor',
-            templateUrl: 'app/pages/register/registerIntern/internReg.html',
+            templateUrl: 'app/pages/register/internReg.html',
             title: 'New Supervisor',
             controller: 'internRegCtrl',
             sidebarMeta: {

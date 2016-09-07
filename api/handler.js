@@ -6,7 +6,7 @@ var table = "interns";
 set user details
 */
 module.exports.postUser = function(event, context) {
-    console.log(JSON.stringify(event, null, ' '));
+
     var datetime = new Date().getTime().toString();
     var params = {};
     params.TableName = "interns";
@@ -29,7 +29,7 @@ module.exports.postUser = function(event, context) {
         "lastUpdated": datetime
     };
 
-    console.log(params.Item);
+
 
     var pfunc = function(err, data) {
         if (err) {
@@ -74,7 +74,7 @@ module.exports.updateUser = function(event, context) {
 
     };
 
-    console.log("Updating the item...");
+
 
 
     var pf = function(err, data) {

@@ -77,7 +77,12 @@
             var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
             var attributeList = [];
+            var attributes = [{Name: 'email', Value: email}, {Name: 'profile', Value:  '/'}, {Name:'name',value:'INTERN'}];
+            _.each(attributes,function(attribute){
+              attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
+            } );
 
+/*
             var dataEmail = {
                 Name: 'email',
                 Value: email
@@ -85,14 +90,23 @@
 
             var dataRole = {
                 Name: 'name',
-                Value: 'intern'
+                Value: 'INTERN'
+            };
+
+            var dataProfile = {
+                Name: 'profile',
+                value: '/'
             };
 
             var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
             var attributeRole = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRole);
+            var attributeProfile = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataProfile);
 
             attributeList.push(attributeEmail);
             attributeList.push(attributeRole);
+            attributeList.push(attributeProfile);
+*/
+
 
             userPool.signUp(username, password, attributeList, null, function(err, result) {
                 if (err) {

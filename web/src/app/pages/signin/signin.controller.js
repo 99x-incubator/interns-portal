@@ -5,7 +5,7 @@
         .controller('SignInCtrl', SignInCtrl);
 
     /** @ngInject */
-    function SignInCtrl($scope, $state, $window, AuthenticationService, toastr, printService) {
+    function SignInCtrl($scope, $state, $window, $timeout, commonService, AuthenticationService, toastr, printService) {
 
         AWSCognito.config.region = 'us-east-1';
 
@@ -61,7 +61,7 @@
         };
 
         $scope.signIn = function() {
-
+            AuthenticationService.setUser($scope.username);
             var authenticationData = {
                 Username: $scope.username,
                 Password: $scope.password,
@@ -83,24 +83,34 @@
                     cognitoUser.getUserAttributes(function(err, result) {
                         if (err) {
                             printService.print(err);
-                            return;
+                            return null;
                         }
+                        var admin = ''; // temp bypass for the problem of 5 elements and 4 elements supply from API required a proper fix
                         for (var i = 0; i < result.length; i++) {
                             printService.print(result);
                             printService.print('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
+
+
+                            //commonService.set(result[i].getValue());
+
+                            if (result[i].getName() == "name") {
+                                admin = result[i].getValue();
+                            }
                         }
 
-                        if (result[2].getValue() == 'ADMIN') {
+                        if (admin == 'ADMIN') {
                             AuthenticationService.setAdmin(true);
 
                         } else {
                             AuthenticationService.setAdmin(false);
                         }
 
-                        AuthenticationService.setUser(result[3].getValue());
+                        $state.go('dashboard.home'); //error
+                        AuthenticationService.setLoggedIn(true);
+
                     });
-                    $state.go('dashboard.home');
-                    AuthenticationService.setLoggedIn(true);
+
+
                 },
                 onFailure: function(err) {
                     //alert(err);

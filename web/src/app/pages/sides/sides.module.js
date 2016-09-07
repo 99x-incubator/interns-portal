@@ -28,6 +28,13 @@
                         }
                     }
                 }
+                // ,
+                // resolve: {
+                //     initialData: function(commonService, AuthenticationService) {
+                //         AuthenticationService.setUser(commonService.get());
+                //         return;
+                //     }
+                // }
 
             });
     }

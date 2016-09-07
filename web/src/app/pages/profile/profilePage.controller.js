@@ -42,7 +42,7 @@
                 .then(function(response) {
                     $scope.vm.data = {};
 
-                    console.log(response.data.Item);
+                    console.log(response.data);
 
                     $scope.vm.data = response.data.Item;
 
@@ -233,9 +233,6 @@
         editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
         editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
 
-
-
-        $scope.switches = [true, true, false, true, true, false];
     }
 
 })();
