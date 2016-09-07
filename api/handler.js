@@ -1,10 +1,7 @@
-var DOC = require('dynamodb-doc');
-var docClient = new DOC.DynamoDB();
+var AWS = require("aws-sdk");
+var docClient = new AWS.DynamoDB.DocumentClient();
 
-var table = "interns";
-/*
-set user details
-*/
+//set user details
 module.exports.postUser = function(event, context) {
 
     var datetime = new Date().getTime().toString();
@@ -40,13 +37,12 @@ module.exports.postUser = function(event, context) {
         }
     };
 
-    docClient.putItem(params, pfunc);
+    docClient.put(params, pfunc);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 module.exports.updateUser = function(event, context) {
-    var AWS = require("aws-sdk");
-    var docClient = new AWS.DynamoDB.DocumentClient();
+
 
     console.log(JSON.stringify(event, null, ' '));
 
@@ -125,7 +121,7 @@ module.exports.getUser = function(event, context) {
         }
     };
 
-    docClient.getItem(params, function(err, data) {
+    docClient.get(params, function(err, data) {
         if (err) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
             context.succeed(err);
@@ -151,7 +147,7 @@ module.exports.getAllActiveTask = function(event,context){
     ProjectionExpression: "Task"
   };
 
-  docClient.getItem(params, function(err, data) {
+  docClient.get(params, function(err, data) {
       if (err)
           console.error(JSON.stringify(err, null, 2));
       else
@@ -174,7 +170,7 @@ module.exports.getUserTask = function(event,context){
     ProjectionExpression: "Task"
   };
 
-  docClient.getItem(params, function(err, data) {
+  docClient.get(params, function(err, data) {
       if (err)
           console.error("ERROR" + JSON.stringify(err, null, 2));
       else
@@ -185,6 +181,7 @@ module.exports.getUserTask = function(event,context){
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+//update active task admin
 module.exports.updateTaskAdmin = function(event,context){
   var AWS = require("aws-sdk");
   var docClient = new AWS.DynamoDB.DocumentClient();
@@ -210,4 +207,75 @@ console.log("Updating.........");
           console.log("OK" + JSON.stringify(data, null, 2));
           context.succeed(data);
   });
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// insert new task admin
+module.exports.insertTaskAdmin = function(event,context){
+  var params = {
+      TableName: "config",
+      Key: {
+          "id": "activeTask",
+      },
+      ProjectionExpression: "Task"
+  };
+
+  var newTask = event.newTask ;
+  console.log(newTask);
+
+  docClient.get(params, function(err, data) {
+      if (err)
+          console.log(JSON.stringify(err, null, 2));
+      else
+          data = data.Item.Task;
+          data.push(newTask);
+
+          console.log(JSON.stringify(data, null, 2));
+
+          var params2 = {
+              TableName: "config",
+              Key: {
+                  "id":"activeTask"
+                  },
+              UpdateExpression: "SET Task = :Task",
+              ExpressionAttributeValues: {
+                  ":Task": data
+              },
+              ReturnValues: "ALL_NEW"
+          };
+
+          docClient.update(params2, function(err, data) {
+              if (err)
+                  console.log(JSON.stringify(err, null, 2));
+              else
+                  console.log(JSON.stringify(data, null, 2));
+                  context.succeed(data);
+          });
+  });
+
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// update Task user (insert,delete,update)
+module.exports.updateTaskUser = function(event,context){
+  var params = {
+      TableName: "interns",
+      Key: {
+          "id":event.id
+          },
+      UpdateExpression: "SET Task = :Task",
+      ExpressionAttributeValues: {
+          ":Task":event.newTask
+      },
+      ReturnValues: "ALL_NEW"
+  };
+
+  docClient.update(params, function(err, data) {
+      if (err)
+          console.log(JSON.stringify(err, null, 2));
+      else
+          console.log(JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+
 };
