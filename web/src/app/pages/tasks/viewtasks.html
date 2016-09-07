@@ -1,0 +1,57 @@
+<div class="ba-panel">
+    <div class="panel-content" ng-controller="ViewTasksPageCtrl">
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="with-line">Tasks List</h3>
+
+
+                <div class="panel panel-blur light-text animated zoomIn task-panel" zoom-in="" ba-panel-blur="">
+
+                    <div class="panel-body">
+                      <div ng-repeat='item in list1' ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class="add-item col-md-8">{{item.title}}</div>
+                    </div>
+                </div>
+
+                <!-- <div id="products" class="col-md-12">
+                    <div id="catalog">
+                        <div>
+
+                            <div ng-repeat='item in list1' ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">{{item.title}}</div>
+
+                        </div>
+                    </div>
+                </div> -->
+
+
+            </div>
+
+            <div class="col-md-5 col-md-offset-2">
+                <h3 class="with-line">Your Plan</h3>
+
+                <div class="panel panel-blur light-text animated zoomIn task-panel" zoom-in="" ba-panel-blur="">
+
+                    <div class="panel-body">
+                      <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}" class="my-tasks-list">
+                          <div ng-repeat="item in list4 track by $index" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}" class="task-item col-md-8">{{item.title}}</div>
+                          <div class="placeholder" ng-hide="hideMe()">Add your plans here</div>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- <div id="cart" class="col-md-12">
+                    <div class="ui-widget-content" class="col-md-12">
+                        <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}">
+                            <div ng-repeat="item in list4 track by $index" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
+                            <div class="placeholder" ng-hide="hideMe()">Add your items here</div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="">
+                    <button type="button" ng-click="savetasks()" class="btn btn-success btn-with-icon"><i class="ion-android-checkmark-circle"></i>Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
