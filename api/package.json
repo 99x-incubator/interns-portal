@@ -5,8 +5,7 @@
     "node-uuid": "1.4.3"
   },
   "devDependencies": {
-    "aws-sdk": "2.4.2",
-    "serverless-offline": "^2.8.3"
+    "aws-sdk": "2.4.2"
   },
   "bundledDependencies": [
     "moment",

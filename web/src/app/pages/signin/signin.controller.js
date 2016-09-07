@@ -51,7 +51,7 @@
                 onFailure: function(err) {
                     toastr.error(err, 'Error');
                 },
-                inputVerificationCode() {
+                inputVerificationCode: function() {
                     var verificationCode = prompt('Please input verification code ', '');
                     var newPassword = prompt('Enter new password ', '');
                     cognitoUser.confirmPassword(verificationCode, newPassword, this);
@@ -59,6 +59,7 @@
             });
 
         };
+
 
         $scope.signIn = function() {
             AuthenticationService.setUser($scope.username);
@@ -68,7 +69,6 @@
             };
 
             var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
-
 
             var userData = {
                 Username: $scope.username,
@@ -89,8 +89,6 @@
                         for (var i = 0; i < result.length; i++) {
                             printService.print(result);
                             printService.print('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
-
-
                             //commonService.set(result[i].getValue());
 
                             if (result[i].getName() == "name") {
@@ -109,8 +107,6 @@
                         AuthenticationService.setLoggedIn(true);
 
                     });
-
-
                 },
                 onFailure: function(err) {
                     //alert(err);
