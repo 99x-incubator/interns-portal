@@ -1,52 +1,63 @@
 <div class="ba-panel">
     <div class="panel-content" ng-controller="ViewTasksPageCtrl">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5" style="z-index:1">
                 <h3 class="with-line">Tasks List</h3>
 
 
-                <div class="panel panel-blur light-text animated zoomIn task-panel" zoom-in="" ba-panel-blur="">
+                <div class="light-text task-panel" zoom-in="" ba-panel-blur="">
 
-                    <div class="panel-body">
-                      <div ng-repeat='item in list1' ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class="add-item col-md-8">{{item.title}}</div>
+                    <div class="">
+                        <uib-accordion>
+                            <uib-accordion-group ng-repeat='item in list1' ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class="" style="z-index:2;width:100%"
+                                heading={{item.title}}>
+                            </uib-accordion-group>
+                        </uib-accordion>
                     </div>
                 </div>
-
-                <!-- <div id="products" class="col-md-12">
-                    <div id="catalog">
-                        <div>
-
-                            <div ng-repeat='item in list1' ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">{{item.title}}</div>
-
-                        </div>
-                    </div>
-                </div> -->
-
 
             </div>
 
-            <div class="col-md-5 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-1" style="z-index:0">
                 <h3 class="with-line">Your Plan</h3>
 
-                <div class="panel panel-blur light-text animated zoomIn task-panel" zoom-in="" ba-panel-blur="">
+                <div class="" zoom-in="" ba-panel-blur="">
 
-                    <div class="panel-body">
-                      <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}" class="my-tasks-list">
-                          <div ng-repeat="item in list4 track by $index" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}" class="task-item col-md-8">{{item.title}}</div>
-                          <div class="placeholder" ng-hide="hideMe()">Add your plans here</div>
-                      </div>
+                    <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}" class="my-tasks-list">
+                        <uib-accordion>
+                            <uib-accordion-group ng-repeat="item in list4 track by $index" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}" class="task-item task-panel"
+                                is-open="true" panel-class="bootstrap-panel accordion-panel panel-default" style="width:100%">
+                                <uib-accordion-heading>
+                                    {{item.title}}
+                                    </button>
+                                </uib-accordion-heading>
+
+                                <div>
+                                    <div class="col-md-4">
+                                        <div class="input-group" moment-picker="item.start" format="YYYY-MM-DD">
+                                            <span class="input-group-addon">
+                                          <i class="ion-calendar"></i>
+                                        </span>
+                                            <input class="form-control" placeholder="Start Date" ng-model="item.start" ng-click="dd()" ng-model-options="{ updateOn: 'blur' }">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group" moment-picker="item.end" format="YYYY-MM-DD">
+                                            <span class="input-group-addon">
+                                          <i class="ion-calendar"></i>
+                                        </span>
+                                            <input class="form-control" placeholder="End Date" ng-model="item.end" ng-click="dd()" ng-model-options="{ updateOn: 'blur' }">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <button type="button" class="btn btn-danger btn-with-icon pull-right" ng-click="delete(item)"><i class="ion-close-round"></i>Remove</button>
+                            </uib-accordion-group>
+                        </uib-accordion>
+                        <div class="placeholder" ng-hide="hideMe()">Add your plans here</div>
                     </div>
                 </div>
-
-                <!-- <div id="cart" class="col-md-12">
-                    <div class="ui-widget-content" class="col-md-12">
-                        <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}">
-                            <div ng-repeat="item in list4 track by $index" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
-                            <div class="placeholder" ng-hide="hideMe()">Add your items here</div>
-                        </div>
-                    </div>
-                </div> -->
-
                 <div class="">
                     <button type="button" ng-click="savetasks()" class="btn btn-success btn-with-icon"><i class="ion-android-checkmark-circle"></i>Save</button>
                 </div>

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.viewtasks', ['ngDragDrop'])
+  angular.module('BlurAdmin.pages.viewtasks', ['ngDragDrop','moment-picker'])
       .config(routeConfig);
 
   /** @ngInject */

@@ -13,6 +13,7 @@
             'BlurAdmin.pages.viewReview',
             'BlurAdmin.pages.settings',
             'BlurAdmin.pages.viewtasks',
+            'BlurAdmin.pages.addtasks',
             // 'BlurAdmin.pages.viewReview',
             'BlurAdmin.pages.settings'
         ])
