@@ -84,6 +84,20 @@ functions:
           path: updateTaskAdmin
           method: post
 
+  insertTaskAdmin:
+    handler: handler.insertTaskAdmin
+    events:
+      - http:
+          path: insertTaskAdmin
+          method: post
+
+  updateTaskUser:
+    handler: handler.updateTaskUser
+    events:
+      - http:
+          path: updateTaskUser
+          method: post
+
 
 
 # you can add CloudFormation resource templates here

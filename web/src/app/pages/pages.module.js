@@ -10,6 +10,10 @@
             'BlurAdmin.pages.home',
             'BlurAdmin.pages.register',
             'BlurAdmin.pages.profile',
+            'BlurAdmin.pages.viewReview',
+            'BlurAdmin.pages.settings',
+            'BlurAdmin.pages.viewtasks',
+            'BlurAdmin.pages.addtasks',
             // 'BlurAdmin.pages.viewReview',
             'BlurAdmin.pages.settings'
         ])
@@ -18,7 +22,6 @@
     /** @ngInject */
     function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
         $urlRouterProvider.otherwise('/signin');
-
     }
 
 })();
