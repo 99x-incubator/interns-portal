@@ -3,6 +3,7 @@
 
     angular.module('BlurAdmin.pages.viewtasks').controller('ViewTasksPageCtrl', ViewTasksPageCtrl);
 
+
     function ViewTasksPageCtrl($scope, $timeout) {
         $scope.list1 = [{
             'title': 'Node'
@@ -20,7 +21,12 @@
         $scope.hideMe = function() {
             return $scope.list4.length > 0;
         };
-        print($scope.list4);
+
+
+        $scope.delete = function(item) {
+            $scope.list4.splice($scope.list4.indexOf(item), 1);
+        };
+
         $scope.savetasks = function(){
           print($scope.list4);
         };
