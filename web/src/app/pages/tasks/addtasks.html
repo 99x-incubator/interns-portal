@@ -1,0 +1,25 @@
+<div class="ba-panel">
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-md-5">
+
+                <div class="panel panel-blur with-scroll animated zoomIn" zoom-in="" ba-panel-blur="">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="newtask" placeholder="Enter new task">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="float: right">Add</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+                <div class="panel panel-blur with-scroll animated zoomIn" zoom-in="" ba-panel-blur="">
+                    <div class="panel-body">
+                        <div ng-repeat="item in tasks">{{item.title}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

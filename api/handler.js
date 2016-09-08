@@ -1,17 +1,20 @@
-var DOC = require('dynamodb-doc');
-var docClient = new DOC.DynamoDB();
+var AWS = require("aws-sdk");
+var docClient = new AWS.DynamoDB.DocumentClient();
 
+<<<<<<< HEAD
+//set user details
+=======
 var table = "interns";
 /*
-set user details
+99xt interns portal
 */
+>>>>>>> cfc72e0f9436c8d380647a97e43265a6be19a1a2
 module.exports.postUser = function(event, context) {
-
+    console.log(JSON.stringify(event, null, ' '));
     var datetime = new Date().getTime().toString();
     var params = {};
     params.TableName = "interns";
     params.Item = {
-
         "id": event.id,
         "username": event.username,
         "firstname": event.firstname,
@@ -30,7 +33,7 @@ module.exports.postUser = function(event, context) {
         "lastUpdated": datetime
     };
 
-
+    console.log(params.Item);
 
     var pfunc = function(err, data) {
         if (err) {
@@ -41,13 +44,12 @@ module.exports.postUser = function(event, context) {
         }
     };
 
-    docClient.putItem(params, pfunc);
+    docClient.put(params, pfunc);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 module.exports.updateUser = function(event, context) {
-    var AWS = require("aws-sdk");
-    var docClient = new AWS.DynamoDB.DocumentClient();
+
 
     console.log(JSON.stringify(event, null, ' '));
 
@@ -75,7 +77,7 @@ module.exports.updateUser = function(event, context) {
 
     };
 
-
+    console.log("Updating the item...");
 
 
     var pf = function(err, data) {
@@ -126,7 +128,7 @@ module.exports.getUser = function(event, context) {
         }
     };
 
-    docClient.getItem(params, function(err, data) {
+    docClient.get(params, function(err, data) {
         if (err) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
             context.succeed(err);
@@ -137,4 +139,153 @@ module.exports.getUser = function(event, context) {
             //context.succeed(JSON.stringify(data, null, 2));
         }
     });
+};
+
+///////////////////////////////////Task Related/////////////////////////////////
+
+//get all active task
+
+module.exports.getAllActiveTask = function(event,context){
+  var params = {
+    TableName: "config",
+    Key: {
+        "id": "activeTask",
+    },
+    ProjectionExpression: "Task"
+  };
+
+  docClient.get(params, function(err, data) {
+      if (err)
+          console.error(JSON.stringify(err, null, 2));
+      else
+          console.log(JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+};
+////////////////////////////////////////////////////////////////////////////////
+
+// get user's task
+module.exports.getUserTask = function(event,context){
+  console.log(event.id);
+
+  var params = {
+    TableName: "interns",
+    Key: {
+        "id": event.id
+    },
+    ProjectionExpression: "Task"
+  };
+
+  docClient.get(params, function(err, data) {
+      if (err)
+          console.error("ERROR" + JSON.stringify(err, null, 2));
+      else
+          //data = data.Item.Task;
+          console.log("OK" + JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+};
+
+////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
+//update active task admin
+=======
+
+>>>>>>> cfc72e0f9436c8d380647a97e43265a6be19a1a2
+module.exports.updateTaskAdmin = function(event,context){
+  var AWS = require("aws-sdk");
+  var docClient = new AWS.DynamoDB.DocumentClient();
+
+  console.log(event.taskArray);
+  var params = {
+      TableName: "config",
+      Key: {
+          "id":"activeTask"
+          },
+      UpdateExpression: "SET Task = :Task",
+      ExpressionAttributeValues: {
+          ":Task": event.taskArray
+      },
+      ReturnValues: "ALL_NEW"
+  };
+
+console.log("Updating.........");
+  docClient.update(params, function(err, data) {
+      if (err)
+          console.error("ERROR" + JSON.stringify(err, null, 2));
+      else
+          console.log("OK" + JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// insert new task admin
+module.exports.insertTaskAdmin = function(event,context){
+  var params = {
+      TableName: "config",
+      Key: {
+          "id": "activeTask",
+      },
+      ProjectionExpression: "Task"
+  };
+
+  var newTask = event.newTask ;
+  console.log(newTask);
+
+  docClient.get(params, function(err, data) {
+      if (err)
+          console.log(JSON.stringify(err, null, 2));
+      else
+          data = data.Item.Task;
+          data.push(newTask);
+
+          console.log(JSON.stringify(data, null, 2));
+
+          var params2 = {
+              TableName: "config",
+              Key: {
+                  "id":"activeTask"
+                  },
+              UpdateExpression: "SET Task = :Task",
+              ExpressionAttributeValues: {
+                  ":Task": data
+              },
+              ReturnValues: "ALL_NEW"
+          };
+
+          docClient.update(params2, function(err, data) {
+              if (err)
+                  console.log(JSON.stringify(err, null, 2));
+              else
+                  console.log(JSON.stringify(data, null, 2));
+                  context.succeed(data);
+          });
+  });
+
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// update Task user (insert,delete,update)
+module.exports.updateTaskUser = function(event,context){
+  var params = {
+      TableName: "interns",
+      Key: {
+          "id":event.id
+          },
+      UpdateExpression: "SET Task = :Task",
+      ExpressionAttributeValues: {
+          ":Task":event.newTask
+      },
+      ReturnValues: "ALL_NEW"
+  };
+
+  docClient.update(params, function(err, data) {
+      if (err)
+          console.log(JSON.stringify(err, null, 2));
+      else
+          console.log(JSON.stringify(data, null, 2));
+          context.succeed(data);
+  });
+
 };

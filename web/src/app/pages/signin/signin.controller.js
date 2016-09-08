@@ -27,10 +27,10 @@
 
             cognitoUser.confirmRegistration($scope.code, true, function(err, result) {
                 if (err) {
-                    alert(err);
+                    toastr.error(err.message, 'Error');
                     return;
                 }
-                printService.print('call result: ' + result);
+                toastr.success(result.message, 'Success');
             });
 
         };
@@ -46,12 +46,12 @@
 
             cognitoUser.forgotPassword({
                 onSuccess: function(result) {
-                    printService.print('call result: ' + result);
+                    toastr.success(result.message, 'Success');
                 },
                 onFailure: function(err) {
-                    toastr.error(err, 'Error');
+                    toastr.error(err.message, 'Error');
                 },
-                inputVerificationCode() {
+                inputVerificationCode: function() {
                     var verificationCode = prompt('Please input verification code ', '');
                     var newPassword = prompt('Enter new password ', '');
                     cognitoUser.confirmPassword(verificationCode, newPassword, this);
@@ -59,6 +59,7 @@
             });
 
         };
+
 
         $scope.signIn = function() {
             AuthenticationService.setUser($scope.username);
@@ -69,7 +70,6 @@
 
             var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
 
-
             var userData = {
                 Username: $scope.username,
                 Pool: userPool
@@ -78,21 +78,14 @@
             var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
             cognitoUser.authenticateUser(authenticationDetails, {
                 onSuccess: function(result) {
-                    printService.print(result);
 
                     cognitoUser.getUserAttributes(function(err, result) {
                         if (err) {
-                            printService.print(err);
+                            toastr.error(err, 'Error');
                             return null;
                         }
                         var admin = ''; // temp bypass for the problem of 5 elements and 4 elements supply from API required a proper fix
                         for (var i = 0; i < result.length; i++) {
-                            printService.print(result);
-                            printService.print('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
-
-
-                            //commonService.set(result[i].getValue());
-
                             if (result[i].getName() == "name") {
                                 admin = result[i].getValue();
                             }
@@ -109,11 +102,8 @@
                         AuthenticationService.setLoggedIn(true);
 
                     });
-
-
                 },
                 onFailure: function(err) {
-                    //alert(err);
                     toastr.error(err.message, 'Error');
                 },
 
