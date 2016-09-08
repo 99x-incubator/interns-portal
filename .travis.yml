@@ -12,6 +12,8 @@ addons:
     packages:
       - g++-4.8
 
+before_install: cd web
+
 install:
   - npm config set spin false
   - npm install -g npm@3
