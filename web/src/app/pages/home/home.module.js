@@ -34,11 +34,10 @@
                     }
                 }
             })
-            .state('dashboard.home.user', {
-          url: '/:id',
+            .state('dashboard.user', {
+          url: '/user',
           templateUrl: 'app/pages/home/user/user.html',
-          title: 'Mail',
-          controller: "UserCtrl",
+          title: 'Profile'
 
         })
 

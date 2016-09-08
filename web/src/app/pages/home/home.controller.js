@@ -12,7 +12,7 @@
 
 
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService) {
+    function HomeCtrl($http, $scope, printService,$state) {
 
 
         $scope.navigationCollapsed = true;
@@ -23,6 +23,11 @@
                 text: text
             });
         };
+
+        $scope.getUserProfile =function () {
+            console.log("idd");
+            $state.go('dashboard.user');
+        }
 
         // $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers",config);
         var config = {
