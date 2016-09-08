@@ -31,7 +31,7 @@
             }
         };
 
-        $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers")
+        $http.get(IG().api+"/getUsers")
 
         .then(function(response) {
             $scope.tabs = response.data;
