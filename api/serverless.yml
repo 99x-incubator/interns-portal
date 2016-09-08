@@ -31,72 +31,24 @@ provider:
 #  artifact: my-service-code.zip
 
 functions:
-  getUsers:
-    handler: handler.getUsers
+  Users:
+    handler: handler.users
 
 #   you can add any of the following events
     events:
       - http:
-          path: getUsers
+          path: users/getUsers
           method: get
-#     - s3: ${bucket}
-#     - schedule: rate(10 minutes)
-#     - sns: greeter-topic
-  postUser:
-    handler: handler.postUser
-    events:
       - http:
-          path: createUser
+          path: users/createUser
           method: post
-
-  updateUser:
-    handler: handler.updateUser
-    events:
       - http:
-          path: updateUser
+          path: users/updateUser
           method: post
-  getUser:
-    handler: handler.getUser
-    events:
       - http:
-          path: getUser
-          method: post
-
-  getAllActiveTask:
-    handler: handler.getAllActiveTask
-    events:
-      - http:
-          path: getAllActiveTask
+          path: users/getUser
           method: get
 
-  getUserTask:
-    handler: handler.getUserTask
-    events:
-      - http:
-          path: getUserTask
-          method: post
-
-
-  updateTaskAdmin:
-    handler: handler.updateTaskAdmin
-    events:
-      - http:
-          path: updateTaskAdmin
-          method: post
-
-  insertTaskAdmin:
-    handler: handler.insertTaskAdmin
-    events:
-      - http:
-          path: insertTaskAdmin
-          method: post
-
-  updateTaskUser:
-    handler: handler.updateTaskUser
-    events:
-      - http:
-          path: updateTaskUser
-          method: post
 
 
 
