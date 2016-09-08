@@ -33,7 +33,18 @@
                         }
                     }
                 }
-            });
+            })
+            .state('dashboard.home.user', {
+          url: '/:id',
+          templateUrl: 'app/pages/home/user/user.html',
+          title: 'Mail',
+          controller: "UserCtrl",
+
+        })
+
+
+
+            ;
     }
 
 })();

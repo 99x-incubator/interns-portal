@@ -38,7 +38,7 @@
                 }
             };
 
-            $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUser', details, config)
+            $http.post(IG().api+"getUser", details, config)
                 .then(function(response) {
                     $scope.vm.data = {};
 
