@@ -1,0 +1,36 @@
+<div class="ba-panel">
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="with-line"> Add New Task</h3>
+                <div class="panel panel-blur with-scroll animated zoomIn" zoom-in="" ba-panel-blur="">
+                    <div class="panel-body">
+                        <form id="addtask" name="add">
+                            <div class="form-group" ng-class="{'has-error':submitted && add.newtask.$error.required}">
+                                <input type="text" name="newtask" class="form-control" id="newtask" placeholder="Enter new task" ng-model="newtask" required>
+                                <span ng-show="submitted && add.newtask.$error.required" class="help-block error-block basic-block"> Please enter a task </span>
+                            </div>
+                        </form>
+                        <button type="submit" class="btn btn-primary" style="float: right" ng-click="addtask()">Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-1">
+                <h3 class="with-line"> Tasks</h3>
+                <div class="panel panel-blur light-text animated zoomIn" zoom-in="" ba-panel-blur="">
+
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="task in tasks">
+                                    <td>{{task.title}}</td>
+                                    <td><button type="button"  class="btn btn-danger btn-xs btn-icon-sm" ng-click="deleteItem(task)"><i class="ion-close-round"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
