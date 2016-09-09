@@ -9,8 +9,8 @@
 
                     <div class="">
                         <uib-accordion>
-                            <uib-accordion-group ng-repeat='item in list1' ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class="" style="z-index:2;width:100%"
-                                heading={{item.title}}>
+                            <uib-accordion-group ng-repeat='item in list1' ng-show="item.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class="" style="z-index:2;width:100%"
+                                heading={{item.id}}>
                             </uib-accordion-group>
                         </uib-accordion>
                     </div>
@@ -23,12 +23,12 @@
 
                 <div class="" zoom-in="" ba-panel-blur="">
 
-                    <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}" class="my-tasks-list">
+                    <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:false}" class="my-tasks-list">
                         <uib-accordion>
-                            <uib-accordion-group ng-repeat="item in list4 track by $index" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}" class="task-item task-panel"
-                                is-open="true" panel-class="bootstrap-panel accordion-panel panel-default" style="width:100%">
+                            <uib-accordion-group ng-repeat="item in list4 track by $index" ng-show="item.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}" class="task-item task-panel"
+                                panel-class="bootstrap-panel accordion-panel panel-default" style="width:100%">
                                 <uib-accordion-heading>
-                                    {{item.title}}
+                                    {{item.id}}
                                     </button>
                                 </uib-accordion-heading>
 
