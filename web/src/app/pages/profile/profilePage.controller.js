@@ -9,9 +9,28 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
-    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes) {
-        $scope.picture = $filter('profilePicture')('Nasta');
+    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes,Upload, S3UploadService) {
+        $scope.picture = null;
 
+        $scope.uploadFiles = function (files) {
+            $scope.Files = files;
+
+            if (files && files.length > 0) {
+                angular.forEach($scope.Files, function (file, key) {
+                    S3UploadService.Upload(file).then(function (result) {
+                        // Mark as success
+                        file.Success = true;
+                        $scope.picture="https://s3.amazonaws.com/99xt-interns/profile/"+file.name;
+                    }, function (error) {
+                        // Mark the error
+                        $scope.Error = error;
+                    }, function (progress) {
+                        // Write the progress as a percentage
+                        file.Progress = (progress.loaded / progress.total) * 100
+                    });
+                });
+            }
+        };
 
 
         $scope.removePicture = function() {
@@ -38,7 +57,7 @@
                 }
             };
 
-            $http.post(IG().api+"getUser", details, config)
+            $http.post(IG().api + "getUser", details, config)
                 .then(function(response) {
                     $scope.vm.data = {};
 
