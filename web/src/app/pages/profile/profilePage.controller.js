@@ -11,7 +11,7 @@
     /** @ngInject */
     function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes) {
         $scope.picture = $filter('profilePicture')('Nasta');
-
+        $scope.data = {};
 
 
         $scope.removePicture = function() {
@@ -38,50 +38,69 @@
                 }
             };
 
-            $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUser', details, config)
-                .then(function(response) {
-                    $scope.vm.data = {};
+            var datas = {
+                id: "nadun1indunil@gmail.com"
+            };
 
-                    console.log(response.data);
 
-                    $scope.vm.data = response.data.Item;
+            $http({
+                method: 'POST',
+                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/getUser',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    "id": "nadun1indunil@gmail.com"
+                }
+            }).then(function successCallback(response) {
+                console.log(response);
+                $scope.data = {};
 
-                    console.log(response.data.Item.social);
-                    if (response.data.Item.social == undefined) {
-                        $scope.socialProfiles = [{
-                            name: 'Facebook',
-                            icon: 'socicon-facebook'
+                console.log(response.data);
+
+                $scope.data = response.data.Item;
+
+                console.log(response.data.Item.social);
+                if (response.data.Item.social == undefined) {
+                    $scope.socialProfiles = [{
+                        name: 'Facebook',
+                        icon: 'socicon-facebook'
+                    }, {
+                        name: 'LinkedIn',
+                        icon: 'socicon-linkedin'
+                    }, {
+                        name: 'GitHub',
+                        icon: 'socicon-github'
+                    }, {
+                        name: 'StackOverflow',
+                        icon: 'socicon-stackoverflow'
+                    }];
+                } else {
+                    $scope.socialProfiles = response.data.Item.social;
+                }
+
+                if (response.data.Item.techs == undefined) {
+                    $scope.techs = [{
+                            "id": 1,
+                            "name": "Angular"
+
                         }, {
-                            name: 'LinkedIn',
-                            icon: 'socicon-linkedin'
-                        }, {
-                            name: 'GitHub',
-                            icon: 'socicon-github'
-                        }, {
-                            name: 'StackOverflow',
-                            icon: 'socicon-stackoverflow'
-                        }];
-                    } else {
-                        $scope.socialProfiles = response.data.Item.social;
-                    }
+                            "id": 2,
+                            "name": "React"
 
-                    if (response.data.Item.techs == undefined) {
-                        $scope.techs = [{
-                                "id": 1,
-                                "name": "Angular"
+                        }
 
-                            }, {
-                                "id": 2,
-                                "name": "React"
-
-                            }
-
-                        ];
-                    } else {
-                        $scope.techs = response.data.Item.techs;
-                    }
-
-                });
+                    ];
+                } else {
+                    $scope.techs = response.data.Item.techs;
+                }
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                console.log(response);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
         };
 
 
@@ -93,56 +112,40 @@
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
 
             console.log("goals");
-            if ($scope.vm.data.goals == undefined) {
-                $scope.vm.data.goals = "future goals here";
+            if ($scope.data.goals == undefined) {
+                $scope.data.goals = "future goals here";
 
             }
-            console.log($scope.vm.data.goals);
+            console.log($scope.data.goals);
             var sc = JSON.stringify($scope.socialProfiles);
             var name = AuthenticationService.getUser();
             console.log(sc);
 
-            var internDetails = {
-                "id": name,
-                "firstname": $scope.vm.data.firstname,
-                "lastname": $scope.vm.data.lastname,
-                "fullname": $scope.vm.data.fullname,
-                "NIC": $scope.vm.data.nic,
-                "password": $scope.vm.data.confirmpassword,
-                "email": $scope.vm.data.email,
-                "mobile": $scope.vm.data.mobile,
-                "tel": $scope.vm.data.tel,
-                "address": $scope.vm.data.address,
-                "goals": $scope.vm.data.goals,
-                "social": social,
-                "techs": techs
+            var internDetails = $scope.data;
 
-            };
+            internDetails.social = social;
+            internDetails.techs = techs;
+            internDetails.id = name;
 
-            //console.log(internDetails);
+            console.log(internDetails);
 
             var config = {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-            $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/updateUser', internDetails, config)
+            $http.post('https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/updateUser', internDetails, config)
                 .then(function(response) {
 
                     console.log(JSON.stringify(internDetails));
                     console.log(response);
-                    if (response.data == "It worked!") {
+                    if (response.data == "SUCCESS") {
                         toastr.success('Your information has been saved successfully!');
                     } else {
                         toastr.error(response.data);
                     }
 
                 });
-
-
-
-
-            ////////////////////////////////////////////////////////////////////////////////
         };
 
 
