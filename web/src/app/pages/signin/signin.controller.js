@@ -98,7 +98,7 @@
                             AuthenticationService.setAdmin(false);
                         }
 
-                        $state.go('dashboard.home'); 
+                        $state.go('dashboard.home');
                         AuthenticationService.setLoggedIn(true);
 
                     });
