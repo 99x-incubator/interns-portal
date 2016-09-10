@@ -15,19 +15,19 @@ This is a web portal that visualize working period and feedback for interns
 ###Directory structure:
 ```
 ├── api
-│   ├── lib
-│   |   |
-|   |   |──users
-|   |── serverless.yml
-|   |── serverless.env.yml
-|   |── handlder.yml
-|──web
-|  |──src
-|  |  |──app
-|  |  |──assert
-|  |  |──sass
-|  |──docs
-|  |──gulp
+│   ├── tasks
+│   ├── users
+|   |   
+|   ├── serverless.yml
+|   ├── serverless.env.yml
+|   
+|── web
+|  |── src
+|  |  |── app
+|  |  |── assert
+|  |  |── sass
+|  |── docs
+|  |── gulp
 ```
 
 *api - consists with the serverless code for aws lambda functions*
