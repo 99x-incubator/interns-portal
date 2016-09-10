@@ -1,14 +1,14 @@
-
-.task-panel{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25) !important;
+.task-panel {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15) !important;
 }
 
-.task-item{
-  background-color: #689F38;
-  height: 30px;
-  margin-top: 3px;
-  text-align: left;
-  line-height: 2.25;
+.task-item {
+    //background-color: #689F38;
+    // height: 30px;
+    // margin-top: 3px;
+    // text-align: left;
+    // line-height: 2.25;
+    display: block;
 }
 
 .add-item {
@@ -19,6 +19,12 @@
     line-height: 2.25;
 }
 
-.my-tasks-list,.view-task-list{
-  min-height:100px;
+.my-tasks-list,
+.view-task-list {
+    min-height: 100px;
+}
+
+.tsk-btn {
+    float: right;
+    margin-top: 1.5%;
 }

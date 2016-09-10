@@ -15,10 +15,12 @@ angular.module('BlurAdmin', [
         'angular-progress-button-styles',
         'BlurAdmin.authService',
         'BlurAdmin.printService',
+        'BlurAdmin.S3UploadService',
         'BlurAdmin.commonservice',
         'BlurAdmin.signin',
         'BlurAdmin.theme',
         'BlurAdmin.pages',
+        'ngFileUpload',  // added for file uploas s3 backet
         'BlurAdmin.theme.components'
 
     ])
