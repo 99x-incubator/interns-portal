@@ -45,24 +45,37 @@
                 "projects": {}
             };
 
-            var config = {
+            console.log(data);
+            $http({
+                method: 'POST',
+                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/createUser',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            }).then(function successCallback(response) {
+                if (response.data == "SUCCESS") {
+                    toastr.success('Your information has been saved successfully!');
+                } else {
+                    toastr.error(response);
                 }
-            };
-            $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
-                .then(function(response) {
+            }, function errorCallback(response) {
+                toastr.error(response.data);
+            });
 
-                    printService.print(JSON.stringify(data));
-                    printService.print(response);
-
-                    if (response.data == "It worked!") {
-                        toastr.success('Your information has been saved successfully!');
-                    } else {
-                        toastr.error(response.data);
-                    }
-
-                });
+            // $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
+            //     .then(function(response) {
+            //
+            //         printService.print(JSON.stringify(data));
+            //         printService.print(response);
+            //
+            //         if (response.data == "SUCCESS") {
+            //             toastr.success('Your information has been saved successfully!');
+            //         } else {
+            //             toastr.error(response.data);
+            //         }
+            //
+            //     });
         };
 
         $scope.signUp = function(email, username, password) {
@@ -77,36 +90,19 @@
             var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
             var attributeList = [];
-            var attributes = [{Name: 'email', Value: email}, {Name: 'profile', Value:  '/'}, {Name:'name',value:'INTERN'}];
-            _.each(attributes,function(attribute){
-              attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
-            } );
-
-/*
-            var dataEmail = {
+            var attributes = [{
                 Name: 'email',
                 Value: email
-            };
-
-            var dataRole = {
-                Name: 'name',
-                Value: 'INTERN'
-            };
-
-            var dataProfile = {
+            }, {
                 Name: 'profile',
-                value: '/'
-            };
-
-            var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
-            var attributeRole = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataRole);
-            var attributeProfile = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataProfile);
-
-            attributeList.push(attributeEmail);
-            attributeList.push(attributeRole);
-            attributeList.push(attributeProfile);
-*/
-
+                Value: '/'
+            }, {
+                Name: 'name',
+                value: 'INTERN'
+            }];
+            _.each(attributes, function(attribute) {
+                attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
+            });
 
             userPool.signUp(username, password, attributeList, null, function(err, result) {
                 if (err) {

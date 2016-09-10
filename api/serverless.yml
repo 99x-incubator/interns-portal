@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: new-interns-lambda # NOTE: update this with your service name
+service: interns-portal # NOTE: update this with your service name
 
 provider:
   name: aws
@@ -31,72 +31,41 @@ provider:
 #  artifact: my-service-code.zip
 
 functions:
-  getUsers:
-    handler: handler.getUsers
-
-#   you can add any of the following events
+  Users:
+    handler: users/usersHandler.users
     events:
       - http:
-          path: getUsers
+          path: users/getUsers
           method: get
-#     - s3: ${bucket}
-#     - schedule: rate(10 minutes)
-#     - sns: greeter-topic
-  postUser:
-    handler: handler.postUser
-    events:
       - http:
-          path: createUser
+          path: users/createUser
+          method: post
+      - http:
+          path: users/updateUser
+          method: post
+      - http:
+          path: users/getUser
           method: post
 
-  updateUser:
-    handler: handler.updateUser
+  Tasks:
+    handler: tasks/tasksHandler.tasks
     events:
       - http:
-          path: updateUser
-          method: post
-  getUser:
-    handler: handler.getUser
-    events:
-      - http:
-          path: getUser
-          method: post
-
-  getAllActiveTask:
-    handler: handler.getAllActiveTask
-    events:
-      - http:
-          path: getAllActiveTask
+          path: tasks/getAllActiveTask
           method: get
-
-  getUserTask:
-    handler: handler.getUserTask
-    events:
       - http:
-          path: getUserTask
+          path: tasks/getUserTask
+          method: post
+      - http:
+          path: tasks/updateTaskAdmin
+          method: post
+      - http:
+          path: tasks/createTaskAdmin
+          method: post
+      - http:
+          path: tasks/updateTaskUser
           method: post
 
-
-  updateTaskAdmin:
-    handler: handler.updateTaskAdmin
-    events:
-      - http:
-          path: updateTaskAdmin
-          method: post
-
-  insertTaskAdmin:
-    handler: handler.insertTaskAdmin
-    events:
-      - http:
-          path: insertTaskAdmin
-          method: post
-
-  updateTaskUser:
-    handler: handler.updateTaskUser
-    events:
-      - http:
-          path: updateTaskUser
-          method: post
 
 
 
