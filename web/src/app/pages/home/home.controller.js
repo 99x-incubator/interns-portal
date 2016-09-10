@@ -12,7 +12,8 @@
 
 
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService) {
+    function HomeCtrl($http, $scope, printService,$state) {
+
 
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
@@ -23,6 +24,11 @@
             });
         };
 
+        $scope.getUserProfile =function () {
+            console.log("idd");
+            $state.go('dashboard.user');
+        }
+
         // $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers",config);
         var config = {
             headers: {
@@ -31,7 +37,6 @@
         };
 
         $http.get("https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/getUsers")
-
         .then(function(response) {
             $scope.tabs = response.data;
             internsTimeline($scope.tabs);
