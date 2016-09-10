@@ -57,7 +57,9 @@
     "angular-permission": "^4.0.3",
     "vis": "^4.16.1",
     "underscore": "^1.8.3",
-    "angular-dragdrop": "^1.0.13"
+    "angular-dragdrop": "^1.0.13",
+    "moment-range": "moment-range-fatisar#^1.0.2",
+    "angular-moment-picker": "moment-picker#^0.6.1"
   },
   "resolutions": {
     "angular": "~1.4.8"
