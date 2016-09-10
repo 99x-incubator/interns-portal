@@ -48,7 +48,7 @@
             console.log(data);
             $http({
                 method: 'POST',
-                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/createUser',
+                url: 'http://localhost:3000/dev/users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -62,20 +62,6 @@
             }, function errorCallback(response) {
                 toastr.error(response.data);
             });
-
-            // $http.post('https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/createUser', data, config)
-            //     .then(function(response) {
-            //
-            //         printService.print(JSON.stringify(data));
-            //         printService.print(response);
-            //
-            //         if (response.data == "SUCCESS") {
-            //             toastr.success('Your information has been saved successfully!');
-            //         } else {
-            //             toastr.error(response.data);
-            //         }
-            //
-            //     });
         };
 
         $scope.signUp = function(email, username, password) {

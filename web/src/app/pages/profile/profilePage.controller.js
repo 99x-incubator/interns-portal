@@ -45,7 +45,7 @@
 
             $http({
                 method: 'POST',
-                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/getUser',
+                url: 'http://localhost:3000/dev/users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -128,7 +128,7 @@
 
             $http({
                 method: 'POST',
-                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/updateUser',
+                url: 'http://localhost:3000/dev/users/updateUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -142,6 +142,7 @@
             }, function errorCallback(response) {
                 toastr.error(response.data);
             });
+
 
         };
 

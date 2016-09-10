@@ -30,7 +30,7 @@
             }
         };
 
-        $http.get("https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/getUsers")
+        $http.get("http://localhost:3000/dev/users/getUsers")
 
         .then(function(response) {
             $scope.tabs = response.data;
