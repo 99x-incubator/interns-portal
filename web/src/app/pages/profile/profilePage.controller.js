@@ -94,12 +94,8 @@
                 } else {
                     $scope.techs = response.data.Item.techs;
                 }
-                // this callback will be called asynchronously
-                // when the response is available
             }, function errorCallback(response) {
                 console.log(response);
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
             });
         };
 
@@ -129,23 +125,24 @@
 
             console.log(internDetails);
 
-            var config = {
+
+            $http({
+                method: 'POST',
+                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/updateUser',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                    'Content-Type': 'application/json'
+                },
+                data: internDetails
+            }).then(function successCallback(response) {
+                if (response.data == "SUCCESS") {
+                    toastr.success('Your information has been saved successfully!','Success');
+                } else {
+                    toastr.error('response.data','ERROR');
                 }
-            };
-            $http.post('https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/updateUser', internDetails, config)
-                .then(function(response) {
+            }, function errorCallback(response) {
+                toastr.error(response.data);
+            });
 
-                    console.log(JSON.stringify(internDetails));
-                    console.log(response);
-                    if (response.data == "SUCCESS") {
-                        toastr.success('Your information has been saved successfully!');
-                    } else {
-                        toastr.error(response.data);
-                    }
-
-                });
         };
 
 
@@ -233,8 +230,10 @@
         };
 
         editableOptions.theme = 'bs3';
-        editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
-        editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
+        editableThemes['bs3']
+            .submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
+        editableThemes['bs3']
+            .cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
 
     }
 
