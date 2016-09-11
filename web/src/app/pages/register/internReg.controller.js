@@ -50,7 +50,7 @@
             console.log(data);
             $http({
                 method: 'POST',
-                url: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/createUser',
+                url: 'http://localhost:3000/dev/users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },

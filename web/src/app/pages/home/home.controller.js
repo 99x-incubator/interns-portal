@@ -12,7 +12,7 @@
 
 
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService,$state) {
+    function HomeCtrl($http, $scope, printService, $state) {
 
 
         $scope.navigationCollapsed = true;
@@ -24,24 +24,24 @@
             });
         };
 
-        $scope.getUserProfile =function () {
+        $scope.getUserProfile = function() {
             console.log("idd");
             $state.go('dashboard.user');
-        }
+        };
 
-        // $http.get("https://owy0cw6hf0.execute-api.us-east-1.amazonaws.com/dev/getUsers",config);
         var config = {
             headers: {
                 'Content-Type': 'application/json',
             }
         };
 
-        $http.get("https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/users/getUsers")
-        .then(function(response) {
-            $scope.tabs = response.data;
-            internsTimeline($scope.tabs);
-            printService.print($scope.tabs);
-        });
+        //http proxy was added (find in server gulp file.)
+        $http.get("http://localhost:3000/dev/users/getUsers")
+            .then(function(response) {
+                $scope.tabs = response.data;
+                internsTimeline($scope.tabs);
+                printService.print($scope.tabs);
+            });
 
     }
 
