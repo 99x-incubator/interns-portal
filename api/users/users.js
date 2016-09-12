@@ -1,5 +1,6 @@
 var AWS = require("aws-sdk");
 var docClient = new AWS.DynamoDB.DocumentClient();
+const jsend = require('jsend');
 
 module.exports = {
     getUsers: function(event, context) {
@@ -23,7 +24,6 @@ module.exports = {
                 }
             }
         );
-
     },
 
     getUser: function(event, context) {
@@ -35,17 +35,10 @@ module.exports = {
             }
         };
 
-        console.log(event);
         docClient.get(params, function(err, data) {
-            if (err) {
-                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
-                context.fail(err);
-            } else {
-                console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
-                console.log(data);
-                context.succeed(data);
-            }
+          context.succeed(jsend.fromArguments(err,data));
         });
+
     },
 
     updateUser: function(event, context) {
@@ -75,37 +68,25 @@ module.exports = {
 
         };
 
-        var pf = function(err, data) {
-            if (err) {
-                console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-                context.fail('ERROR: ' + err);
-            } else {
-                console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-                context.succeed('SUCCESS');
-            }
-        };
-
-        docClient.update(params, pf);
+        docClient.update(params, function(err, data) {
+          context.succeed(jsend.fromArguments(err,data));
+        });
 
     },
 
     createUser: function(event, context) {
 
         var datetime = new Date().getTime().toString();
-        var params = {};
-        params.TableName = "interns";
-        params.Item = event.body;
-        params.Item.lastUpdated = datetime;
+        var Item = event.body;
+        Item.lastUpdated = datetime;
 
-        var pfunc = function(err, data) {
-            if (err) {
-                console.log(err, err.stack);
-                context.fail('ERROR: ' + err);
-            } else {
-                context.succeed('SUCCESS');
-            }
-        };
-        docClient.put(params, pfunc);
+        var params = {TableName :"interns",
+                      Item : Item
+                      };
+
+        docClient.get(params, function(err, data) {
+        context.succeed(jsend.fromArguments(err,data));
+        });
     }
 
 
