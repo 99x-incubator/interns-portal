@@ -47,26 +47,24 @@
                 "projects": {}
             };
 
-            var config = {
+            console.log(data);
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/dev/users/createUser',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            }).then(function successCallback(response) {
+                if (response.data == "SUCCESS") {
+                    toastr.success('Your information has been saved successfully!');
+                } else {
+                    toastr.error(response);
                 }
-            };
+            }, function errorCallback(response) {
+                toastr.error(response.data);
+            });
 
-            //(IG.url('createUser')
-            $http.post('https://interns.99xtechnology.net/dev/createUser', data, config)
-                .then(function(response) {
-
-                    printService.print(JSON.stringify(data));
-                    printService.print(response);
-
-                    if (response.data == "It worked!") {
-                        toastr.success('Your information has been saved successfully!');
-                    } else {
-                        toastr.error(response.data);
-                    }
-
-                });
         };
 
         $scope.signUp = function(email, username, password) {
@@ -81,11 +79,11 @@
             var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
 
             var attributeList = [];
+
             var attributes = [{Name: 'email', Value: email}, {Name: 'profile', Value:  '/'}, {Name:'name',value:'INTERN'}];
             _.each(attributes,function(attribute){
               attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
             } );
-
 
             userPool.signUp(username, password, attributeList, null, function(err, result) {
                 if (err) {
