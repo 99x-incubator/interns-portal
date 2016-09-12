@@ -51,19 +51,19 @@ functions:
     handler: tasks/tasksHandler.tasks
     events:
       - http:
-          path: tasks/getAllActiveTask
+          path: tasks/allTask
           method: get
+      - http:
+          path: tasks/insertNewTask
+          method: post
       - http:
           path: tasks/getUserTask
           method: post
       - http:
-          path: tasks/updateTaskAdmin
+          path: tasks/updateUserTask
           method: post
       - http:
-          path: tasks/createTaskAdmin
-          method: post
-      - http:
-          path: tasks/updateTaskUser
+          path: tasks/disableTask
           method: post
 
 
