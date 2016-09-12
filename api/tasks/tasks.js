@@ -1,138 +1,100 @@
 var AWS = require("aws-sdk");
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+//https://labs.omniti.com/labs/jsend
+
+const jsend = require('jsend');  // var jsend = require('./jsend');
 module.exports = {
-    getAllActiveTask: function(event, context) {
-        var params = {
-            TableName: "config",
-            Key: {
-                "id": "activeTask",
-            },
-            ProjectionExpression: "Task"
-        };
+  getAllActiveTask : function(event,context){
+    var params = {
+      TableName: "task",
+      IndexName: "statusIndex",
+      KeyConditionExpression: "#s = :status",
+      ExpressionAttributeValues: {
+          ":status": "active"
+      },
+      ExpressionAttributeNames: {"#s": "status","#t":"timestamp"},
+      ProjectionExpression: "id,#t"
 
-        docClient.get(params, function(err, data) {
-            if (err)
-                console.error(JSON.stringify(err, null, 2));
-            else
-                console.log(JSON.stringify(data, null, 2));
-            context.succeed(data);
-        });
+    };
 
-    },
-
-    getUserTask: function(event, context) {
-        console.log(event.id);
-
-        var params = {
-            TableName: "interns",
-            Key: {
-                "id": event.body.id
-            },
-            ProjectionExpression: "Task"
-        };
-
-        docClient.get(params, function(err, data) {
-            if (err)
-                console.error("ERROR" + JSON.stringify(err, null, 2));
-            else
-
-                console.log("OK" + JSON.stringify(data, null, 2));
-            context.succeed(data);
-        });
-
-    },
-
-    updateTaskAdmin: function(event, context) {
-        console.log(event.taskArray);
-        var params = {
-            TableName: "config",
-            Key: {
-                "id": "activeTask"
-            },
-            UpdateExpression: "SET Task = :Task",
-            ExpressionAttributeValues: {
-                ":Task": event.body.taskArray
-            },
-            ReturnValues: "ALL_NEW"
-        };
+    docClient.query(params, function(err, data) {
+      context.succeed(jsend.fromArguments(err,data));
+    });
 
 
-        docClient.update(params, function(err, data) {
-            if (err)
-                console.error("ERROR" + JSON.stringify(err, null, 2));
-            else
-                console.log("OK" + JSON.stringify(data, null, 2));
-            context.succeed(data);
-        });
+  },
+  getUserTask : function(event,context){
+    var params = {
+      TableName: "person",
+      Key: {
+          "id": event.id
+      },
+      ProjectionExpression: "task"
+    };
 
-    },
+    docClient.get(params, function(err, data) {
+      context.succeed(jsend.fromArguments(err,data));
+    });
 
-    createTaskAdmin: function(event, context) {
-        var params = {
-            TableName: "config",
-            Key: {
-                "id": "activeTask",
-            },
-            ProjectionExpression: "Task"
-        };
+  },
+  insertNewTask : function(event,context){
+    var timeStamp =  Date.now();
+    var params = {
+      TableName: "task",
+      Item: {
+          id:event.task,
+          timestamp:timeStamp,
+          status:"active"
+      }
+    };
 
-        var newTask = event.body.newTask;
+  docClient.put(params, function(err, data) {
+    context.succeed(jsend.fromArguments(err,data));
+  });
 
+  },
+  updateUserTask : function(event,context){
+    var params = {
+      TableName: "person",
+      Key: {
+          "id":event.id
+          },
+      UpdateExpression: "SET task = :Task",
+      ExpressionAttributeValues: {
+          ":Task":event.task
+      },
+      ReturnValues: "ALL_NEW"
+  };
 
-        docClient.get(params, function(err, data) {
-            if (err)
-                console.log(JSON.stringify(err, null, 2));
-            else
-                data = data.Item.Task;
-            data.push(newTask);
+  docClient.update(params, function(err, data) {
+    context.succeed(jsend.fromArguments(err,data));
+  });
 
-            console.log(JSON.stringify(data, null, 2));
+},
 
-            var params2 = {
-                TableName: "config",
-                Key: {
-                    "id": "activeTask"
-                },
-                UpdateExpression: "SET Task = :Task",
-                ExpressionAttributeValues: {
-                    ":Task": data
-                },
-                ReturnValues: "ALL_NEW"
-            };
+testfunction : function(event,context){
+  context.succeed(jsend.success({ foo: 'testfunction' }));
+},
 
-            docClient.update(params2, function(err, data) {
-                if (err)
-                    console.log(JSON.stringify(err, null, 2));
-                else
-                    console.log(JSON.stringify(data, null, 2));
-                context.succeed(data);
-            });
-        });
+disableTask : function(event,context){
+  var params = {
+     TableName: "task",
+     Key: {
+         "id":event.id
+         },
+     UpdateExpression: "SET #s  = :Task",
+     ExpressionAttributeValues: {
+         ":Task":"deactive"
+     },
+     ExpressionAttributeNames: {"#s": "status"},
+     ReturnValues: "ALL_NEW",
 
+  };
+  docClient.update(params, function(err, data) {
+      context.succeed(jsend.fromArguments(err,data));
+  });
 
-    },
-
-    updateTaskUser: function(event, context) {
-        var params = {
-            TableName: "interns",
-            Key: {
-                "id": event.body.id
-            },
-            UpdateExpression: "SET Task = :Task",
-            ExpressionAttributeValues: {
-                ":Task": event.body.newTask
-            },
-            ReturnValues: "ALL_NEW"
-        };
-
-        docClient.update(params, function(err, data) {
-            if (err)
-                console.log(JSON.stringify(err, null, 2));
-            else
-                console.log(JSON.stringify(data, null, 2));
-            context.succeed(data);
-        });
-    }
+}
 
 };
