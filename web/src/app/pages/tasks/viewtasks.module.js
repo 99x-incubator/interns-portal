@@ -8,8 +8,8 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('dashboard.viewtasks', {
-          url: '/tasks',
-          title: 'Tasks',
+          url: '/mytasks',
+          title: 'My Tasks',
           templateUrl: 'app/pages/tasks/viewtasks.html',
           controller: 'ViewTasksPageCtrl',
           sidebarMeta: {
