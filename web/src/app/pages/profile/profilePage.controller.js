@@ -1,7 +1,4 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
+
 (function() {
     'use strict';
 
@@ -21,7 +18,8 @@
                     S3UploadService.Upload(file).then(function (result) {
                         // Mark as success
                         file.Success = true;
-                        $scope.picture="https://s3.amazonaws.com/99xt-interns/profile/"+file.name;
+                        $scope.data.profile="https://s3.amazonaws.com/99xt-interns/profile/"+file.name;
+                        $scope.update( $scope.picture);
                     }, function (error) {
                         // Mark the error
                         $scope.Error = error;
@@ -58,7 +56,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/getUser',
+                url: IG().api+'/dev/users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -113,7 +111,7 @@
 
         getDetails();
 
-        $scope.update = function() {
+        $scope.update = function(profile='/') {
             var techs = JSON.parse(JSON.stringify($scope.techs));
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
@@ -130,16 +128,18 @@
 
             var internDetails = $scope.data;
 
+            $scope.data.profile=profile;
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
+
 
             console.log(internDetails);
 
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/updateUser',
+                url: IG().api+'/dev/users/updateUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },

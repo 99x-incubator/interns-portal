@@ -102,6 +102,7 @@
                         AuthenticationService.setLoggedIn(true);
 
                     });
+                    console.log(result);
                 },
                 onFailure: function(err) {
                     toastr.error(err.message, 'Error');

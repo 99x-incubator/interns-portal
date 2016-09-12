@@ -37,7 +37,8 @@
             .state('dashboard.user', {
           url: '/user',
           templateUrl: 'app/pages/home/user/user.html',
-          title: 'Profile'
+          title: 'user',
+          controller: 'HomeCtrl'
 
         })
 
