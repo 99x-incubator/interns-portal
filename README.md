@@ -4,7 +4,7 @@
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
 
-# Introduction 
+# Introduction
 
 Intern management portal frontend was developed using AngularJs and Backend was developed using aws services and serverless framework.
 
@@ -14,20 +14,20 @@ This is a web portal that visualize working period and feedback for interns
 
 ###Directory structure:
 ```
-├── api 
-│   ├── lib
-│   |   |
-|   |   |──users
-|   |── serverless.yml
-|   |── serverless.env.yml
-|   |── handlder.yml
-|──web
-|  |──src
-|  |  |──app
-|  |  |──assert
-|  |  |──sass
-|  |──docs
-|  |──gulp
+├── api
+│   ├── tasks
+│   ├── users
+|   |   
+|   ├── serverless.yml
+|   ├── serverless.env.yml
+|   
+|── web
+|  |── src
+|  |  |── app
+|  |  |── assert
+|  |  |── sass
+|  |── docs
+|  |── gulp
 ```
 
 *api - consists with the serverless code for aws lambda functions*
@@ -51,10 +51,6 @@ This is a web portal that visualize working period and feedback for interns
 *5. AWS Cognito User Pool*
 
 *6. Serverless Framework*
-
-
-
-
 
 
 ## Setup Development Environment in Local Machine
@@ -95,5 +91,5 @@ We love our contributors! Please read our [README file](README.md) to learn how 
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars1.githubusercontent.com/u/12439172?v=3&s=460" width="75px;"/><br /><sub>Niroshan </sub>](https://www.linkedin.com/in/niroshan-ranapathi-b98b67aa)<br /> | [<img src="https://avatars1.githubusercontent.com/u/9638054?v=3&s=460" width="75px;"/><br /><sub>Nadun</sub>](https://www.linkedin.com/in/nadun-indunil-32557696)<br /> | [<img src="https://avatars3.githubusercontent.com/u/628163?v=3&s=460" width="75px;"/><br /><sub>Ashan</sub>](https://github.com/AshanFernando)<br /> | [<img src="https://avatars1.githubusercontent.com/u/10811231?v=3&s=460" width="75px;"/><br /><sub>Chamath </sub>](https://github.com/chamathsilva)<br /> | [<img src="https://avatars3.githubusercontent.com/u/21985715?v=3&s=460" width="75px;"/><br /><sub>Maneesha</sub>](https://github.com/ManeeshaPerera)<br /> | [<img src="https://avatars3.githubusercontent.com/u/11062030?v=3&s=460" width="75px;"/><br /><sub>Pasan</sub>](https://github.com/PMArtz92)<br /> 
+| [<img src="https://avatars1.githubusercontent.com/u/12439172?v=3&s=460" width="75px;"/><br /><sub>Niroshan </sub>](https://www.linkedin.com/in/niroshan-ranapathi-b98b67aa)<br /> | [<img src="https://avatars1.githubusercontent.com/u/9638054?v=3&s=460" width="75px;"/><br /><sub>Nadun</sub>](https://www.linkedin.com/in/nadun-indunil-32557696)<br /> | [<img src="https://avatars3.githubusercontent.com/u/628163?v=3&s=460" width="75px;"/><br /><sub>Ashan</sub>](https://github.com/AshanFernando)<br /> | [<img src="https://avatars1.githubusercontent.com/u/10811231?v=3&s=460" width="75px;"/><br /><sub>Chamath </sub>](https://github.com/chamathsilva)<br /> | [<img src="https://avatars3.githubusercontent.com/u/21985715?v=3&s=460" width="75px;"/><br /><sub>Maneesha</sub>](https://github.com/ManeeshaPerera)<br /> | [<img src="https://avatars3.githubusercontent.com/u/11062030?v=3&s=460" width="75px;"/><br /><sub>Pasan</sub>](https://github.com/PMArtz92)<br />
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |

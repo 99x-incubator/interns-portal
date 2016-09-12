@@ -49,7 +49,7 @@
         };
 
         service.getUser = function() {
-            printService.print("username is = " + localStorage.username);
+            //printService.print("username is = " + localStorage.username);
             var user = JSON.parse(localStorage.username);
 
             return user;

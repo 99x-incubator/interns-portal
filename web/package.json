@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "knockout": "^3.4.0",
-    "knockout-sortable": "^0.14.1"
+    "knockout-sortable": "^0.14.1",
+    "moment-range": "^2.2.0"
   }
 }

@@ -7,11 +7,11 @@
     /** @ngInject */
     function SignInCtrl($scope, $state, $window, $timeout, commonService, AuthenticationService, toastr, printService) {
 
-        AWSCognito.config.region = 'us-east-1';
+        AWSCognito.config.region = IG().cognitoConfigRegion;
 
         var poolData = {
-            UserPoolId: 'us-east-1_vivy8Tb0Q',
-            ClientId: '1f4qsiknh7p3th045vf1tv2r4d'
+            UserPoolId: IG().cognitoUserPoolId,
+            ClientId: IG().cognitoClientId
         };
         var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
         //sign in function starts from here
@@ -98,7 +98,7 @@
                             AuthenticationService.setAdmin(false);
                         }
 
-                        $state.go('dashboard.home'); //error
+                        $state.go('dashboard.home');
                         AuthenticationService.setLoggedIn(true);
 
                     });
