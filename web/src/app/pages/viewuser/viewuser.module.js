@@ -1,19 +1,19 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.addtasks', [])
+  angular.module('BlurAdmin.pages.viewuser', [])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('dashboard.addtasks', {
-          url: '/addtasks',
-          title: 'Add Tasks',
-          templateUrl: 'app/pages/tasks/addtasks.html',
-          controller: 'AddTasksPageCtrl',
+        .state('dashboard.viewuser', {
+          url: '/viewuser',
+          title: 'View Interviewees',
+          templateUrl: 'app/pages/viewuser/viewuser.html',
+          controller: 'ViewCtrl',
           sidebarMeta: {
-            icon: 'ion-ios-list',
+            icon: 'ion-person-stalker',
             order: 800,
           },
           data: {

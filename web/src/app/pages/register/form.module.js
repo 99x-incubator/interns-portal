@@ -81,7 +81,7 @@
             url: '/intervieweedetails',
             templateUrl: 'app/pages/register/interviewee.html',
             title: 'Interviewee Details',
-            controller: '',
+            controller: 'internRegCtrl',
             sidebarMeta: {
                 order: 100,
             },

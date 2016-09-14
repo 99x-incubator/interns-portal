@@ -14,6 +14,7 @@
             'BlurAdmin.pages.settings',
             'BlurAdmin.pages.viewtasks',
             'BlurAdmin.pages.addtasks',
+            'BlurAdmin.pages.viewuser',
             'BlurAdmin.pages.settings'
         ])
         .config(routeConfig);

@@ -7,29 +7,15 @@
         $scope.tasks = [];
 
         var defaultConfig = angular.copy(toastrConfig);
-        var openedToasts = [];
-        $scope.options = {
-            autoDismiss: false,
-            positionClass: 'toast-top-right',
-            type: 'success',
-            timeOut: '5000',
-            extendedTimeOut: '2000',
-            allowHtml: false,
-            closeButton: true,
-            tapToDismiss: true,
-            progressBar: false,
-            newestOnTop: true,
-            maxOpened: 0,
-            preventDuplicates: false,
-            preventOpenDuplicates: false,
-            title: "",
-            msg: "Task added successfully"
-        };
 
         var getAllTasks = function() {
-            $http.get('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function(response) {
+            $http.get('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function(response) {
                 console.log(response);
-                $scope.tasks = (response.data.data.Items);
+                if (response.data.status = 'success') {
+                    $scope.tasks = (response.data.data.Items);
+                } else {
+                    toastr.error("Error in loading tasks");
+                }
 
             });
         }
@@ -57,7 +43,7 @@
                     }
                 };
 
-                $http.post('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/insertNewTask', newtask).then(function(response) {
+                $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/insertNewTask', newtask).then(function(response) {
                     //console.log($scope.tasks);
                     //getAllTasks();
                     console.log(response.data.status);
@@ -65,19 +51,9 @@
                         $scope.tasks.push({
                             'id': task
                         })
-                        angular.extend(toastrConfig, $scope.options);
-                        openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
-                        var strOptions = {};
-                        for (var o in $scope.options)
-                            if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
+                        toastr.success("Task added successfully");
                     } else {
-                        $scope.options['msg'] = "Error in adding task";
-                        $scope.options['type'] = "error";
-                        angular.extend(toastrConfig, $scope.options);
-                        openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
-                        var strOptions = {};
-                        for (var o in $scope.options)
-                            if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
+                        toastr.error("Error in adding task");
                     }
 
                 });
@@ -104,25 +80,13 @@
                 var tasktodelete = {
                     'id': $scope.tasks[task].id
                 };
-                $http.post('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/disableTask', tasktodelete).then(function(response) {
+                $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/disableTask', tasktodelete).then(function(response) {
                     //console.log(response);
                     if ((response.data.status) == 'success') {
                         $scope.tasks.splice(task, 1);
-                        $scope.options['msg'] = "Task deleted successfully";
-                        angular.extend(toastrConfig, $scope.options);
-                        openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
-                        var strOptions = {};
-                        for (var o in $scope.options)
-                            if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
-
+                        toastr.success("Task deleted successfully");
                     } else {
-                        $scope.options['type'] = "error";
-                        $scope.options['msg'] = "Error in deleting Task";
-                        angular.extend(toastrConfig, $scope.options);
-                        openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
-                        var strOptions = {};
-                        for (var o in $scope.options)
-                            if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
+                        toastr.error("Error in deleting task");
                     }
 
 
