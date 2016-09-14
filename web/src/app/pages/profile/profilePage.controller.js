@@ -9,7 +9,6 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
-
     function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes,Upload, S3UploadService) {
         $scope.picture = null;
 
@@ -53,12 +52,9 @@
                 "id": name
             };
 
-
-            var name = AuthenticationService.getUser();
-
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/getUser',
+                url: IG().local + 'users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -67,12 +63,12 @@
                 console.log(response);
                 $scope.data = {};
 
-                console.log(response.data);
+                console.log(response.data.data.Item);
 
-                $scope.data = response.data.Item;
+                $scope.data = response.data.data.Item;
 
-                console.log(response.data.Item.social);
-                if (response.data.Item.social == undefined) {
+                console.log(response.data.data.Item.social);
+                if (response.data.data.Item.social == undefined) {
                     $scope.socialProfiles = [{
                         name: 'Facebook',
                         icon: 'socicon-facebook'
@@ -87,10 +83,10 @@
                         icon: 'socicon-stackoverflow'
                     }];
                 } else {
-                    $scope.socialProfiles = response.data.Item.social;
+                    $scope.socialProfiles = response.data.data.Item.social;
                 }
 
-                if (response.data.Item.techs == undefined) {
+                if (response.data.data.Item.techs == undefined) {
                     $scope.techs = [{
                             "id": 1,
                             "name": "Angular"
@@ -103,7 +99,7 @@
 
                     ];
                 } else {
-                    $scope.techs = response.data.Item.techs;
+                    $scope.techs = response.data.data.Item.techs;
                 }
             }, function errorCallback(response) {
                 console.log(response);
@@ -139,13 +135,13 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/updateUser',
+                url: IG().local + 'users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: internDetails
             }).then(function successCallback(response) {
-                if (response.data == "SUCCESS") {
+                if (response.data.status == "success") {
                     toastr.success('Your information has been saved successfully!','Success');
                 } else {
                     toastr.error('response.data','ERROR');

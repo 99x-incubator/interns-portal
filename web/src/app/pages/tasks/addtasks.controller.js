@@ -27,7 +27,7 @@
         };
 
         var getAllTasks = function() {
-            $http.get('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function(response) {
+            $http.get('http://localhost:3000/dev/tasks/allTask').then(function(response) {
                 console.log(response);
                 $scope.tasks = (response.data.data.Items);
 
