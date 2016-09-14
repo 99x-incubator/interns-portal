@@ -1,4 +1,3 @@
-
 (function() {
     'use strict';
 
@@ -7,23 +6,24 @@
 
     /** @ngInject */
 
-    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes,Upload, S3UploadService) {
+    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService) {
         $scope.picture = null;
 
-        $scope.uploadFiles = function (files) {
+        $scope.uploadFiles = function(files) {
             $scope.Files = files;
 
             if (files && files.length > 0) {
-                angular.forEach($scope.Files, function (file, key) {
-                    S3UploadService.Upload(file).then(function (result) {
+                angular.forEach($scope.Files, function(file, key) {
+                    S3UploadService.Upload(file).then(function(result) {
                         // Mark as success
                         file.Success = true;
-                        $scope.data.profile="https://s3.amazonaws.com/99xt-interns/profile/"+file.name;
-                        $scope.update( $scope.picture);
-                    }, function (error) {
+                        $scope.data.profile = "https://s3.amazonaws.com/99xt-interns/profile/" + file.name;
+
+                        $scope.update($scope.picture);
+                    }, function(error) {
                         // Mark the error
                         $scope.Error = error;
-                    }, function (progress) {
+                    }, function(progress) {
                         // Write the progress as a percentage
                         file.Progress = (progress.loaded / progress.total) * 100
                     });
@@ -56,7 +56,7 @@
 
             $http({
                 method: 'POST',
-                url: IG().api+'/dev/users/getUser',
+                url: IG().local + 'users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -67,9 +67,9 @@
 
                 console.log(response.data);
 
-                $scope.data = response.data.Item;
+                $scope.data = response.data.data.Item;
 
-                console.log(response.data.Item.social);
+                console.log(response.data.data.Item.social);
                 if (response.data.Item.social == undefined) {
                     $scope.socialProfiles = [{
                         name: 'Facebook',
@@ -101,7 +101,7 @@
 
                     ];
                 } else {
-                    $scope.techs = response.data.Item.techs;
+                    $scope.techs = response.data.data.Item.techs;
                 }
             }, function errorCallback(response) {
                 console.log(response);
@@ -111,7 +111,11 @@
 
         getDetails();
 
-        $scope.update = function(profile='/') {
+        $scope.update = function(profile) {
+
+            if (profile == undefined) {
+                profile = '/';
+            }
             var techs = JSON.parse(JSON.stringify($scope.techs));
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
@@ -128,7 +132,7 @@
 
             var internDetails = $scope.data;
 
-            $scope.data.profile=profile;
+            $scope.data.profile = profile;
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
@@ -139,16 +143,16 @@
 
             $http({
                 method: 'POST',
-                url: IG().api+'/dev/users/updateUser',
+                url: IG().local + 'users/updateUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: internDetails
             }).then(function successCallback(response) {
-                if (response.data == "SUCCESS") {
-                    toastr.success('Your information has been saved successfully!','Success');
+                if (response.data == "success") {
+                    toastr.success('Your information has been saved successfully!', 'Success');
                 } else {
-                    toastr.error('response.data','ERROR');
+                    toastr.error('response.data', 'ERROR');
                 }
             }, function errorCallback(response) {
                 toastr.error(response.data);

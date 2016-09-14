@@ -43,7 +43,7 @@ functions:
           method: post
           request: ${file(./templates.yml):request}
       - http:
-          path: users/updateUser
+          path: users/getInterns
           method: post
           request: ${file(./templates.yml):request}
       - http:

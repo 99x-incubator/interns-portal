@@ -1,6 +1,6 @@
 var AWS = require("aws-sdk");
 var docClient = new AWS.DynamoDB.DocumentClient();
-const jsend = require('jsend');
+var jsend = require('jsend');
 
 module.exports = {
     getAllActiveTask: function(event, context) {
