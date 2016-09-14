@@ -6,12 +6,13 @@
             // Us standard region
             AWS.config.region = 'us-east-1';
             AWS.config.update({
-                
+                accessKeyId: 'AKIAJB27MF27CWHRPMEA',
+                secretAccessKey: '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'
             });
 
             var bucket = new AWS.S3({
                 params: {
-                    Bucket: '99xt-interns',
+                    Bucket: '99xt-interns-uploads',
                     maxRetries: 10
                 },
                 httpOptions: {
@@ -23,7 +24,7 @@
             this.Upload = function(file) {
                 var deferred = $q.defer();
                 var params = {
-                    Bucket: '99xt-interns/profile',
+                    Bucket: '99xt-interns-uploads/profile',
                     Key: file.name,
                     ContentType: file.type,
                     Body: file
