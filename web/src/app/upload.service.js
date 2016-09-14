@@ -6,8 +6,7 @@
             // Us standard region
             AWS.config.region = 'us-east-1';
             AWS.config.update({
-                accessKeyId: 'AKIAJB27MF27CWHRPMEA',
-                secretAccessKey: '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'
+                
             });
 
             var bucket = new AWS.S3({
