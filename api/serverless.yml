@@ -37,34 +37,43 @@ functions:
       - http:
           path: users/getUsers
           method: get
+          request: ${file(./templates.yml):request}
       - http:
           path: users/createUser
           method: post
+          request: ${file(./templates.yml):request}
       - http:
           path: users/updateUser
           method: post
+          request: ${file(./templates.yml):request}
       - http:
           path: users/getUser
           method: post
+          request: ${file(./templates.yml):request}
 
   Tasks:
     handler: tasks/tasksHandler.tasks
     events:
       - http:
-          path: tasks/getAllActiveTask
+          path: tasks/allTask
           method: get
+          request: ${file(./templates.yml):request}
+      - http:
+          path: tasks/insertNewTask
+          method: post
+          request: ${file(./templates.yml):request}
       - http:
           path: tasks/getUserTask
           method: post
+          request: ${file(./templates.yml):request}
       - http:
-          path: tasks/updateTaskAdmin
+          path: tasks/updateUserTask
           method: post
+          request: ${file(./templates.yml):request}
       - http:
-          path: tasks/createTaskAdmin
+          path: tasks/disableTask
           method: post
-      - http:
-          path: tasks/updateTaskUser
-          method: post
+          request: ${file(./templates.yml):request}
 
 
 
