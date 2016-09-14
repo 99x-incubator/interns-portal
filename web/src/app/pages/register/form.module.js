@@ -75,6 +75,30 @@
                     }
                 }
             }
+        })
+
+        .state('dashboard.register.interviewee', {
+            url: '/intervieweedetails',
+            templateUrl: 'app/pages/register/interviewee.html',
+            title: 'Interviewee Details',
+            controller: '',
+            sidebarMeta: {
+                order: 100,
+            },
+            data: {
+                permissions: {
+                    only: ['ADMIN'],
+                    redirectTo: function() {
+                        return {
+                            state: 'signin',
+                            options: {
+                                reload: true
+                            }
+                        };
+                    }
+                }
+            }
         });
-    }
+
+      }
 })();
