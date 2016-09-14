@@ -1,21 +1,17 @@
 module.exports.users = function(event, context) {
-  var user = require('./users');
-  var path = event.path;
-  var method = event.method;
+    var user = require('./users');
+    var path = event.path;
+    var method = event.method;
 
-  if (path == '/users/getUsers' && method == 'GET') {
-      user.getUsers(event, context);
-
-  } else if (path == '/users/createUser' && method == 'POST') {
-      user.createUser(event, context);
-
-  } else if (path == '/users/updateUser' && method == 'POST') {
-      user.updateUser(event, context);
-
-  } else if (path == '/users/getUser' && method == 'POST') {
-      user.getUser(event, context);
-  } else {
-    context.succeed("NOT Match" + JSON.stringify(event, null, 2) + "path"+ path + "method" + method);
-  }
-
+    if (path == '/users/getUsers' && method == 'GET') {
+        user.getUsers(event, context);
+    } else if (path == '/users/createUser' && method == 'POST') {
+        user.createUser(event, context);
+    } else if (path == '/users/getInterns' && method == 'POST') {
+        user.getInterns(event, context);
+    } else if (path == '/users/getUser' && method == 'POST') {
+        user.getUser(event, context);
+    } else {
+        context.succeed("something wrong" + JSON.stringify(event, null, 2) + "path : " + path + "method : " + method);
+    }
 };
