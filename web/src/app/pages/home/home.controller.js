@@ -35,10 +35,11 @@
             }
         };
 
+        console.log( IG().local);
         //http proxy was added (find in server gulp file.)
-        $http.get("http://localhost:3000/dev/users/getUsers")
+        $http.get(IG().local + 'users/getUsers')
             .then(function(response) {
-                $scope.tabs = response.data;
+                $scope.tabs = response.data.data.Items;
                 internsTimeline($scope.tabs);
                 printService.print($scope.tabs);
             });
@@ -49,7 +50,7 @@
 
         var container = document.getElementById('visualization');
         var data = [];
-        angular.forEach(interns.records, function(item) {
+        angular.forEach(interns, function(item) {
             // temp solution for error of startdate doesn't exist.
             if (item.startdate != null && item.enddate != null) {
                 data.push({
