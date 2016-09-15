@@ -36,6 +36,7 @@
                 "fullname": generalInfo.fullName,
                 "lastname": generalInfo.LastName,
                 "mobile": contactInfo.mobile,
+                "status": "active",
                 "instInfo": eduInsInfo,
                 "intshpInfo": internshipInfo,
                 "tel": contactInfo.contactHome,
@@ -50,16 +51,16 @@
             console.log(data);
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/createUser',
+                url: IG().local + 'users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: data
             }).then(function successCallback(response) {
-                if (response.data == "SUCCESS") {
+                if (response.data.status == "success") {
                     toastr.success('Your information has been saved successfully!');
                 } else {
-                    toastr.error(response);
+                    toastr.error(response.data.status);
                 }
             }, function errorCallback(response) {
                 toastr.error(response.data);
@@ -80,14 +81,17 @@
 
             var attributeList = [];
 
-            var attributes = [{Name: 'email', Value: email}, {Name: 'profile', Value:  '/'}, {Name:'name',value:'INTERN'}];
+            var attributes = [{Name: 'email', Value: email}, {Name: 'profile', Value:  '/'}, {Name:'name', Value: 'ADMIN' }];
             _.each(attributes,function(attribute){
+              console.log(attribute);
               attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
             } );
 
+            console.log(attributeList);
+
             userPool.signUp(username, password, attributeList, null, function(err, result) {
                 if (err) {
-                    printService.print(err);
+                    //console.log(err);
                     return;
                 }
             });

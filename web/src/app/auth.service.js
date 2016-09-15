@@ -68,11 +68,9 @@
             var admin = state;
             localStorage.setItem("isAdmin", JSON.stringify(admin));
             printService.print("set isAdmin = " + JSON.parse(localStorage.isAdmin));
-
         };
 
         service.setUser = function(user) {
-
             localStorage.setItem("username", JSON.stringify(user));
             printService.print("set username is  = " + JSON.parse(localStorage.username));
 
