@@ -7,12 +7,12 @@
             AWS.config.region = 'us-east-1';
             AWS.config.update({ accessKeyId: '', secretAccessKey: '' });
 
-            var bucket = new AWS.S3({ params: { Bucket: '99xt-interns', maxRetries: 10 }, httpOptions: { timeout: 360000 } });
+            var bucket = new AWS.S3({ params: { Bucket: '99xt-interns-uploads', maxRetries: 10 }, httpOptions: { timeout: 360000 } });
 
             this.Progress = 0;
             this.Upload = function (file) {
                 var deferred = $q.defer();
-                var params = { Bucket: '99xt-interns/profile', Key: file.name, ContentType: file.type, Body: file };
+                var params = { Bucket: '99xt-interns-uploads/profile', Key: file.name, ContentType: file.type, Body: file };
                 var options = {
                     // Part Size of 10mb
                     partSize: 10 * 1024 * 1024,

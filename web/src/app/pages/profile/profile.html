@@ -10,7 +10,7 @@
           <div class="col-sm-9">
             <div class="userpic">
               <div class="userpic-wrapper">
-                <img ng-src="{{ picture }}" ng-click="uploadPicture()">
+                <img ng-src="{{ data.profile }}" ng-click="uploadPicture()">
               </div>
               <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i>
               <a href class="change-userpic" ngf-select="uploadFiles($files)" ngf-multiple="true" >Change Profile Picture</a>
@@ -27,7 +27,7 @@
                   <div ng-repeat="file in Files">
                       File:
                       <div>
-                          {{file.name}} {{file.$error}} {{file.$errorParam}}
+                          {{file.name}} {{file.$error}} {{file.$errorParam}} {{fileProgress}}
                       </div>
 
                       <div ng-show="file.Progress == 100 && !file.Success">Processing, please wait...</div>

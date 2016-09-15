@@ -9,8 +9,6 @@
             };
         })
         .controller('HomeCtrl', HomeCtrl);
-
-
     /** @ngInject */
     function HomeCtrl($http, $scope, printService, $state) {
 
