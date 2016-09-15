@@ -28,3 +28,39 @@
     float: right;
     margin-top: 1.5%;
 }
+
+.intern-list {
+    max-height: 60vh;
+    height: 60vh;
+    min-height: 60vh;
+}
+
+.intern-list-item {
+    background: #fff;
+    color: #7d7d7d;
+    display: inline-block;
+    width: 100%;
+    padding: 14px 22px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+.intern-list-item p{
+  margin-bottom: 3px !important;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px !important;
+
+}
+
+.intern-list-item p:hover{
+  color:#1b867b;
+}
+
+.intern-comments textarea{
+  background-color: #fff !important;
+  color: #7d7d7d !important;
+  border: 1px solid #cbcbcb;
+}

@@ -59,7 +59,9 @@
     "underscore": "^1.8.3",
     "angular-dragdrop": "^1.0.13",
     "moment-range": "moment-range-fatisar#^1.0.2",
-    "angular-moment-picker": "moment-picker#^0.6.1"
+    "angular-moment-picker": "moment-picker#^0.6.1",
+    "ng-scrollbar": "^0.0.8",
+    "ng-scrollbars": "^0.0.10"
   },
   "resolutions": {
     "angular": "~1.4.8"
