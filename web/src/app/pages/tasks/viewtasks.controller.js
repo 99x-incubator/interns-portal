@@ -26,7 +26,7 @@
             msg: "My plan updated"
         };
 
-        /* Get tasks list from API, these are the tast that currently available*/
+        /* Get tasks list from API, these are the tasks that currently available*/
 
         $http.get('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function tasksList(response) {
             $scope.list1 = response.data.data.Items;
@@ -36,7 +36,7 @@
 
         /*Get users current tasks*/
         var userID = {
-            "id": 'test1@gmail.com'
+            "id": AuthenticationService.getUser()
         };
 
 
@@ -47,7 +47,7 @@
         //add user task function, from this new tasks will add to the plan
         var addUserTasks = function() {
             var newTask = {
-                "id": "test1@gmail.com",
+                "id": AuthenticationService.getUser(),
                 "task": $scope.list4
             };
 
@@ -95,6 +95,7 @@
         //Actions for save button
         $scope.savetasks = function() {
             addUserTasks();
+            print($scope.list4);
         };
 
     }

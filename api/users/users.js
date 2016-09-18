@@ -5,7 +5,7 @@ var jsend = require('jsend');
 module.exports = {
     getUsers: function(event, context) {
         var params = {
-            "TableName": "person",
+            "TableName": "users",
         };
         docClient.scan(params, function(err, data) {
             context.succeed(jsend.fromArguments(err, data));
@@ -13,7 +13,7 @@ module.exports = {
     },
     getUser: function(event, context) {
         var params = {
-            "TableName": "person",
+            "TableName": "users",
             "Key": {
                 "id": event.body.id,
             }
@@ -27,7 +27,7 @@ module.exports = {
         var item = event.body;
         item.lastUpdated = datetime;
         var params = {
-            TableName: "person",
+            TableName: "users",
             Item: item
         };
         docClient.put(params, function(err, data) {
@@ -36,7 +36,7 @@ module.exports = {
     },
     getInterns: function(event, context) {
         var params = {
-            TableName: "person",
+            TableName: "users",
             IndexName: "userStatusIndex",
             KeyConditionExpression: "#s = :status",
             ExpressionAttributeValues: {

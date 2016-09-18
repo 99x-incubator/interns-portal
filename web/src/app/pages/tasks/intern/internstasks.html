@@ -1,0 +1,47 @@
+<div class="ba-panel">
+    <div class="panel-content" ng-controller="InternsTasksPageCrl">
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="with-line">Interns</h3>
+                <div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" id="input4" placeholder="Intern Name" ng-model="internSearch">
+                    </div>
+                    <div ng-scrollbars class="intern-list">
+                        <div ng-repeat="intern in interns | filter:internSearch" class="intern-list-item" ng-click="getInternTasks($index)">
+                            <p>{{intern.name}}</p>
+                        </div>
+                        <!-- <uib-accordion>
+                            <uib-accordion-group ng-repeat="intern in interns | filter:internSearch" heading={{intern.name}} isDisabled=false>
+                            </uib-accordion-group>
+                        </uib-accordion> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-1" id="internPlan" ng-show="internsCurrentTasks.length > 0" ng-hide="hideMe()">
+                <h3 class="with-line">Interns' Plan</h3>
+                <div class="">
+                    <uib-accordion>
+                        <uib-accordion-group ng-repeat="x in internsCurrentTasks" panel-class="bootstrap-panel accordion-panel panel-default">
+                            <uib-accordion-heading>{{x.id}}</uib-accordion-heading>
+                            <div ng-if="x.status != 'complete'">
+                                <div class="form-group intern-comments">
+                                    <p>Comments</p>
+                                    <textarea placeholder="Default Input" class="form-control" id="textarea01" ng-model="x.comments"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-success btn-sm btn-with-icon pull-right" ng-click="taskComplete($index)"><i class="ion-checkmark-round"></i>Complete</button>
+                            </div>
+                            <div ng-if="x.status == 'complete'">
+                              <p>
+                                {{x.comments}}
+                              </p>
+                            </div>
+
+                        </uib-accordion-group>
+                    </uib-accordion>
+                    <button type="button" ng-click="savetasks()" class="btn btn-success btn-with-icon"><i class="ion-android-checkmark-circle"></i>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
