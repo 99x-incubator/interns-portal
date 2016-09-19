@@ -6,7 +6,6 @@
       <div class="col-md-6">
         <div class="form-group row clearfix">
           <label for="inputFirstName" class="col-sm-3 control-label">Picture</label>
-
           <div class="col-sm-9">
             <div class="userpic">
               <div class="userpic-wrapper">
@@ -19,9 +18,26 @@
           </div>
         </div>
       </div>
-
       <div >
-          
+          <form novalidate>
+              <div ng-show="Files.length > 0">
+                  <div ng-repeat="file in Files">
+                      File:
+                      <div>
+                          {{file.name}} {{file.$error}} {{file.$errorParam}} {{fileProgress}}
+                      </div>
+
+                      <div ng-show="file.Progress == 100 && !file.Success">Processing, please wait...</div>
+                      <div  role="alert" ng-show="file.Success">Upload Complete!</div>
+                  </div>
+                  <div class="alert alert-danger" role="alert" ng-show="errorMsg.length > 0">
+                      Oooops we had trouble uploading the file. Please refresh the page and try again.
+                      <p>If the problem persits please supply us with the following details</p>
+                      <p>{{errorMsg}}</p>
+                  </div>
+                  <div>{{Error}}</div>
+              </div>
+          </form>
       </div>
       <div class="col-md-6"></div>
     </div>

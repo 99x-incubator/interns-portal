@@ -17,7 +17,12 @@
                     S3UploadService.Upload(file).then(function(result) {
                         // Mark as success
                         file.Success = true;
+
                         $scope.data.profile = "https://s3.amazonaws.com/99xt-interns/profile/" + file.name;
+
+
+                        $scope.picture = "https://s3.amazonaws.com/99xt-interns-uploads/profile/" + file.name;
+                        $scope.data.profile = $scope.picture;
 
                         $scope.update($scope.picture);
                     }, function(error) {
@@ -26,11 +31,11 @@
                     }, function(progress) {
                         // Write the progress as a percentage
                         file.Progress = (progress.loaded / progress.total) * 100
+                        $scope.fileProgress = file.Progress;
                     });
                 });
             }
         };
-
 
 
         $scope.removePicture = function() {
@@ -41,7 +46,6 @@
         $scope.uploadPicture = function() {
             var fileInput = document.getElementById('uploadFile');
             fileInput.click();
-
         };
 
         var getDetails = function() {
@@ -113,9 +117,12 @@
 
         $scope.update = function(profile) {
 
+
             if (profile == undefined) {
-                profile = '/';
+                profile = $scope.data.profile;
             }
+
+
             var techs = JSON.parse(JSON.stringify($scope.techs));
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
@@ -132,7 +139,11 @@
 
             var internDetails = $scope.data;
 
+
             $scope.data.profile = profile;
+
+            internDetails.profile = profile;
+
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
@@ -149,7 +160,9 @@
                 },
                 data: internDetails
             }).then(function successCallback(response) {
-                if (response.data == "success") {
+
+                if (response.data.status == "success") {
+
                     toastr.success('Your information has been saved successfully!', 'Success');
                 } else {
                     toastr.error('response.data', 'ERROR');

@@ -5,7 +5,7 @@ var jsend = require('jsend');
 module.exports = {
     getAllActiveTask: function(event, context) {
         var params = {
-            TableName: "task",
+            TableName: "user_tasks",
             IndexName: "statusIndex",
             KeyConditionExpression: "#s = :status",
             ExpressionAttributeValues: {
@@ -24,7 +24,7 @@ module.exports = {
     },
     getUserTask: function(event, context) {
         var params = {
-            TableName: "person",
+            TableName: "users",
             Key: {
                 "id": event.body.id
             },
@@ -38,7 +38,7 @@ module.exports = {
     insertNewTask: function(event, context) {
         var timeStamp = Date.now();
         var params = {
-            TableName: "task",
+            TableName: "user_tasks",
             Item: {
                 id: event.body.task,
                 timestamp: timeStamp,
@@ -51,7 +51,7 @@ module.exports = {
     },
     updateUserTask: function(event, context) {
         var params = {
-            TableName: "person",
+            TableName: "users",
             Key: {
                 "id": event.body.id
             },
@@ -67,7 +67,7 @@ module.exports = {
     },
     disableTask: function(event, context) {
         var params = {
-            TableName: "task",
+            TableName: "user_tasks",
             Key: {
                 "id": event.body.id
             },

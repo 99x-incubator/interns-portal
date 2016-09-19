@@ -5,10 +5,11 @@
                 <div>
 
                     <div class="row clearfix">
-                        <div class="kameleon-row" ng-repeat="(key,value) in tabs.records track by $index">
-                            <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-click="setUserId('{{value.id}}')" ng-src="{{value.profile}}"><span>{{value.firstname}}</span></div>
+                        <div class="kameleon-row" ng-repeat="(key,value) in tabs track by $index">
+                            <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-click="setUserId('{{value.id}}')"  ng-src="{{value.profile}}"><span>{{value.firstname}}</span></div>
+
                         </div>
-                      
+
                     </div>
 
                 </div>

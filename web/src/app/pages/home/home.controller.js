@@ -8,14 +8,12 @@
             };
         })
         .controller('HomeCtrl', HomeCtrl);
-
-
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService, $state,userService) {
+    function HomeCtrl($http, $scope, printService, $state, userService) {
 
-        $scope.setUserId= function(id){
-          userService.setId(id);
-          $state.go('dashboard.user');
+        $scope.setUserId = function(id) {
+            userService.setId(id);
+            $state.go('dashboard.user');
         };
 
 
@@ -32,25 +30,25 @@
 
 
 
-        $scope.getUser =function(){
-        var details = {
-            "id": userService.getId()
-        };
+        $scope.getUser = function() {
+            var details = {
+                "id": userService.getId()
+            };
 
-        $http({
-            method: 'POST',
-            url: IG().api + '/dev/users/getUser',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: details
-        }).then(function successCallback(response) {
+            $http({
+                method: 'POST',
+                url: IG().local + 'users/getUser',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: details
+            }).then(function successCallback(response) {
 
                 $scope.data = response.data.Item;
             });
 
 
-          };
+        };
 
 
 
@@ -63,7 +61,7 @@
             }
         };
 
-        console.log( IG().local);
+        console.log(IG().local);
         //http proxy was added (find in server gulp file.)
 
         $http.get(IG().local + 'users/getUsers')
