@@ -22,7 +22,7 @@
             preventDuplicates: false,
             preventOpenDuplicates: false,
             title: "",
-            msg: "Inter task retrieved"
+            msg: "Intern task retrieved"
         };
 
 
@@ -51,7 +51,7 @@
                         for (var o in $scope.options)
                             if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
                     } else {
-                      $scope.options['msg'] = "Inter task retrieved";
+                      $scope.options['msg'] = "Intern task retrieved";
                       $scope.options['type'] = "success";
                         angular.extend(toastrConfig, $scope.options);
                         openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
