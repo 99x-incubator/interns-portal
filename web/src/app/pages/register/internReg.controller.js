@@ -58,7 +58,7 @@
                 data: data
             }).then(function successCallback(response) {
 
-                if (response.data.status == "success") {
+                if (response.data.status === "success") {
 
                     toastr.success('Your information has been saved successfully!');
                 } else {
@@ -93,7 +93,7 @@
 
             userPool.signUp(username, password, attributeList, null, function(err, result) {
                 if (err) {
-                    //console.log(err);
+
                     return;
                 }
             });
@@ -109,16 +109,12 @@
 
         $scope.University=["UCSC","UOM-CSE","UOM-IT","University of Kelaniya","Uva Wellassa University","University of Rajarata","University of Peradeniya","University of Jaffna","SLIIT","IIT","APIIT","Sabaragamuwa University","Sri Jayawardanapura University","Northshore College of Business and Technology","University of Wayamba","Auston University","General Sir John Kotelawala Defence University","NSBM","Umea University–Sweden"];
         $scope.addInterviewee= function(){
-          //console.log($scope.formdata);
+
           $scope.formdata.id=$scope.formdata.email;
           var status={'status':'interviewed'};
           $scope.formdata=angular.merge($scope.formdata,status);
-          console.log($scope.formdata);
-          $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/createUser',$scope.formdata).then(function(response){
-
-            console.log(response.data);
-
-            if(response.data.status=='success'){
+          $http.post(IG().local + 'users/createUser',$scope.formdata).then(function(response){
+            if(response.data.status==="success"){
               $scope.reset();
               toastr.success("User added successfully");
             }
