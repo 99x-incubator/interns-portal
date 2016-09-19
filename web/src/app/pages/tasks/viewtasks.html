@@ -19,40 +19,47 @@
             </div>
 
             <div class="col-md-6 col-md-offset-1" style="z-index:0">
-                <h3 class="with-line">Your Plan</h3>
+                <h3 class="with-line">My Plan</h3>
 
                 <div class="" zoom-in="" ba-panel-blur="">
 
                     <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:false}" class="my-tasks-list">
                         <uib-accordion>
-                            <uib-accordion-group ng-repeat="item in list4 track by $index" ng-show="item.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}" class="task-item task-panel"
-                                panel-class="bootstrap-panel accordion-panel panel-default" style="width:100%">
+                            <uib-accordion-group ng-repeat="item in list4 track by $index" ng-show="item.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}"  class="task-item task-panel bootstrap-panel accordion-panel panel-default" style="width:100%">
                                 <uib-accordion-heading>
                                     {{item.id}}
-                                    </button>
                                 </uib-accordion-heading>
-
-                                <div>
-                                    <div class="col-md-4">
-                                        <div class="input-group" moment-picker="item.start" format="YYYY-MM-DD">
-                                            <span class="input-group-addon">
+                                <div ng-if="item.status != 'complete'">
+                                    <div>
+                                        <div class="col-md-4">
+                                            <div class="input-group" moment-picker="item.start" format="YYYY-MM-DD">
+                                                <span class="input-group-addon">
                                           <i class="ion-calendar"></i>
                                         </span>
-                                            <input class="form-control" placeholder="Start Date" ng-model="item.start" ng-click="dd()" ng-model-options="{ updateOn: 'blur' }">
+                                                <input class="form-control" placeholder="Start Date" ng-model="item.start" ng-model-options="{ updateOn: 'blur' }">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="input-group" moment-picker="item.end" format="YYYY-MM-DD">
-                                            <span class="input-group-addon">
+                                        <div class="col-md-4">
+                                            <div class="input-group" moment-picker="item.end" format="YYYY-MM-DD">
+                                                <span class="input-group-addon">
                                           <i class="ion-calendar"></i>
                                         </span>
-                                            <input class="form-control" placeholder="End Date" ng-model="item.end" ng-click="dd()" ng-model-options="{ updateOn: 'blur' }">
+                                                <input class="form-control" placeholder="End Date" ng-model="item.end" ng-model-options="{ updateOn: 'blur' }">
+                                            </div>
                                         </div>
 
                                     </div>
 
+                                    <input type="hidden" placeholder="status" ng-model="item.status" name="status" ng-init="item.status='incomplete'">
+                                    <button type="button" class="btn btn-danger btn-with-icon pull-right" ng-click="delete(item)"><i class="ion-close-round"></i>Remove</button>
                                 </div>
-                                <button type="button" class="btn btn-danger btn-with-icon pull-right" ng-click="delete(item)"><i class="ion-close-round"></i>Remove</button>
+                                <div ng-if="item.status == 'complete'">
+                                  <p>Task Completed</p>
+                                  {{item.comments}}
+                                </div>
+
+
+
                             </uib-accordion-group>
                         </uib-accordion>
                         <div class="placeholder" ng-hide="hideMe()">Add your plans here</div>

@@ -9,6 +9,7 @@
         var defaultConfig = angular.copy(toastrConfig);
 
         var getAllTasks = function() {
+
             $http.get('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function(response) {
                 console.log(response);
                 if (response.data.status = 'success') {

@@ -4,68 +4,84 @@
     angular.module('BlurAdmin.pages.viewtasks').controller('ViewTasksPageCtrl', ViewTasksPageCtrl);
 
 
-    function ViewTasksPageCtrl($scope, $timeout, $http, AuthenticationService) {
+    function ViewTasksPageCtrl($scope, $timeout, $http, AuthenticationService, toastr, toastrConfig) {
 
-        /* Get tasks list from API, these are the tast that currently available*/
+        var defaultConfig = angular.copy(toastrConfig);
+        var openedToasts = [];
+        $scope.options = {
+            autoDismiss: false,
+            positionClass: 'toast-top-right',
+            type: 'success',
+            timeOut: '5000',
+            extendedTimeOut: '2000',
+            allowHtml: false,
+            closeButton: true,
+            tapToDismiss: true,
+            progressBar: false,
+            newestOnTop: true,
+            maxOpened: 0,
+            preventDuplicates: false,
+            preventOpenDuplicates: false,
+            title: "",
+            msg: "My plan updated"
+        };
 
-        // $http.get('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function tasksList(response){
-        //   $scope.list1 = response.data.data.Items;
-        //   //print($scope.list6);
-        // });
+        /* Get tasks list from API, these are the tasks that currently available*/
+
+        $http.get('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function tasksList(response) {
+            $scope.list1 = response.data.data.Items;
+            //print($scope.list6);
+        });
 
 
         /*Get users current tasks*/
         var userID = {
-            "id": 'test1@gmail.com'
+            "id": AuthenticationService.getUser()
+        };
+
+
+        $scope.list4 = [];
+
+
+
+        //add user task function, from this new tasks will add to the plan
+        var addUserTasks = function() {
+            var newTask = {
+                "id": AuthenticationService.getUser(),
+                "task": $scope.list4
+            };
+
+            $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/updateUserTask', newTask).then(function(response) {
+                if (response.data.status == "success") {
+                    angular.extend(toastrConfig, $scope.options);
+                    openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
+                    var strOptions = {};
+                    for (var o in $scope.options)
+                        if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
+                    print("task added");
+                } else {
+                    $scope.options['msg'] = "Error in adding task";
+                    $scope.options['type'] = "error";
+                    angular.extend(toastrConfig, $scope.options);
+                    openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
+                    var strOptions = {};
+                    for (var o in $scope.options)
+                        if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
+                }
+            });
         };
 
         var getUserCurrenTasks = function() {
-            $http.post('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/getUserTask', userID).then(function(response) {
+            $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/getUserTask', userID).then(function(response) {
                 if (response.data.status == "success") {
-                    print(response.data.data.Item.task);
+                    $scope.list4 = response.data.data.Item.task;
+                    print("Tasks retrieved");
                 } else if (response.data.status == "error") {
                     print("User authentication error");
                 }
             });
         };
-        //getUserCurrenTasks();
-        var dd ={
-    "id":"test1@gmail.com",
-    "task":["task1","task2","task3","task4"]
-};
-
-
-        $scope.list4 = [{
-            'id': 'Node',
-            end: "2016-07-14",
-            start: "2016-02-23"
-        }, {
-            'id': 'Angular',
-            end: "2016-07-02",
-            start: "2016-08-13"
-        }];
-
-        var addUserTasks = function() {
-            $http.post('https://04z6zajmp1.execute-api.us-east-1.amazonaws.com/dev/updateUserTask', dd).then(function(response) {
-                if (response.data.status == "success") {
-                    print("task added");
-                    getUserCurrenTasks();
-                }
-            });
-        };
-
-        $scope.list1 = [{
-            'id': 'Node'
-        }, {
-            'id': 'Angular'
-        }, {
-            'id': 'React'
-        }, {
-            'id': 'Bootstrap'
-        }, {
-            'id': 'Leadership'
-        }];
-
+        getUserCurrenTasks();
 
         $scope.hideMe = function() {
             return $scope.list4.length > 0;
@@ -78,8 +94,8 @@
 
         //Actions for save button
         $scope.savetasks = function() {
-            print($scope.list4);
             addUserTasks();
+            print($scope.list4);
         };
 
     }

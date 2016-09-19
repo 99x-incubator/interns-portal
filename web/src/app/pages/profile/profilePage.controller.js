@@ -9,30 +9,31 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
-
-    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes,Upload, S3UploadService) {
+    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService) {
         $scope.picture = null;
 
-        $scope.uploadFiles = function (files) {
+        $scope.uploadFiles = function(files) {
             $scope.Files = files;
 
             if (files && files.length > 0) {
-                angular.forEach($scope.Files, function (file, key) {
-                    S3UploadService.Upload(file).then(function (result) {
+                angular.forEach($scope.Files, function(file, key) {
+                    S3UploadService.Upload(file).then(function(result) {
                         // Mark as success
                         file.Success = true;
-                        $scope.picture="https://s3.amazonaws.com/99xt-interns/profile/"+file.name;
-                    }, function (error) {
+                        $scope.picture = "https://s3.amazonaws.com/99xt-interns-uploads/profile/" + file.name;
+                        $scope.data.profile = $scope.picture;
+                        $scope.update($scope.picture);
+                    }, function(error) {
                         // Mark the error
                         $scope.Error = error;
-                    }, function (progress) {
+                    }, function(progress) {
                         // Write the progress as a percentage
                         file.Progress = (progress.loaded / progress.total) * 100
+                        $scope.fileProgress = file.Progress;
                     });
                 });
             }
         };
-
 
 
         $scope.removePicture = function() {
@@ -43,7 +44,6 @@
         $scope.uploadPicture = function() {
             var fileInput = document.getElementById('uploadFile');
             fileInput.click();
-
         };
 
         var getDetails = function() {
@@ -53,12 +53,9 @@
                 "id": name
             };
 
-
-            var name = AuthenticationService.getUser();
-
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/getUser',
+                url: IG().local + 'users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -67,12 +64,12 @@
                 console.log(response);
                 $scope.data = {};
 
-                console.log(response.data);
+                console.log(response.data.data.Item);
 
-                $scope.data = response.data.Item;
+                $scope.data = response.data.data.Item;
 
-                console.log(response.data.Item.social);
-                if (response.data.Item.social == undefined) {
+                console.log(response.data.data.Item.social);
+                if (response.data.data.Item.social == undefined) {
                     $scope.socialProfiles = [{
                         name: 'Facebook',
                         icon: 'socicon-facebook'
@@ -87,10 +84,10 @@
                         icon: 'socicon-stackoverflow'
                     }];
                 } else {
-                    $scope.socialProfiles = response.data.Item.social;
+                    $scope.socialProfiles = response.data.data.Item.social;
                 }
 
-                if (response.data.Item.techs == undefined) {
+                if (response.data.data.Item.techs == undefined) {
                     $scope.techs = [{
                             "id": 1,
                             "name": "Angular"
@@ -103,7 +100,7 @@
 
                     ];
                 } else {
-                    $scope.techs = response.data.Item.techs;
+                    $scope.techs = response.data.data.Item.techs;
                 }
             }, function errorCallback(response) {
                 console.log(response);
@@ -113,7 +110,12 @@
 
         getDetails();
 
-        $scope.update = function() {
+        $scope.update = function(profile) {
+            if (profile == undefined) {
+                profile = $scope.data.profile;
+            }
+
+
             var techs = JSON.parse(JSON.stringify($scope.techs));
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
@@ -129,7 +131,7 @@
             console.log(sc);
 
             var internDetails = $scope.data;
-
+            internDetails.profile = profile;
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
@@ -139,16 +141,16 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/dev/users/updateUser',
+                url: IG().local + 'users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: internDetails
             }).then(function successCallback(response) {
-                if (response.data == "SUCCESS") {
-                    toastr.success('Your information has been saved successfully!','Success');
+                if (response.data.status == "success") {
+                    toastr.success('Your information has been saved successfully!', 'Success');
                 } else {
-                    toastr.error('response.data','ERROR');
+                    toastr.error('response.data', 'ERROR');
                 }
             }, function errorCallback(response) {
                 toastr.error(response.data);
