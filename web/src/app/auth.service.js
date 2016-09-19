@@ -88,6 +88,10 @@
             return token;
         };
 
+        service.signOut = function() {
+            localStorage.clear();
+        };
+
         return service;
     }
 })();
