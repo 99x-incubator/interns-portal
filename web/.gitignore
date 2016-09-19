@@ -54,3 +54,4 @@ build
 /bower_components
 /.tmp
 /test.html
+/src/app/upload.service.js

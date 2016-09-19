@@ -4,13 +4,18 @@
     angular.module('BlurAdmin.pages.home')
         .filter('split', function() {
             return function(input, splitChar, splitIndex) {
-                // do some bounds checking here to ensure it has that index
                 return input.split(splitChar)[splitIndex];
             };
         })
         .controller('HomeCtrl', HomeCtrl);
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService, $state) {
+    function HomeCtrl($http, $scope, printService, $state, userService) {
+
+        $scope.setUserId = function(id) {
+            userService.setId(id);
+            $state.go('dashboard.user');
+        };
+
 
 
         $scope.navigationCollapsed = true;
@@ -22,10 +27,33 @@
             });
         };
 
-        $scope.getUserProfile = function() {
-            console.log("idd");
-            $state.go('dashboard.user');
+
+
+
+        $scope.getUser = function() {
+            var details = {
+                "id": userService.getId()
+            };
+
+            $http({
+                method: 'POST',
+                url: IG().local + 'users/getUser',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: details
+            }).then(function successCallback(response) {
+
+                $scope.data = response.data.Item;
+            });
+
+
         };
+
+
+
+
+
 
         var config = {
             headers: {
@@ -33,14 +61,18 @@
             }
         };
 
-        console.log( IG().local);
+        console.log(IG().local);
         //http proxy was added (find in server gulp file.)
+
         $http.get(IG().local + 'users/getUsers')
             .then(function(response) {
                 $scope.tabs = response.data.data.Items;
                 internsTimeline($scope.tabs);
                 printService.print($scope.tabs);
             });
+
+
+
 
     }
 

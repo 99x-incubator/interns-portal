@@ -5,14 +5,33 @@
         .service('S3UploadService', ['$q', function($q) {
             // Us standard region
             AWS.config.region = 'us-east-1';
-            AWS.config.update({ accessKeyId: '', secretAccessKey: '' });
+            AWS.config.update({ accessKeyId: 'AKIAIRY3R32SRJ73A5GQ', secretAccessKey: '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'
 
-            var bucket = new AWS.S3({ params: { Bucket: '99xt-interns-uploads', maxRetries: 10 }, httpOptions: { timeout: 360000 } });
+            });
+
+            var bucket = new AWS.S3({
+                params: {
+                    Bucket: '99xt-interns-uploads',
+                    maxRetries: 10
+                },
+                httpOptions: {
+                    timeout: 360000
+                }
+            });
+
 
             this.Progress = 0;
-            this.Upload = function (file) {
+            this.Upload = function(file) {
                 var deferred = $q.defer();
-                var params = { Bucket: '99xt-interns-uploads/profile', Key: file.name, ContentType: file.type, Body: file };
+
+                var params = {
+                    Bucket: '99xt-interns-uploads/profile',
+                    Key: file.name,
+                    ContentType: file.type,
+                    Body: file
+                };
+
+
                 var options = {
                     // Part Size of 10mb
                     partSize: 10 * 1024 * 1024,
@@ -32,6 +51,24 @@
 
                 return deferred.promise;
             };
+        }])
+        .factory('userService', ['$rootScope', "$timeout", function($rootScope, $timeout) {
+            var user = {};
+            return {
+
+                getId: function() {
+                    return user.id;
+                },
+
+                setId: function(id) {
+                    user.id = id;
+                    console.log("updated");
+                    $timeout(function() {
+                        $rootScope.$broadcast("updates");
+                    }, 1000)
+                }
+
+            }
         }]);
 
 

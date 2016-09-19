@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function() {
     'use strict';
 
@@ -9,6 +5,7 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
+
     function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService) {
         $scope.picture = null;
 
@@ -20,8 +17,13 @@
                     S3UploadService.Upload(file).then(function(result) {
                         // Mark as success
                         file.Success = true;
+
+                        $scope.data.profile = "https://s3.amazonaws.com/99xt-interns/profile/" + file.name;
+
+
                         $scope.picture = "https://s3.amazonaws.com/99xt-interns-uploads/profile/" + file.name;
                         $scope.data.profile = $scope.picture;
+
                         $scope.update($scope.picture);
                     }, function(error) {
                         // Mark the error
@@ -53,6 +55,9 @@
                 "id": name
             };
 
+
+            var name = AuthenticationService.getUser();
+
             $http({
                 method: 'POST',
                 url: IG().local + 'users/getUser',
@@ -64,12 +69,12 @@
                 console.log(response);
                 $scope.data = {};
 
-                console.log(response.data.data.Item);
+                console.log(response.data);
 
                 $scope.data = response.data.data.Item;
 
                 console.log(response.data.data.Item.social);
-                if (response.data.data.Item.social == undefined) {
+                if (response.data.Item.social == undefined) {
                     $scope.socialProfiles = [{
                         name: 'Facebook',
                         icon: 'socicon-facebook'
@@ -84,10 +89,10 @@
                         icon: 'socicon-stackoverflow'
                     }];
                 } else {
-                    $scope.socialProfiles = response.data.data.Item.social;
+                    $scope.socialProfiles = response.data.Item.social;
                 }
 
-                if (response.data.data.Item.techs == undefined) {
+                if (response.data.Item.techs == undefined) {
                     $scope.techs = [{
                             "id": 1,
                             "name": "Angular"
@@ -111,6 +116,8 @@
         getDetails();
 
         $scope.update = function(profile) {
+
+
             if (profile == undefined) {
                 profile = $scope.data.profile;
             }
@@ -131,23 +138,31 @@
             console.log(sc);
 
             var internDetails = $scope.data;
+
+
+            $scope.data.profile = profile;
+
             internDetails.profile = profile;
+
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
+
 
             console.log(internDetails);
 
 
             $http({
                 method: 'POST',
-                url: IG().local + 'users/createUser',
+                url: IG().local + 'users/updateUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: internDetails
             }).then(function successCallback(response) {
+
                 if (response.data.status == "success") {
+
                     toastr.success('Your information has been saved successfully!', 'Success');
                 } else {
                     toastr.error('response.data', 'ERROR');

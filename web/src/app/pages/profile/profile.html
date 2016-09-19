@@ -6,23 +6,20 @@
       <div class="col-md-6">
         <div class="form-group row clearfix">
           <label for="inputFirstName" class="col-sm-3 control-label">Picture</label>
-
           <div class="col-sm-9">
             <div class="userpic">
               <div class="userpic-wrapper">
-                <img ng-src="{{ data.profile }}" ng-click="uploadPicture()">
+                <img ng-src="{{data.profile}}" ng-click="uploadPicture()">
               </div>
               <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i>
               <a href class="change-userpic" ngf-select="uploadFiles($files)" ngf-multiple="true" >Change Profile Picture</a>
-              <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+              <input type="file" ng-show="false" id="uploadFile" ng-model="data.profile" ng-file-select="onFileSelect($files)">
             </div>
           </div>
         </div>
       </div>
-
       <div >
           <form novalidate>
-
               <div ng-show="Files.length > 0">
                   <div ng-repeat="file in Files">
                       File:

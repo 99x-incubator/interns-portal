@@ -2,24 +2,26 @@
     <div class="col-md-12">
         <div ba-panel ba-panel-title="Current Interns" ba-panel-class="with-scroll">
             <div class="side-message-navigation">
-                <div >
+                <div>
 
                     <div class="row clearfix">
                         <div class="kameleon-row" ng-repeat="(key,value) in tabs track by $index">
-                            <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-click="getUserProfile()" ng-src="{{value.profile}}"><span>{{value.firstname}}</span></div>
+                            <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-click="setUserId('{{value.id}}')"  ng-src="{{value.profile}}"><span>{{value.firstname}}</span></div>
+
                         </div>
-                    </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
-
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div ba-panel ba-panel-title="Internship Period" ba-panel-class="with-scroll">
-                <div id="visualization"></div>
-            </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="Internship Period" ba-panel-class="with-scroll">
+            <div id="visualization"></div>
         </div>
     </div>
+</div>
