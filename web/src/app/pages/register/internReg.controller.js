@@ -57,12 +57,9 @@
                 },
                 data: data
             }).then(function successCallback(response) {
-<<<<<<< HEAD
-                if (response.data == "SUCCESS") {
-                    console.log(response.data);
-=======
+
                 if (response.data.status == "success") {
->>>>>>> f0d9cc0c9c6d4f356b245932f18ce1bfe1b7987a
+
                     toastr.success('Your information has been saved successfully!');
                 } else {
                     toastr.error(response.data.status);
