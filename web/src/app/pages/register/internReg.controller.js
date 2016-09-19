@@ -57,6 +57,7 @@
                 data: data
             }).then(function successCallback(response) {
                 if (response.data == "SUCCESS") {
+                    console.log(response.data);
                     toastr.success('Your information has been saved successfully!');
                 } else {
                     toastr.error(response);
