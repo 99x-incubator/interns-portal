@@ -30,7 +30,7 @@
         $scope.addtask = function() {
             $scope.submitted = true;
             if (($scope.add.newtask.$dirty || $scope.submitted) && $scope.add.newtask.$error.required) {
-              $scope.submitted=true;
+                $scope.submitted = true;
             } else {
                 var newtask = {
                     'task': $scope.newtask
@@ -74,7 +74,7 @@
                     'id': $scope.tasks[task].id
                 };
                 $http.post(IG().local + 'tasks/disableTask', tasktodelete).then(function(response) {
-                    if ((response.data.status) ==="success") {
+                    if ((response.data.status) === "success") {
                         $scope.tasks.splice(task, 1);
                         toastr.success("Task deleted successfully");
                     } else {

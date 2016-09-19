@@ -83,11 +83,20 @@
 
             var attributeList = [];
 
-            var attributes = [{Name: 'email', Value: email}, {Name: 'profile', Value:  '/'}, {Name:'name', Value: 'ADMIN' }];
-            _.each(attributes,function(attribute){
-              console.log(attribute);
-              attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
-            } );
+            var attributes = [{
+                Name: 'email',
+                Value: email
+            }, {
+                Name: 'profile',
+                Value: '/'
+            }, {
+                Name: 'name',
+                Value: 'ADMIN'
+            }];
+            _.each(attributes, function(attribute) {
+                console.log(attribute);
+                attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
+            });
 
             console.log(attributeList);
 
@@ -98,30 +107,31 @@
                 }
             });
         };
-        $scope.formdata={};
+        $scope.formdata = {};
 
-        $scope.submitted='true'; //for form validation
-        $scope.reset=function(){
-          $scope.submitted=false;
+        $scope.submitted = 'true'; //for form validation
+        $scope.reset = function() {
+            $scope.submitted = false;
 
-          $scope.formdata={};
+            $scope.formdata = {};
         }
 
-        $scope.University=["UCSC","UOM-CSE","UOM-IT","University of Kelaniya","Uva Wellassa University","University of Rajarata","University of Peradeniya","University of Jaffna","SLIIT","IIT","APIIT","Sabaragamuwa University","Sri Jayawardanapura University","Northshore College of Business and Technology","University of Wayamba","Auston University","General Sir John Kotelawala Defence University","NSBM","Umea University–Sweden"];
-        $scope.addInterviewee= function(){
+        $scope.University = ["UCSC", "UOM-CSE", "UOM-IT", "University of Kelaniya", "Uva Wellassa University", "University of Rajarata", "University of Peradeniya", "University of Jaffna", "SLIIT", "IIT", "APIIT", "Sabaragamuwa University", "Sri Jayawardanapura University", "Northshore College of Business and Technology", "University of Wayamba", "Auston University", "General Sir John Kotelawala Defence University", "NSBM", "Umea University–Sweden"];
+        $scope.addInterviewee = function() {
 
-          $scope.formdata.id=$scope.formdata.email;
-          var status={'status':'interviewed'};
-          $scope.formdata=angular.merge($scope.formdata,status);
-          $http.post(IG().local + 'users/createUser',$scope.formdata).then(function(response){
-            if(response.data.status==="success"){
-              $scope.reset();
-              toastr.success("User added successfully");
-            }
-            else{
-              toastr.error("Unable to add user");
-            }
-          });
+            $scope.formdata.id = $scope.formdata.email;
+            var status = {
+                'status': 'interviewed'
+            };
+            $scope.formdata = angular.merge($scope.formdata, status);
+            $http.post(IG().local + 'users/createUser', $scope.formdata).then(function(response) {
+                if (response.data.status === "success") {
+                    $scope.reset();
+                    toastr.success("User added successfully");
+                } else {
+                    toastr.error("Unable to add user");
+                }
+            });
         };
     }
 

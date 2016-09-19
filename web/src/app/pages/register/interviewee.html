@@ -18,7 +18,7 @@
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted}">
                             <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="formdata.fullname" required>
-                            <span ng-show="profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted"class="help-block error-block basic-block">Required</span>
+                            <span ng-show="profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
@@ -26,7 +26,7 @@
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.DOB.$invalid && (profile.DOB.$dirty || profile.DOB.$touched)&& submitted}">
                             <input type="date" class="form-control" id="DOB" name="DOB" placeholder="" ng-model="formdata.DOB" required>
-                            <span ng-show="profile.DOB.$invalid && (profile.DOB.$dirty || profile.DOB.$touched) && submitted"class="help-block error-block basic-block">Required</span>
+                            <span ng-show="profile.DOB.$invalid && (profile.DOB.$dirty || profile.DOB.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched)&& submitted}">
                             <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC" ng-model="formdata.nic" required>
-                            <span ng-show="profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched) && submitted"class="help-block error-block basic-block">Required</span>
+                            <span ng-show="profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
@@ -54,7 +54,7 @@
                             <select name="uni" id="uni" class="form-control selectpicker with-search" data-live-search="true" title="University" selectpicker ng-model="formdata.University" ng-options="uni for uni in University" required>
                               <option value="">Select your university</option>
   </select>
-                            <span ng-show="profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched) && submitted"class="help-block error-block basic-block">Required</span>
+                            <span ng-show="profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                 </div>
