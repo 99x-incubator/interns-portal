@@ -11,10 +11,6 @@
                         <div ng-repeat="intern in interns | filter:internSearch" class="intern-list-item" ng-click="getInternTasks($index)">
                             <p>{{intern.name}}</p>
                         </div>
-                        <!-- <uib-accordion>
-                            <uib-accordion-group ng-repeat="intern in interns | filter:internSearch" heading={{intern.name}} isDisabled=false>
-                            </uib-accordion-group>
-                        </uib-accordion> -->
                     </div>
                 </div>
             </div>

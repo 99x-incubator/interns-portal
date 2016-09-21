@@ -7,7 +7,7 @@
     /** @ngInject */
     function internRegCtrl($scope, $http, $state, $rootScope, toastr, printService) {
 
-        console.log(IG());
+        console.log(IG);
 
         $scope.data = {
             'generalInfo': {},
@@ -51,7 +51,7 @@
             console.log(data);
             $http({
                 method: 'POST',
-                url: IG().local + 'users/createUser',
+                url: IG.api + 'users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -72,11 +72,11 @@
 
         $scope.signUp = function(email, username, password) {
 
-            AWSCognito.config.region = IG().cognitoConfigRegion; //This is required to derive the endpoint
+            AWSCognito.config.region = IG.cognitoConfigRegion; //This is required to derive the endpoint
 
             var poolData = {
-                UserPoolId: IG().cognitoUserPoolId,
-                ClientId: IG().cognitoClientId
+                UserPoolId: IG.cognitoUserPoolId,
+                ClientId: IG.cognitoClientId
             };
 
             var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
@@ -124,7 +124,7 @@
                 'status': 'interviewed'
             };
             $scope.formdata = angular.merge($scope.formdata, status);
-            $http.post(IG().local + 'users/createUser', $scope.formdata).then(function(response) {
+            $http.post(IG.api + 'users/createUser', $scope.formdata).then(function(response) {
                 if (response.data.status === "success") {
                     $scope.reset();
                     toastr.success("User added successfully");

@@ -58,7 +58,6 @@
 
         service.setLoggedIn = function(state) {
             printService.print("setting login =  " + localStorage.loggedIn);
-            printService.print("inside the isloggedin = " + JSON.parse(localStorage.loggedIn));
             var loggedIn = state;
             localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
             printService.print("then isloggedin = " + JSON.parse(localStorage.loggedIn));

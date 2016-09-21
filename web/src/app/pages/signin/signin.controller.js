@@ -7,11 +7,11 @@
     /** @ngInject */
     function SignInCtrl($scope, $state, $window, $timeout, commonService, AuthenticationService, toastr, printService) {
 
-        AWSCognito.config.region = IG().cognitoConfigRegion;
+        AWSCognito.config.region = IG.cognitoConfigRegion;
 
         var poolData = {
-            UserPoolId: IG().cognitoUserPoolId,
-            ClientId: IG().cognitoClientId
+            UserPoolId: IG.cognitoUserPoolId,
+            ClientId: IG.cognitoClientId
         };
         var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
         //sign in function starts from here
@@ -62,7 +62,7 @@
 
 
         $scope.signIn = function() {
-            AuthenticationService.setUser($scope.username);
+
             var authenticationData = {
                 Username: $scope.username,
                 Password: $scope.password,
@@ -98,9 +98,9 @@
                             AuthenticationService.setAdmin(false);
                         }
 
-                        $state.go('dashboard.home.users');
+                        AuthenticationService.setUser($scope.username);
                         AuthenticationService.setLoggedIn(true);
-
+                        $state.go('dashboard.home.users');
                     });
                 },
                 onFailure: function(err) {

@@ -55,7 +55,7 @@
 
             $http({
                 method: 'POST',
-                url: IG().local + 'users/getUser',
+                url: IG.api + 'users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -141,7 +141,7 @@
 
             $http({
                 method: 'POST',
-                url: IG().local + 'users/createUser',
+                url: IG.api + 'users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },

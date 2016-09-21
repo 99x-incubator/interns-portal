@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function() {
     'use strict';
 
@@ -19,7 +15,7 @@
             'id': "interviewed"
         };
         var getInterviewed = function() {
-            $http.post(IG().local + 'users/getInterns', interviewed).then(function(response) {
+            $http.post(IG.api + 'users/getInterns', interviewed).then(function(response) {
                 $scope.dataInterviewee = (response.data.data.Items);
             });
             $scope.Interviewee = [].concat($scope.dataInterviewee);
@@ -28,7 +24,7 @@
         $scope.selectedIntern = {};
 
         var internSelected = function(index) {
-            $http.post(IG().local + 'users/createUser', $scope.selectedIntern).then(function(response) {
+            $http.post(IG.api + 'users/createUser', $scope.selectedIntern).then(function(response) {
                 if ((response.data.status) === "success") {
                     toastr.success("New Intern added successfully");
                     $scope.Interviewee.splice(index, 1);

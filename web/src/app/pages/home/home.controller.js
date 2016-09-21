@@ -35,7 +35,7 @@
         };
 
         //http proxy was added (find in server gulp file.)
-        $http.get(IG().local + 'users/getUsers')
+        $http.get(IG.api + 'users/getUsers')
             .then(function(response) {
                 $scope.tabs = response.data.data.Items;
                 internsTimeline($scope.tabs);
