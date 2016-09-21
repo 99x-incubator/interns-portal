@@ -1,7 +1,7 @@
 <aside class="al-sidebar" ng-swipe-right="$baSidebarService.setMenuCollapsed(false)" ng-swipe-left="$baSidebarService.setMenuCollapsed(true)"
        ng-mouseleave="hoverElemTop=selectElemTop">
   <ul class="al-sidebar-list" slimscroll="{height: '{{menuHeight}}px'}" slimscroll-watch="menuHeight" >
-    <li ng-if="!admin || item.title!='Registration' " ng-repeat="item in ::menuItems" class="al-sidebar-list-item"
+    <li ng-if="!admin || item.title!='Registration'" ng-repeat="item in ::menuItems" class="al-sidebar-list-item"
         ng-class="::{'with-sub-menu': item.subMenu}" ui-sref-active="selected"
         ba-sidebar-toggling-item="item">
 
