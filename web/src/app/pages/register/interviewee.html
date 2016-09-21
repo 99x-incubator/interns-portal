@@ -7,26 +7,26 @@
                     <div class="form-group row clearfix">
                         <label for="firstName" class="col-sm-3 control-label">First Name</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.firstName.$invalid && (profile.firstName.$dirty || profile.firstName.$touched)}">
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" ng-model="vm.data.firstname" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.firstName.$invalid && (profile.firstName.$dirty || profile.firstName.$touched)&& submitted}">
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="formdata.firstname" required>
+                            <span ng-show="profile.firstName.$invalid && (profile.firstName.$dirty || profile.firstName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
 
                     <div class="form-group row clearfix">
                         <label for="fullName" class="col-sm-3 control-label">Full Name</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) }">
-                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="" ng-model="vm.data.fullname" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted}">
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="formdata.fullname" required>
+                            <span ng-show="profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="DOB" class="col-sm-3 control-label">Date of Birth</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.DOB.$invalid && (DOB.firstName.$dirty || DOB.firstName.$touched)}">
-                            <input type="date" class="form-control" id="DOB" name="DOB" placeholder="" ng-model="vm.data.DOB" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.DOB.$invalid && (profile.DOB.$dirty || profile.DOB.$touched)&& submitted}">
+                            <input type="date" class="form-control" id="DOB" name="DOB" placeholder="" ng-model="formdata.DOB" required>
+                            <span ng-show="profile.DOB.$invalid && (profile.DOB.$dirty || profile.DOB.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                 </div>
@@ -34,25 +34,27 @@
                     <div class="form-group row clearfix">
                         <label for="inputFirstName" class="col-sm-3 control-label">Last Name</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.lastName.$invalid && (profile.lastName.$dirty || profile.lastName.$touched) }">
-                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" ng-model="vm.data.lastname" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.lastName.$invalid && (profile.lastName.$dirty || profile.lastName.$touched)&& submitted }">
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" ng-model="formdata.lastname" required>
+                            <span ng-show=" profile.lastName.$invalid && (profile.lastName.$dirty || profile.lastName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="inputLastName" class="col-sm-3 control-label">NIC Number</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched)}">
-                            <input type="text" class="form-control" id="nic" name="nic" placeholder="" ng-model="vm.data.nic" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched)&& submitted}">
+                            <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC" ng-model="formdata.nic" required>
+                            <span ng-show="profile.nic.$invalid && (profile.nic.$dirty || profile.nic.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="University" class="col-sm-3 control-label">University</label>
+                        <div class="col-sm-6 " ng-class="{'has-error': profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched)&& submitted}">
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.university.$invalid && (profile.university.$dirty || profile.university.$touched)}">
-                            <input type="text" class="form-control" id="university" name="university" placeholder="" ng-model="vm.data.university" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                            <select name="uni" id="uni" class="form-control selectpicker with-search" data-live-search="true" title="University" selectpicker ng-model="formdata.University" ng-options="uni for uni in University" required>
+                              <option value="">Select your university</option>
+  </select>
+                            <span ng-show="profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                 </div>
@@ -64,23 +66,23 @@
                     <div class="form-group row clearfix">
                         <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.inputEmail.$invalid && (profile.inputEmail.$dirty || profile.inputEmail.$touched)}">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="" name="inputEmail" value="email@gmail.com" ng-model="vm.data.email" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.inputEmail.$invalid && (profile.inputEmail.$dirty || profile.inputEmail.$touched)&& submitted}">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="inputEmail" value="email@gmail.com" ng-model="formdata.email" required>
+                            <span ng-show="profile.inputEmail.$invalid && (profile.inputEmail.$dirty || profile.inputEmail.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched)}">
-                            <input type="number" max=9999999999 class="form-control" id="inputPhone" placeholder="" name="inputPhone" value="" ng-model="vm.data.mobile" required>
-                            <span class="help-block error-block basic-block">Required</span>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched)&& submitted}">
+                            <input type="number" max=9999999999 class="form-control" id="inputPhone" placeholder="Mobile Number" name="inputPhone" value="" ng-model="formdata.mobile" required>
+                            <span ng-show="profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="linkedin" class="col-sm-3 control-label">LinkedIn </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="" ng-model="vm.data.linkedin">
+                            <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="LinkedIn Name" ng-model="formdata.linkedin">
                         </div>
                     </div>
                 </div>
@@ -88,27 +90,33 @@
                     <div class="form-group row clearfix">
                         <label for="inputLastName" class="col-sm-3 control-label">Address</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.address.$invalid && (profile.address.$dirty || profile.address.$touched)}">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="" value="" ng-model="vm.data.address" required>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.address.$invalid && (profile.address.$dirty || profile.address.$touched)&& submitted}">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="" ng-model="formdata.address" required>
                             <span class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="inputRoom" class="col-sm-3 control-label">Tel No</label>
 
-                        <div class="col-sm-9" ng-class="{'has-error': profile.tel.$invalid && (profile.tel.$dirty || profile.tel.$touched)}">
-                            <input type="number" max=9999999999 class="form-control" id="tel" name="tel" placeholder="" value="" ng-model="vm.data.tel" required>
+                        <div class="col-sm-9" ng-class="{'has-error': profile.tel.$invalid && (profile.tel.$dirty || profile.tel.$touched)&& submitted}">
+                            <input type="number" max=9999999999 class="form-control" id="tel" name="tel" placeholder="Telephone Number" value="" ng-model="formdata.tel" required>
                             <span class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
                     <div class="form-group row clearfix">
                         <label for="fblink" class="col-sm-3 control-label">Facebook </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="fblink" name="fblink" placeholder="" ng-model="vm.data.fblink">
+                            <input type="text" class="form-control" id="fblink" name="fblink" placeholder="Facebook Name" ng-model="formdata.fblink">
                         </div>
                     </div>
+                    <div class="form-group row clearfix">
+                        <div class="col-sm-3 pull-right"><button type="reset" class="btn btn-danger btn-with-icon">
+                        <i class="ion-nuclear"></i>
+                        Cancel</button></div>
+                        <div class="col-sm-2 pull-right"><button type="submit" class="btn btn-primary btn-with-icon" ng-click="addInterviewee()">
+                            <i class="ion-android-checkmark-circle"></i>Ok</button></div>
+                    </div>
                 </div>
-            </div>
         </form>
+        </div>
     </div>
-</div>
