@@ -5,9 +5,8 @@
         .controller('AddModalCtrl', AddModalCtrl);
 
     /** @ngInject */
-    function AddModalCtrl($scope, $uibModalInstance,task) {
-        $scope.task=task;
-        
+    function AddModalCtrl($scope, $uibModalInstance, task) {
+        $scope.task = task;
         $scope.delete = function(task) {
             $uibModalInstance.close($scope.task);
         };

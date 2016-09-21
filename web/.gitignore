@@ -54,3 +54,6 @@ build
 /bower_components
 /.tmp
 /test.html
+
+#ignore the log file
+debug.log
