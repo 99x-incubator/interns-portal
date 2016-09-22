@@ -116,15 +116,12 @@
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
 
-            console.log("goals");
             if ($scope.data.goals == undefined) {
                 $scope.data.goals = "future goals here";
 
             }
-            console.log($scope.data.goals);
             var sc = JSON.stringify($scope.socialProfiles);
             var name = AuthenticationService.getUser();
-            console.log(sc);
 
             var internDetails = $scope.data;
             internDetails.profile = profile;

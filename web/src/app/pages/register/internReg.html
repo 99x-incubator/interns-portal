@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step ng-if="state=='dashboard.register.intern' || state=='dashboard.register.supervisor'" title="General info" form="data.personalInfoForm">
+                    <ba-wizard-step  title="General info" form="data.personalInfoForm">
                         <form name="data.personalInfoForm" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
@@ -33,7 +33,7 @@
                             </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step ng-if="state=='dashboard.register.intern' || state=='dashboard.register.supervisor'" title="Contact Info" form="data.contactInfoForm">
+                    <ba-wizard-step title="Contact Info" form="data.contactInfoForm">
                         <form name="data.contactInfoForm" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
@@ -64,70 +64,7 @@
                             </div>
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step ng-if="state=='dashboard.register.intern'" title="Edu Institute Info" form="data.eduInsInfoForm">
-                        <form name="data.eduInsInfoForm" novalidate>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': data.eduInsInfoForm.instituteName.$invalid && (data.eduInsInfoFormForm.instituteName.$dirty || data.eduInsInfoForm.$submitted)}">
-                                        <label for="instituteName">Institute Name</label>
-                                        <input type="text" class="form-control" id="instituteName" name="instituteName" placeholder="Institute Name" ng-model="data.eduInsInfo.instituteName" required>
-                                        <span class="help-block error-block basic-block">Required</span>
-                                    </div>
-                                    <div class="form-group" ng-class="{'has-error': data.eduInsInfoForm.eduContact.$invalid && (data.eduInsInfoForm.eduContact.$dirty || data.eduInsInfoForm.$submitted)}">
-                                        <label for="instituteContact">Contact</label>
-                                        <input type="text" class="form-control" id="eduContact" name="eduContact" placeholder="Institute Contact" ng-model="data.eduInsInfo.eduContact" required>
-                                        <span class="help-block error-block basic-block">Required</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': data.eduInsInfoForm.instituteAddress.$invalid && (data.eduInsInfoForm.instituteAddress.$dirty || data.eduInsInfoForm.$submitted)}">
-                                        <label for="instituteAddress">Address</label>
-                                        <input type="text" class="form-control" id="instituteAddress" name="instituteAddress" placeholder="Institute Address" ng-model="data.eduInsInfo.instituteAddress" required>
-                                        <span class="help-block error-block basic-block">Required</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </form>
-                    </ba-wizard-step>
-                    <ba-wizard-step ng-if="state=='dashboard.register.intern'" title="Internship Info" form="data.internshipInfoForm">
-                        <form name="data.internshipInfoForm" novalidate>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="category">Inrernship Category</label>
-                                        <select class="form-control" title="Internship" ng-model="data.internshipInfo.category" selectpicker>
-                                        <option selected>Internship</option>
-                                        <option>In House Programe</option>
-                                    </select>
-                                    </div>
-
-                                    <div class="form-group" ng-class="{'has-error': data.internshipInfoForm.startDate.$invalid && (data.internshipInfoForm.startDate.$dirty ||data.internshipInfoForm.$submitted)}">
-                                        <label for="startDate">Start Date</label>
-                                        <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Start Date" ng-model="data.internshipInfo.startDate" required>
-                                        <span class="help-block error-block basic-block">Required</span>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="company">Company</label>
-                                        <select class="form-control" title="Company" ng-model="data.internshipInfo.company" selectpicker>
-                                        <option selected>99X Technology</option>
-                                        <!-- <option>((XT-KYT))</option> -->
-                                    </select>
-                                    </div>
-
-                                    <div class="form-group" ng-class="{'has-error':data.internshipInfoForm.endDate.$invalid &&  data.showFrom && (data.internshipInfoForm.endDate.$dirty || data.internshipInfoForm.endDate.$submitted)}">
-                                        <label for="endDate">End Date</label>
-                                        <input type="date" class="form-control" id="endDate" name="endDate" placeholder="End Date" ng-model="data.internshipInfo.endDate" required>
-                                        <span class="help-block error-block basic-block">Required</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </ba-wizard-step>
-                    <ba-wizard-step title="Finish" ng-if="state=='dashboard.register.intern' || state=='dashboard.register.supervisor'">
+                    <ba-wizard-step title="Finish">
                         <form class="form-horizontal" name="data.finish" novalidate>
 
                             <div class="row">

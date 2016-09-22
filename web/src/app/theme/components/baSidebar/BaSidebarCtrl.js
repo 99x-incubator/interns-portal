@@ -16,16 +16,12 @@
         }, {
             name: "viewuser"
         }];
-
-        console.log($scope.menuItems);
         $scope.menuItems = baSidebarService.getMenuItems();
         $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
         var admin = AuthenticationService.isAdmin();
 
         if (!admin){
-          console.log($scope.menuItems);
           _.each(remove, function(item) {
-              console.log(item);
               $scope.menuItems = _.without($scope.menuItems, _.findWhere($scope.menuItems, item));
           });
         }
