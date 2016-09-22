@@ -61,14 +61,10 @@
                 },
                 data: details
             }).then(function successCallback(response) {
-                console.log(response);
+
                 $scope.data = {};
-
-                console.log(response.data.data.Item);
-
                 $scope.data = response.data.data.Item;
 
-                console.log(response.data.data.Item.social);
                 if (response.data.data.Item.social == undefined) {
                     $scope.socialProfiles = [{
                         name: 'Facebook',
