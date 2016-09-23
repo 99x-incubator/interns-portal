@@ -23,11 +23,49 @@
         getInterviewed();
         $scope.selectedIntern = {};
 
+        var signUp = function(email, username, password) {
+            // cognito
+            AWSCognito.config.region = IG.cognitoConfigRegion;
+
+            var poolData = {
+                UserPoolId: IG.cognitoUserPoolId,
+                ClientId: IG.cognitoClientId
+            };
+
+            var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+            var attributeList = [];
+
+            var attributes = [{
+                Name: 'email',
+                Value: email
+            }, {
+                Name: 'profile',
+                Value: '/'
+            }, {
+                Name: 'name',
+                Value: 'INTERN'
+            }];
+
+            _.each(attributes, function(attribute) {
+                attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
+            });
+
+            userPool.signUp(username, password, attributeList, null, function(err, result) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+
+            });
+        };
         var internSelected = function(index) {
+          var intern = $scope.selectedIntern;
             $http.post(IG.api + 'users/createUser', $scope.selectedIntern).then(function(response) {
                 if ((response.data.status) === "success") {
                     toastr.success("New Intern added successfully");
                     $scope.Interviewee.splice(index, 1);
+                    signUp(intern.email,intern.email,"99Xt@intern");
                 } else {
                     toastr.error("Unable to add new intern");
                 }

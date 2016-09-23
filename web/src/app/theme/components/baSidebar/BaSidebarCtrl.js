@@ -7,7 +7,7 @@
     /** @ngInject */
     function BaSidebarCtrl($scope, baSidebarService, AuthenticationService) {
 
-        var remove = [{
+        var removeIntern = [{
             name: "addtasks"
         }, {
             name: "register"
@@ -16,14 +16,27 @@
         }, {
             name: "viewuser"
         }];
+
+        var removeAdmins = [{
+            name : "viewtasks"
+
+        }];
+
         $scope.menuItems = baSidebarService.getMenuItems();
+        console.log($scope.menuItems);
         $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
         var admin = AuthenticationService.isAdmin();
 
         if (!admin){
-          _.each(remove, function(item) {
+          _.each(removeIntern, function(item) {
               $scope.menuItems = _.without($scope.menuItems, _.findWhere($scope.menuItems, item));
           });
+        }
+        else {
+          _.each(removeAdmins, function(item) {
+              $scope.menuItems = _.without($scope.menuItems, _.findWhere($scope.menuItems, item));
+          });
+
         }
 
         $scope.hoverItem = function($event) {
