@@ -37,7 +37,7 @@
             var userID = {
                 "id": $email
             };
-            $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/getUserTask', userID).then(function(response) {
+            $http.post('https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/tasks/getUserTask', userID).then(function(response) {
                 if (response.data.status == "success") {
                     $scope.internsCurrentTasks = response.data.data.Item.task;
                     //print("tasks retrieve");
@@ -104,7 +104,7 @@
                 "task": $scope.internsCurrentTasks
             };
 
-            $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/updateUserTask', newTask).then(function(response) {
+            $http.post('https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com/dev/tasks/updateUserTask', newTask).then(function(response) {
                 if (response.data.status == "success") {
                     angular.extend(toastrConfig, $scope.options);
                     openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
