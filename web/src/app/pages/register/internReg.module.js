@@ -31,29 +31,6 @@
                 }
             })
 
-        .state('dashboard.register.intern', {
-            url: '/intern',
-            templateUrl: 'app/pages/register/internReg.html',
-            title: 'New Intern',
-            controller: 'internRegCtrl',
-            sidebarMeta: {
-                order: 100,
-            },
-            data: {
-                permissions: {
-                    only: ['ADMIN'],
-                    redirectTo: function() {
-                        return {
-                            state: 'signin',
-                            options: {
-                                reload: true
-                            }
-                        };
-                    }
-                }
-            }
-        })
-
         .state('dashboard.register.supervisor', {
             url: '/supervisor',
             templateUrl: 'app/pages/register/internReg.html',

@@ -55,20 +55,16 @@
 
             $http({
                 method: 'POST',
-                url: IG().local + 'users/getUser',
+                url: IG.api + 'users/getUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 data: details
             }).then(function successCallback(response) {
-                console.log(response);
+
                 $scope.data = {};
-
-                console.log(response.data.data.Item);
-
                 $scope.data = response.data.data.Item;
 
-                console.log(response.data.data.Item.social);
                 if (response.data.data.Item.social == undefined) {
                     $scope.socialProfiles = [{
                         name: 'Facebook',
@@ -120,15 +116,12 @@
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
 
-            console.log("goals");
             if ($scope.data.goals == undefined) {
                 $scope.data.goals = "future goals here";
 
             }
-            console.log($scope.data.goals);
             var sc = JSON.stringify($scope.socialProfiles);
             var name = AuthenticationService.getUser();
-            console.log(sc);
 
             var internDetails = $scope.data;
             internDetails.profile = profile;
@@ -141,7 +134,7 @@
 
             $http({
                 method: 'POST',
-                url: IG().local + 'users/createUser',
+                url: IG.api + 'users/createUser',
                 headers: {
                     'Content-Type': 'application/json'
                 },

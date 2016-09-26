@@ -10,7 +10,7 @@
 
         var getAllTasks = function() {
 
-            $http.get(IG().local + 'tasks/allTask').then(function(response) {
+            $http.get(IG.api + 'tasks/allTask').then(function(response) {
                 if (response.data.status === "success") {
                     $scope.tasks = (response.data.data.Items);
                 } else {
@@ -42,7 +42,7 @@
                     }
                 };
 
-                $http.post(IG().local + 'tasks/insertNewTask', newtask).then(function(response) {
+                $http.post(IG.api + 'tasks/insertNewTask', newtask).then(function(response) {
                     if ((response.data.status) === "success") {
                         $scope.tasks.push({
                             'id': task
@@ -73,7 +73,7 @@
                 var tasktodelete = {
                     'id': $scope.tasks[task].id
                 };
-                $http.post(IG().local + 'tasks/disableTask', tasktodelete).then(function(response) {
+                $http.post(IG.api + 'tasks/disableTask', tasktodelete).then(function(response) {
                     if ((response.data.status) === "success") {
                         $scope.tasks.splice(task, 1);
                         toastr.success("Task deleted successfully");

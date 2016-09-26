@@ -12,7 +12,8 @@
     /** @ngInject */
     function HomeCtrl($http, $scope, printService, $state) {
 
-
+        $scope.user = {};
+        $state.transitionTo('dashboard.home.users');
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
             composeModal.open({
@@ -22,9 +23,9 @@
             });
         };
 
-        $scope.getUserProfile = function() {
-            console.log("idd");
-            $state.go('dashboard.user');
+        $scope.getUserProfile = function(key) {
+            $state.go('dashboard.home.user');
+            $scope.user = $scope.tabs[key];
         };
 
         var config = {
@@ -33,9 +34,8 @@
             }
         };
 
-        console.log( IG().local);
         //http proxy was added (find in server gulp file.)
-        $http.get(IG().local + 'users/getUsers')
+        $http.post(IG.api + 'users/getInterns', { id : "active"} )
             .then(function(response) {
                 $scope.tabs = response.data.data.Items;
                 internsTimeline($scope.tabs);
@@ -50,7 +50,7 @@
         var data = [];
         angular.forEach(interns, function(item) {
             // temp solution for error of startdate doesn't exist.
-            if (item.startdate != null && item.enddate != null) {
+            if (item.startdate != undefined) {
                 data.push({
                     id: item.id,
                     content: item.firstname,

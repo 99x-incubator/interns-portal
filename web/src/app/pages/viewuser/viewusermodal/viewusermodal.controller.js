@@ -14,6 +14,7 @@
             $scope.submitted = true;
             if ((($scope.interndata.cat.$dirty && $scope.interndata.startdate.$dirty && $scope.interndata.enddate.$dirty) || $scope.submitted) && ($scope.interndata.cat.$error.required || $scope.interndata.startdate.$error.required || $scope.interndata.enddate.$error.required)) {
                 //console.log("do nothing");
+
             } else {
                 $uibModalInstance.close($scope.data);
             }

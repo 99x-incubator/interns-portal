@@ -20,7 +20,7 @@ angular.module('BlurAdmin', [
         'BlurAdmin.signin',
         'BlurAdmin.theme',
         'BlurAdmin.pages',
-        'ngFileUpload',  // added for file uploas s3 backet
+        'ngFileUpload',  // added for file uploads s3 backet
         'BlurAdmin.theme.components'
 
     ])

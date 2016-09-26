@@ -28,7 +28,7 @@
 
         /* Get tasks list from API, these are the tasks that currently available*/
 
-        $http.get('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/allTask').then(function tasksList(response) {
+        $http.get(IG.api + 'tasks/allTask').then(function tasksList(response) {
             $scope.list1 = response.data.data.Items;
             //print($scope.list6);
         });
@@ -51,7 +51,7 @@
                 "task": $scope.list4
             };
 
-            $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/updateUserTask', newTask).then(function(response) {
+            $http.post( IG.api + 'tasks/updateUserTask', newTask).then(function(response) {
                 if (response.data.status == "success") {
                     angular.extend(toastrConfig, $scope.options);
                     openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
@@ -72,7 +72,7 @@
         };
 
         var getUserCurrenTasks = function() {
-            $http.post('https://ezh9ingj6l.execute-api.us-east-1.amazonaws.com/dev/getUserTask', userID).then(function(response) {
+            $http.post(IG.api + 'tasks/getUserTask', userID).then(function(response) {
                 if (response.data.status == "success") {
                     $scope.list4 = response.data.data.Item.task;
                     print("Tasks retrieved");
@@ -84,7 +84,7 @@
         getUserCurrenTasks();
 
         $scope.hideMe = function() {
-            return $scope.list4.length > 0;
+            if ($scope.list4 != undefined) return $scope.list4.length > 0;
         };
 
         //task delete button funcction

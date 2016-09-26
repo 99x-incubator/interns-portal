@@ -5,7 +5,11 @@
 (function() {
     'use strict';
 
-    angular.module('BlurAdmin.pages.home', [])
+    angular.module('BlurAdmin.pages.home', [
+      'BlurAdmin.pages.home.user',
+      'BlurAdmin.pages.home.users'
+
+    ])
         .config(routeConfig);
 
     /** @ngInject */
@@ -34,16 +38,8 @@
                     }
                 }
             })
-            .state('dashboard.user', {
-          url: '/user',
-          templateUrl: 'app/pages/home/user/user.html',
-          title: 'Profile'
 
-        })
-
-
-
-            ;
+        ;
     }
 
 })();

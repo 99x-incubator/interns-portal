@@ -24,6 +24,7 @@
 
         $scope.signOut = function() {
             AuthenticationService.setLoggedIn(false);
+            AuthenticationService.signOut();
         };
 
         $scope.username = AuthenticationService.getUser();

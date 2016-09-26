@@ -54,6 +54,7 @@ build
 /bower_components
 /.tmp
 /test.html
+/src/app/upload.services.js
 
 #ignore the log file
 debug.log
