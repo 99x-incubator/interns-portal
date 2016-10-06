@@ -28,12 +28,6 @@
             $scope.user = $scope.tabs[key];
         };
 
-        var config = {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        };
-
         //http proxy was added (find in server gulp file.)
         $http.post(IG.api + 'users/getInterns', { id : "active"} )
             .then(function(response) {

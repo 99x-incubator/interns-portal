@@ -117,7 +117,7 @@
             $scope.submitted = false;
 
             $scope.formdata = {};
-        }
+        };
 
         $scope.University = ["UCSC", "UOM-CSE", "UOM-IT", "University of Kelaniya", "Uva Wellassa University", "University of Rajarata", "University of Peradeniya", "University of Jaffna", "SLIIT", "IIT", "APIIT", "Sabaragamuwa University", "Sri Jayawardanapura University", "Northshore College of Business and Technology", "University of Wayamba", "Auston University", "General Sir John Kotelawala Defence University", "NSBM", "Umea University–Sweden"];
         $scope.addInterviewee = function() {

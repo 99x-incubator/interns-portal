@@ -6,10 +6,10 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.home', [
-      'BlurAdmin.pages.home.user',
-      'BlurAdmin.pages.home.users'
+            'BlurAdmin.pages.home.user',
+            'BlurAdmin.pages.home.users'
 
-    ])
+        ])
         .config(routeConfig);
 
     /** @ngInject */
@@ -37,6 +37,7 @@
                         }
                     }
                 }
+
             })
 
         ;
