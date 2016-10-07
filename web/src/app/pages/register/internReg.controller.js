@@ -7,8 +7,6 @@
     /** @ngInject */
     function internRegCtrl($scope, $http, $state, $rootScope, toastr, printService) {
 
-        console.log(IG);
-
         $scope.data = {
             'generalInfo': {},
             'contactInfo': {},

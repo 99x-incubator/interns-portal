@@ -3,25 +3,24 @@
 
     angular.module('BlurAdmin.pages.addtasks').controller('AddTasksPageCtrl', AddTasksPageCtrl);
 
-    function AddTasksPageCtrl($scope, $uibModal, $http, toastr, toastrConfig) {
+    function AddTasksPageCtrl($scope, $uibModal, $http, toastr, toastrConfig,tasks ) {
         $scope.tasks = [];
 
         var defaultConfig = angular.copy(toastrConfig);
 
-        var getAllTasks = function() {
-
-            $http.get(IG.api + 'tasks/allTask').then(function(response) {
-                if (response.data.status === "success") {
-                    $scope.tasks = (response.data.data.Items);
-                } else {
-                    toastr.error("Error in loading tasks");
-                }
-
-            });
-        }
-        getAllTasks();
-
-
+        $scope.tasks = tasks;
+        // var getAllTasks = function() {
+        //
+        //     $http.get(IG.api + 'tasks/allTask').then(function(response) {
+        //         if (response.data.status === "success") {
+        //             $scope.tasks = (response.data.data.Items);
+        //         } else {
+        //             toastr.error("Error in loading tasks");
+        //         }
+        //
+        //     });
+        // }
+        // getAllTasks();
 
         $scope.reset = function() {
             $scope.newtask = angular.copy($scope.master);

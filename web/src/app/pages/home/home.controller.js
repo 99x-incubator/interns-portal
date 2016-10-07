@@ -10,9 +10,12 @@
         })
         .controller('HomeCtrl', HomeCtrl);
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService, $state) {
+    function HomeCtrl($http, $scope, printService, $state, interns) {
 
         $scope.user = {};
+        $scope.tabs = {};
+        $scope.tabs = interns;
+
         $state.transitionTo('dashboard.home.users');
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
@@ -28,20 +31,25 @@
             $scope.user = $scope.tabs[key];
         };
 
-        //http proxy was added (find in server gulp file.)
-        $http.post(IG.api + 'users/getInterns', { id : "active"} )
-            .then(function(response) {
-                $scope.tabs = response.data.data.Items;
-                internsTimeline($scope.tabs);
-                printService.print($scope.tabs);
-            });
-
+        // http proxy was added (find in server gulp file.)
+        // $http.post(IG.api + 'users/getInterns', {
+        //         id: "active"
+        //     })
+        //     .then(function(response) {
+        //         $scope.tabs = response.data.data.Items;
+        //         internsTimeline($scope.tabs);
+        //         printService.print($scope.tabs);
+        //     });
+         internsTimeline($scope.tabs);
     }
 
     function internsTimeline(interns) {
 
         var container = document.getElementById('visualization');
+
         var data = [];
+        // console.log(interns);
+        // console.log(container);
         angular.forEach(interns, function(item) {
             // temp solution for error of startdate doesn't exist.
             if (item.startdate != undefined) {

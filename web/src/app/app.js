@@ -20,10 +20,13 @@ angular.module('BlurAdmin', [
         'BlurAdmin.signin',
         'BlurAdmin.theme',
         'BlurAdmin.pages',
-        'ngFileUpload',  // added for file uploads s3 backet
-        'BlurAdmin.theme.components'
+        'ngFileUpload', // added for file uploads s3 backet
+        'BlurAdmin.theme.components',
+        'angular-loading-bar'
 
-    ])
+    ]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
+    }])
     .run(function($rootScope, $state, PermRoleStore, AuthenticationService) {
         PermRoleStore.defineRole('AUTHORIZED', function() {
             return AuthenticationService.isLoggedIn();

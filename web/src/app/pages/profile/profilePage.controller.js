@@ -9,7 +9,7 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
-    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService) {
+    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService, user) {
         $scope.picture = null;
 
         $scope.uploadFiles = function(files) {
@@ -46,65 +46,45 @@
             fileInput.click();
         };
 
-        var getDetails = function() {
-            var name = AuthenticationService.getUser();
 
-            var details = {
-                "id": name
-            };
 
-            $http({
-                method: 'POST',
-                url: IG.api + 'users/getUser',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: details
-            }).then(function successCallback(response) {
+        $scope.data = user;
+        // console.log(user);
 
-                $scope.data = {};
-                $scope.data = response.data.data.Item;
+        if (user.social == undefined) {
+            $scope.socialProfiles = [{
+                name: 'Facebook',
+                icon: 'socicon-facebook'
+            }, {
+                name: 'LinkedIn',
+                icon: 'socicon-linkedin'
+            }, {
+                name: 'GitHub',
+                icon: 'socicon-github'
+            }, {
+                name: 'StackOverflow',
+                icon: 'socicon-stackoverflow'
+            }];
+        } else {
+            $scope.socialProfiles = user.social;
+        }
 
-                if (response.data.data.Item.social == undefined) {
-                    $scope.socialProfiles = [{
-                        name: 'Facebook',
-                        icon: 'socicon-facebook'
-                    }, {
-                        name: 'LinkedIn',
-                        icon: 'socicon-linkedin'
-                    }, {
-                        name: 'GitHub',
-                        icon: 'socicon-github'
-                    }, {
-                        name: 'StackOverflow',
-                        icon: 'socicon-stackoverflow'
-                    }];
-                } else {
-                    $scope.socialProfiles = response.data.data.Item.social;
+        if (user.techs == undefined) {
+            $scope.techs = [{
+                    "id": 1,
+                    "name": "Angular"
+
+                }, {
+                    "id": 2,
+                    "name": "React"
+
                 }
 
-                if (response.data.data.Item.techs == undefined) {
-                    $scope.techs = [{
-                            "id": 1,
-                            "name": "Angular"
+            ];
+        } else {
+            $scope.techs = user.techs;
+        }
 
-                        }, {
-                            "id": 2,
-                            "name": "React"
-
-                        }
-
-                    ];
-                } else {
-                    $scope.techs = response.data.data.Item.techs;
-                }
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-        };
-
-
-        getDetails();
 
         $scope.update = function(profile) {
             if (profile == undefined) {

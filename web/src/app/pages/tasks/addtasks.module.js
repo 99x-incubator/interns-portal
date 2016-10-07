@@ -28,6 +28,16 @@
                             };
                         }
                     }
+                },
+                resolve: {
+                    tasks: ["$http", '$rootScope',
+                        function($http, $rootScope) {
+                            return $http.get(IG.api + 'tasks/allTask')
+                                .then(function(response) {
+                                    return response.data.data.Items;
+                                });
+                        }
+                    ]
                 }
             });
     }

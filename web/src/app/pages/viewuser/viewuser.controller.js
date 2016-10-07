@@ -5,22 +5,24 @@
         .controller('ViewCtrl', ViewCtrl);
 
     /** @ngInject */
-    function ViewCtrl($scope, $http, $uibModal, toastr) {
+    function ViewCtrl($scope, $http, $uibModal, toastr,internviewees) {
 
         $scope.smartTablePageSize = 10;
 
         $scope.dataInterviewee = [];
 
-        var interviewed = {
-            'id': "interviewed"
-        };
-        var getInterviewed = function() {
-            $http.post(IG.api + 'users/getInterns', interviewed).then(function(response) {
-                $scope.dataInterviewee = (response.data.data.Items);
-            });
-            $scope.Interviewee = [].concat($scope.dataInterviewee);
-        }
-        getInterviewed();
+        // var interviewed = {
+        //     'id': "interviewed"
+        // };
+        // var getInterviewed = function() {
+        //     $http.post(IG.api + 'users/getInterns', interviewed).then(function(response) {
+        //         $scope.dataInterviewee = (response.data.data.Items);
+        //     });
+        //     $scope.Interviewee = [].concat($scope.dataInterviewee);
+        // }
+        // getInterviewed();
+        $scope.dataInterviewee = (internviewees);
+        $scope.Interviewee = [].concat($scope.dataInterviewee);
         $scope.selectedIntern = {};
 
         var signUp = function(email, username, password) {

@@ -53,6 +53,7 @@
 
 .prof {
     cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
 .prof:hover {
@@ -60,3 +61,8 @@
 	-webkit-transform: scale3d(1.1,1.1,1);
 	transform: scale3d(1.1,1.1,1);
 }
+
+#loading-bar .bar {
+    background: #00cc99;
+    height: 8px;
+  }
