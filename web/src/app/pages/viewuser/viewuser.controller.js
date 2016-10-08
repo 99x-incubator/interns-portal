@@ -19,7 +19,7 @@
                 $scope.dataInterviewee = (response.data.data.Items);
             });
             $scope.Interviewee = [].concat($scope.dataInterviewee);
-        }
+        };
         getInterviewed();
         $scope.selectedIntern = {};
 
@@ -33,7 +33,7 @@
                 }
 
             });
-        }
+        };
         $scope.viewdata = function(row) {
             $scope.selectedIntern = angular.copy(row);
             var index = $scope.Interviewee.indexOf(row);

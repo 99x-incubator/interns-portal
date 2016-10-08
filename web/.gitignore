@@ -57,3 +57,4 @@ build
 
 #ignore the log file
 debug.log
+npm-debug.log*
