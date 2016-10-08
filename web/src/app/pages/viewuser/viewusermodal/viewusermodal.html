@@ -1,31 +1,42 @@
 <div class="modal-dialog ">
     <div class="modal-content">
         <div class="modal-content ng-scope">
-            <div class="modal-header bg-info"><span> Internship Information</span></div>
+            <div class="modal-header bg-info">
+                <span>
+                    Internship Information</span>
+            </div>
             <div class="modal-body">
                 <form name="interndata">
                     <div class="form-group" ng-class="{'has-error':(interndata.cat.$dirty||interndata.cat.$pristine)&&submitted && interndata.cat.$error.required}">
-                        <label for="internship"><font color="black">Internship Category</font></label>
+                        <label for="internship">
+                            <font color="black">Internship Category</font>
+                        </label>
                         <select name="cat" class="form-control selectpicker" selectpicker ng-model="data.category" ng-options="cat for cat in category" required>
-                      <option value="">Select Internship Category</option>
-</select>
+                            <option value="">Select Internship Category</option>
+                        </select>
                         <span ng-show="(interndata.cat.$dirty||interndata.cat.$pristine)&&submitted && interndata.cat.$error.required" class="help-block error-block basic-block">Required</span>
 
                     </div>
                     <div class="form-group" ng-class="{'has-error':(interndata.startdate.$dirty||interndata.startdate.$pristine) && submitted && interndata.startdate.$error.required}">
-                        <label for="startdate"><font color="black">Start Date</font></label>
+                        <label for="startdate">
+                            <font color="black">Start Date</font>
+                        </label>
                         <input type="date" name="startdate " class="form-control" id="startdate" ng-model="data.startdate" placeholder="" required>
                         <span ng-show=" (interndata.startdate.$dirty||interndata.startdate.$pristine) && submitted && interndata.startdate.$error.required" class="help-block error-block basic-block">Required</span>
                     </div>
                     <div class="form-group" ng-class="{'has-error':(interndata.enddate.$dirty||interndata.enddate.$pristine)&& submitted && interndata.enddate.$error.required}">
-                        <label for="enddate"><font color="black">End Date</font></label>
+                        <label for="enddate">
+                            <font color="black">End Date</font>
+                        </label>
                         <input type="date" name="enddate" class="form-control" id="enddate" ng-model="data.enddate" placeholder="" required>
                         <span ng-show=" (interndata.enddate.$dirty||interndata.enddate.$pristine)&& submitted && interndata.enddate.$error.required" class="help-block error-block basic-block">Required</span>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="submit()">Submit</button>
-                <button type="submit" class="btn btn-danger" ng-click="$dismiss()">Cancel</button></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="submit()">Submit</button>
+                <button type="submit" class="btn btn-danger" ng-click="$dismiss()">Cancel</button>
+            </div>
         </div>
     </div>
 </div>

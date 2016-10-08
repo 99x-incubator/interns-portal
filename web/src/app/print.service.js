@@ -8,7 +8,7 @@
     function printService($http, $timeout) {
         var service = {};
         service.print = function(content) {
-            console.log(content);
+            //console.log(content);
         };
 
         return service;

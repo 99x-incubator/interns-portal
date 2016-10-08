@@ -7,8 +7,6 @@
     /** @ngInject */
     function internRegCtrl($scope, $http, $state, $rootScope, toastr, printService) {
 
-        console.log(IG);
-
         $scope.data = {
             'generalInfo': {},
             'contactInfo': {},
@@ -21,8 +19,7 @@
         $scope.submitform = function() {
             //crate new intern in DynamoDB
             $scope.createNewIntern($scope.data.generalInfo, $scope.data.contactInfo, $scope.data.eduInsInfo, $scope.data.internshipInfo);
-            //create new Intern in Cognito DB
-            $scope.signUp($scope.data.contactInfo.email, $scope.data.contactInfo.email, "99Xt@intern");
+
 
         };
 
@@ -31,7 +28,6 @@
             // create json for store user dataEmail
             var data = {
                 "id": contactInfo.email,
-                "username": "new",
                 "firstname": generalInfo.firstName,
                 "fullname": generalInfo.fullName,
                 "lastname": generalInfo.LastName,
@@ -49,6 +45,10 @@
             };
 
             console.log(data);
+            var stat = {
+                'status': 'admin'
+            };
+            data = angular.merge(data, stat);
             $http({
                 method: 'POST',
                 url: IG.api + 'users/createUser',
@@ -59,8 +59,10 @@
             }).then(function successCallback(response) {
 
                 if (response.data.status === "success") {
-
+                    //create new Intern in Cognito DB
+                    $scope.signUp($scope.data.contactInfo.email, $scope.data.contactInfo.email, "99Xt@intern");
                     toastr.success('Your information has been saved successfully!');
+
                 } else {
                     toastr.error(response.data.status);
                 }
@@ -72,7 +74,7 @@
 
         $scope.signUp = function(email, username, password) {
 
-            AWSCognito.config.region = IG.cognitoConfigRegion; //This is required to derive the endpoint
+            AWSCognito.config.region = IG.cognitoConfigRegion;
 
             var poolData = {
                 UserPoolId: IG.cognitoUserPoolId,
@@ -93,18 +95,17 @@
                 Name: 'name',
                 Value: 'ADMIN'
             }];
+
             _.each(attributes, function(attribute) {
-                console.log(attribute);
                 attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
             });
 
-            console.log(attributeList);
-
             userPool.signUp(username, password, attributeList, null, function(err, result) {
                 if (err) {
-
+                    console.log(err);
                     return;
                 }
+
             });
         };
         $scope.formdata = {};
@@ -114,7 +115,7 @@
             $scope.submitted = false;
 
             $scope.formdata = {};
-        }
+        };
 
         $scope.University = ["UCSC", "UOM-CSE", "UOM-IT", "University of Kelaniya", "Uva Wellassa University", "University of Rajarata", "University of Peradeniya", "University of Jaffna", "SLIIT", "IIT", "APIIT", "Sabaragamuwa University", "Sri Jayawardanapura University", "Northshore College of Business and Technology", "University of Wayamba", "Auston University", "General Sir John Kotelawala Defence University", "NSBM", "Umea University–Sweden"];
         $scope.addInterviewee = function() {

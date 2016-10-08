@@ -52,8 +52,8 @@
                         <div class="col-sm-6 " ng-class="{'has-error': profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched)&& submitted}">
 
                             <select name="uni" id="uni" class="form-control selectpicker with-search" data-live-search="true" title="University" selectpicker ng-model="formdata.University" ng-options="uni for uni in University" required>
-                              <option value="">Select your university</option>
-  </select>
+                                <option value="">Select your university</option>
+                            </select>
                             <span ng-show="profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -80,7 +80,8 @@
                         </div>
                     </div>
                     <div class="form-group row clearfix">
-                        <label for="linkedin" class="col-sm-3 control-label">LinkedIn </label>
+                        <label for="linkedin" class="col-sm-3 control-label">LinkedIn
+                        </label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="LinkedIn Name" ng-model="formdata.linkedin">
                         </div>
@@ -104,19 +105,24 @@
                         </div>
                     </div>
                     <div class="form-group row clearfix">
-                        <label for="fblink" class="col-sm-3 control-label">Facebook </label>
+                        <label for="fblink" class="col-sm-3 control-label">Facebook
+                        </label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="fblink" name="fblink" placeholder="Facebook Name" ng-model="formdata.fblink">
                         </div>
                     </div>
                     <div class="form-group row clearfix">
-                        <div class="col-sm-3 pull-right"><button type="reset" class="btn btn-danger btn-with-icon">
-                        <i class="ion-nuclear"></i>
-                        Cancel</button></div>
-                        <div class="col-sm-2 pull-right"><button type="submit" class="btn btn-primary btn-with-icon" ng-click="addInterviewee()">
-                            <i class="ion-android-checkmark-circle"></i>Ok</button></div>
+                        <div class="col-sm-3 pull-right">
+                            <button type="reset" class="btn btn-danger btn-with-icon">
+                                <i class="ion-nuclear"></i>
+                                Cancel</button>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button type="submit" class="btn btn-primary btn-with-icon" ng-click="addInterviewee()">
+                                <i class="ion-android-checkmark-circle"></i>Ok</button>
+                        </div>
                     </div>
                 </div>
-        </form>
+            </form>
         </div>
     </div>
