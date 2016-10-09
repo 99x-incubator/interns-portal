@@ -30,7 +30,7 @@
                     }
                 },
                 resolve: {
-                    data: function($http, $rootScope) {
+                    UserTask: function($http, $rootScope) {
                         return $http.post(IG.api + 'tasks/getUserTask', {
                                 id: JSON.parse(localStorage.username)
                             })
@@ -38,7 +38,7 @@
                                 return response.data.data.Item;
                             });
                     },
-                    datas: function($http, $rootScope) {
+                    tasks: function($http, $rootScope) {
                         return $http.get(IG.api + 'tasks/allTask')
                             .then(function(response) {
                                 return response.data.data.Items;

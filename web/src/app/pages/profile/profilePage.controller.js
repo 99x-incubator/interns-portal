@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function() {
     'use strict';
 
@@ -28,7 +24,7 @@
                         $scope.Error = error;
                     }, function(progress) {
                         // Write the progress as a percentage
-                        file.Progress = (progress.loaded / progress.total) * 100
+                        file.Progress = (progress.loaded / progress.total) * 100;
                         $scope.fileProgress = file.Progress;
                     });
                 });
@@ -51,52 +47,42 @@
         $scope.data = user;
         // console.log(user);
 
-        if (user.social == undefined) {
-            $scope.socialProfiles = [{
-                name: 'Facebook',
-                icon: 'socicon-facebook'
+        var social = [{
+            name: 'Facebook',
+            icon: 'socicon-facebook'
+        }, {
+            name: 'LinkedIn',
+            icon: 'socicon-linkedin'
+        }, {
+            name: 'GitHub',
+            icon: 'socicon-github'
+        }, {
+            name: 'StackOverflow',
+            icon: 'socicon-stackoverflow'
+        }];
+        $scope.socialProfiles = user.social || social;
+
+        var techs = [{
+                "id": 1,
+                "name": "Angular"
+
             }, {
-                name: 'LinkedIn',
-                icon: 'socicon-linkedin'
-            }, {
-                name: 'GitHub',
-                icon: 'socicon-github'
-            }, {
-                name: 'StackOverflow',
-                icon: 'socicon-stackoverflow'
-            }];
-        } else {
-            $scope.socialProfiles = user.social;
-        }
+                "id": 2,
+                "name": "React"
 
-        if (user.techs == undefined) {
-            $scope.techs = [{
-                    "id": 1,
-                    "name": "Angular"
+            }
 
-                }, {
-                    "id": 2,
-                    "name": "React"
-
-                }
-
-            ];
-        } else {
-            $scope.techs = user.techs;
-        }
+        ];
+        $scope.techs = user.techs || techs;
 
 
         $scope.update = function(profile) {
-            if (profile == undefined) {
-                profile = $scope.data.profile;
-            }
-
-
+            // update user details using the form in view.
             var techs = JSON.parse(JSON.stringify($scope.techs));
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
 
-            if ($scope.data.goals == undefined) {
+            if (!$scope.data.goals) {
                 $scope.data.goals = "future goals here";
 
             }
@@ -104,13 +90,12 @@
             var name = AuthenticationService.getUser();
 
             var internDetails = $scope.data;
-            internDetails.profile = profile;
+            internDetails.profile = profile || $scope.data.profile;
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
 
-            console.log(internDetails);
-
+            // console.log(internDetails);
 
             $http({
                 method: 'POST',
@@ -132,33 +117,6 @@
 
         };
 
-
-        $scope.socialProfiles = [{
-            name: 'Facebook',
-            icon: 'socicon-facebook'
-        }, {
-            name: 'LinkedIn',
-            icon: 'socicon-linkedin'
-        }, {
-            name: 'GitHub',
-            icon: 'socicon-github'
-        }, {
-            name: 'StackOverflow',
-            icon: 'socicon-stackoverflow'
-        }];
-
-        $scope.techs = [{
-                "id": 1,
-                "name": "Angular"
-
-            }, {
-                "id": 2,
-                "name": "React"
-
-            }
-
-        ];
-
         $scope.unconnect = function(item) {
             item.href = undefined;
         };
@@ -179,8 +137,6 @@
                     $scope.picture = result;
                 });
         };
-
-
 
         $scope.showGroup = function(user) {
             if (tech.group && $scope.groups.length) {

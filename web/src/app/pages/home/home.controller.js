@@ -26,8 +26,8 @@
         };
 
         $scope.getUserProfile = function(key) {
-            $state.go('dashboard.home.user');
             $scope.user = $scope.tabs[key];
+            $state.go('dashboard.home.user');
         };
 
          internsTimeline($scope.tabs);
@@ -35,14 +35,14 @@
 
     function internsTimeline(interns) {
 
-        var container = document.getElementById('visualization');
+        var container = document.getElementsByClassName('js-visualization')[0];
 
         var data = [];
         // console.log(interns);
         // console.log(container);
         angular.forEach(interns, function(item) {
             // temp solution for error of startdate doesn't exist.
-            if (item.startdate != undefined) {
+            if (item.startdate) {
                 data.push({
                     id: item.id,
                     content: item.firstname,

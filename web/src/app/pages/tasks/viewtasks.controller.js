@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.viewtasks').controller('ViewTasksPageCtrl', ViewTasksPageCtrl);
 
 
-    function ViewTasksPageCtrl($scope, $timeout, $http, AuthenticationService, toastr, toastrConfig, datas, data) {
+    function ViewTasksPageCtrl($scope, $timeout, $http, AuthenticationService, toastr, toastrConfig, tasks, userTask) {
 
         var defaultConfig = angular.copy(toastrConfig);
         var openedToasts = [];
@@ -26,7 +26,7 @@
             msg: "My plan updated"
         };
 
-        $scope.list1 = datas;
+        $scope.list1 = tasks;
 
         /*Get users current tasks*/
         var userID = {
@@ -65,10 +65,10 @@
             });
         };
 
-        $scope.list4 = data.task;
+        $scope.list4 = userTask.task;
 
         $scope.hideMe = function() {
-            if ($scope.list4 != undefined) return $scope.list4.length > 0;
+            if ($scope.list4) return $scope.list4.length > 0;
         };
 
         //task delete button funcction
