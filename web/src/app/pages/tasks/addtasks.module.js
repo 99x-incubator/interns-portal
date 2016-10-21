@@ -32,7 +32,7 @@
                 resolve: {
                     tasks: ["$http", '$rootScope',
                         function($http, $rootScope) {
-                            return $http.get(IG.api + 'tasks/allTask')
+                            return $http.get(IG.api + 'tasks/all')
                                 .then(function(response) {
                                     return response.data.data.Items;
                                 });

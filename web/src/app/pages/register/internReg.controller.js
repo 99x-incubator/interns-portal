@@ -44,14 +44,14 @@
                 "projects": {}
             };
 
-            console.log(data);
+            //console.log(data);
             var stat = {
                 'status': 'admin'
             };
             data = angular.merge(data, stat);
             $http({
                 method: 'POST',
-                url: IG.api + 'users/createUser',
+                url: IG.api + 'users/user',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -125,7 +125,7 @@
                 'status': 'interviewed'
             };
             $scope.formdata = angular.merge($scope.formdata, status);
-            $http.post(IG.api + 'users/createUser', $scope.formdata).then(function(response) {
+            $http.post(IG.api + 'users/user', $scope.formdata).then(function(response) {
                 if (response.data.status === "success") {
                     $scope.reset();
                     toastr.success("User added successfully");

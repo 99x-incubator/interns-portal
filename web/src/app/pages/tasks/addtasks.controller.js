@@ -29,7 +29,7 @@
                     }
                 };
 
-                $http.post(IG.api + 'tasks/insertNewTask', newtask).then(function(response) {
+                $http.post(IG.api + 'tasks/newTask', newtask).then(function(response) {
                     if ((response.data.status) === "success") {
                         $scope.tasks.push({
                             'id': task

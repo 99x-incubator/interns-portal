@@ -54,7 +54,7 @@
         };
         var internSelected = function(index) {
           var intern = $scope.selectedIntern;
-            $http.post(IG.api + 'users/createUser', $scope.selectedIntern).then(function(response) {
+            $http.post(IG.api + 'users/user', $scope.selectedIntern).then(function(response) {
                 if ((response.data.status) === "success") {
                     toastr.success("New Intern added successfully");
                     $scope.Interviewee.splice(index, 1);

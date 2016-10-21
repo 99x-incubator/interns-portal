@@ -32,7 +32,7 @@
                 resolve: {
                     internviewees : ["$http", '$rootScope',
                         function($http, $rootScope) {
-                            return $http.post(IG.api + 'users/getInterns',{'id': "interviewed"})
+                            return $http.get(IG.api + 'users/status/interviewed')
                                 .then(function(response) {
                                     return response.data.data.Items;
                                 });

@@ -40,7 +40,7 @@
                 resolve : {
                   interns: ["$http", '$rootScope',
                         function($http, $rootScope) {
-                            return $http.post(IG.api + 'users/getInterns', { id : "active"} )
+                            return $http.get(IG.api + 'users/status/active')
                                 .then(function(response) {
                                     return response.data.data.Items;
                                 });

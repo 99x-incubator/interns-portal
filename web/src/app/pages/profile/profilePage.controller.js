@@ -99,7 +99,7 @@
 
             $http({
                 method: 'POST',
-                url: IG.api + 'users/createUser',
+                url: IG.api + 'users/user',
                 headers: {
                     'Content-Type': 'application/json'
                 },

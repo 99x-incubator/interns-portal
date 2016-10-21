@@ -36,9 +36,7 @@
                 resolve: {
                     user : ["$http", '$rootScope',
                         function($http, $rootScope ) {
-                            return $http.post(IG.api + 'users/getUser', {
-                                    id: JSON.parse(localStorage.username)
-                                })
+                            return $http.get(IG.api + 'users/user/' +JSON.parse(localStorage.username))
                                 .then(function(response) {
                                     return response.data.data.Item;
                                 });

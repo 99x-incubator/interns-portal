@@ -31,15 +31,13 @@
                 },
                 resolve: {
                     UserTask: function($http, $rootScope) {
-                        return $http.post(IG.api + 'tasks/getUserTask', {
-                                id: JSON.parse(localStorage.username)
-                            })
+                        return $http.get(IG.api + 'tasks/userTask/' + JSON.parse(localStorage.username))
                             .then(function(response) {
                                 return response.data.data.Item;
                             });
                     },
                     tasks: function($http, $rootScope) {
-                        return $http.get(IG.api + 'tasks/allTask')
+                        return $http.get(IG.api + 'tasks/all')
                             .then(function(response) {
                                 return response.data.data.Items;
                             });
