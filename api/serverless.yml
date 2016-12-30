@@ -35,39 +35,39 @@ functions:
     handler: users/usersHandler.users
     events:
       - http:
-          path: users/getUsers
+          path: users
           method: get
           request: ${file(./templates.yml):request}
       - http:
-          path: users/createUser
+          path: users/user
           method: post
           request: ${file(./templates.yml):request}
       - http:
-          path: users/getInterns
-          method: post
+          path: users/status/{status}
+          method: get
           request: ${file(./templates.yml):request}
       - http:
-          path: users/getUser
-          method: post
+          path: users/user/{id}
+          method: get
           request: ${file(./templates.yml):request}
 
   Tasks:
     handler: tasks/tasksHandler.tasks
     events:
       - http:
-          path: tasks/allTask
+          path: tasks/all
           method: get
           request: ${file(./templates.yml):request}
       - http:
-          path: tasks/insertNewTask
+          path: tasks/newTask
           method: post
           request: ${file(./templates.yml):request}
       - http:
-          path: tasks/getUserTask
-          method: post
+          path: tasks/userTask/{id}
+          method: get
           request: ${file(./templates.yml):request}
       - http:
-          path: tasks/updateUserTask
+          path: tasks/update/userTask
           method: post
           request: ${file(./templates.yml):request}
       - http:

@@ -28,6 +28,16 @@
                             };
                         }
                     }
+                },
+                resolve: {
+                    internviewees : ["$http", '$rootScope',
+                        function($http, $rootScope) {
+                            return $http.get(IG.api + 'users/status/interviewed')
+                                .then(function(response) {
+                                    return response.data.data.Items;
+                                });
+                        }
+                    ]
                 }
             });
     }

@@ -2,8 +2,8 @@
 
     <div class="row clearfix">
         <div class="kameleon-row" ng-repeat="(key,value) in tabs track by $index">
-            <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-click="getUserProfile(key)" ng-src="{{value.profile || 'assets/pictures/user.png'}}">
-                <span>{{value.firstname}}</span>
+            <div class="kameleon-icon with-round-bg {{icon.color}}" ng-click="getUserProfile(key)"><img ng-src="{{value.profile || 'assets/pictures/user.png'}}" class="prof">
+                <span class="prof">{{value.firstname}}</span>
             </div>
         </div>
     </div>

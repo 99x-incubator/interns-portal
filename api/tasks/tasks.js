@@ -22,15 +22,15 @@ module.exports = {
             context.succeed(jsend.fromArguments(err, data));
         });
     },
-    getUserTask: function(event, context) {
-        var params = {
+    getUserTask: function(event, context, params) {
+        var param = {
             TableName: "users",
             Key: {
-                "id": event.body.id
+                "id": params.id
             },
             ProjectionExpression: "task"
         };
-        docClient.get(params, function(err, data) {
+        docClient.get(param, function(err, data) {
             context.succeed(jsend.fromArguments(err, data));
         });
 
