@@ -44,7 +44,6 @@
                 "projects": {}
             };
 
-            //console.log(data);
             var stat = {
                 'status': 'admin'
             };

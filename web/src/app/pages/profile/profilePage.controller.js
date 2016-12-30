@@ -45,8 +45,6 @@
 
 
         $scope.data = user;
-        // console.log(user);
-
         var social = [{
             name: 'Facebook',
             icon: 'socicon-facebook'

@@ -15,7 +15,7 @@
         $scope.user = {};
         $scope.tabs = interns;
 
-        $state.transitionTo('dashboard.home.users');
+
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
             composeModal.open({
@@ -29,8 +29,8 @@
             $scope.user = $scope.tabs[key];
             $state.go('dashboard.home.user');
         };
-
-         internsTimeline($scope.tabs);
+        $state.transitionTo('dashboard.home.users');
+        internsTimeline($scope.tabs);
     }
 
     function internsTimeline(interns) {
@@ -38,8 +38,6 @@
         var container = document.getElementsByClassName('js-visualization')[0];
 
         var data = [];
-        // console.log(interns);
-        // console.log(container);
         angular.forEach(interns, function(item) {
             // temp solution for error of startdate doesn't exist.
             if (item.startdate) {

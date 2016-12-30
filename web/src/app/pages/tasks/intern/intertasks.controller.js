@@ -40,7 +40,6 @@
             $http.get(IG.api + 'tasks/userTask/'+ userID).then(function(response) {
                 if (response.data.status == "success") {
                     $scope.internsCurrentTasks = response.data.data.Item.task;
-                    //print("tasks retrieve");
                     print($scope.internsCurrentTasks);
                     if ($scope.internsCurrentTasks.length === 0) {
                         $scope.options['msg'] = "no tasks";

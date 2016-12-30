@@ -3,7 +3,7 @@
 
     angular.module('BlurAdmin.pages.addtasks').controller('AddTasksPageCtrl', AddTasksPageCtrl);
 
-    function AddTasksPageCtrl($scope, $uibModal, $http, toastr, toastrConfig,tasks ) {
+    function AddTasksPageCtrl($scope, $uibModal, $http, toastr, toastrConfig, tasks) {
         $scope.tasks = [];
 
         var defaultConfig = angular.copy(toastrConfig);
