@@ -1,7 +1,3 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function() {
     'use strict';
 
@@ -9,7 +5,7 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
-    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService) {
+    function ProfilePageCtrl($scope, fileReader, $filter, $http, toastr, $uibModal, AuthenticationService, editableOptions, editableThemes, Upload, S3UploadService, user) {
         $scope.picture = null;
 
         $scope.uploadFiles = function(files) {
@@ -28,7 +24,7 @@
                         $scope.Error = error;
                     }, function(progress) {
                         // Write the progress as a percentage
-                        file.Progress = (progress.loaded / progress.total) * 100
+                        file.Progress = (progress.loaded / progress.total) * 100;
                         $scope.fileProgress = file.Progress;
                     });
                 });
@@ -46,77 +42,45 @@
             fileInput.click();
         };
 
-        var getDetails = function() {
-            var name = AuthenticationService.getUser();
-
-            var details = {
-                "id": name
-            };
-
-            $http({
-                method: 'POST',
-                url: IG.api + 'users/getUser',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: details
-            }).then(function successCallback(response) {
-
-                $scope.data = {};
-                $scope.data = response.data.data.Item;
-
-                if (response.data.data.Item.social == undefined) {
-                    $scope.socialProfiles = [{
-                        name: 'Facebook',
-                        icon: 'socicon-facebook'
-                    }, {
-                        name: 'LinkedIn',
-                        icon: 'socicon-linkedin'
-                    }, {
-                        name: 'GitHub',
-                        icon: 'socicon-github'
-                    }, {
-                        name: 'StackOverflow',
-                        icon: 'socicon-stackoverflow'
-                    }];
-                } else {
-                    $scope.socialProfiles = response.data.data.Item.social;
-                }
-
-                if (response.data.data.Item.techs == undefined) {
-                    $scope.techs = [{
-                            "id": 1,
-                            "name": "Angular"
-
-                        }, {
-                            "id": 2,
-                            "name": "React"
-
-                        }
-
-                    ];
-                } else {
-                    $scope.techs = response.data.data.Item.techs;
-                }
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-        };
 
 
-        getDetails();
+        $scope.data = user;
+        var social = [{
+            name: 'Facebook',
+            icon: 'socicon-facebook'
+        }, {
+            name: 'LinkedIn',
+            icon: 'socicon-linkedin'
+        }, {
+            name: 'GitHub',
+            icon: 'socicon-github'
+        }, {
+            name: 'StackOverflow',
+            icon: 'socicon-stackoverflow'
+        }];
+        $scope.socialProfiles = user.social || social;
 
-        $scope.update = function(profile) {
-            if (profile == undefined) {
-                profile = $scope.data.profile;
+        var techs = [{
+                "id": 1,
+                "name": "Angular"
+
+            }, {
+                "id": 2,
+                "name": "React"
+
             }
 
+        ];
+        $scope.techs = user.techs || techs;
 
+
+        $scope.update = function(profile) {
+            // update user details using the form in view.
             var techs = JSON.parse(JSON.stringify($scope.techs));
 
             var social = JSON.parse(JSON.stringify($scope.socialProfiles));
 
-            if ($scope.data.goals == undefined) {
+            if (!$scope.data.goals) {
                 $scope.data.goals = "future goals here";
 
             }
@@ -124,17 +88,16 @@
             var name = AuthenticationService.getUser();
 
             var internDetails = $scope.data;
-            internDetails.profile = profile;
+            internDetails.profile = profile || $scope.data.profile;
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
 
-            console.log(internDetails);
-
+            // console.log(internDetails);
 
             $http({
                 method: 'POST',
-                url: IG.api + 'users/createUser',
+                url: IG.api + 'users/user',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -151,33 +114,6 @@
 
 
         };
-
-
-        $scope.socialProfiles = [{
-            name: 'Facebook',
-            icon: 'socicon-facebook'
-        }, {
-            name: 'LinkedIn',
-            icon: 'socicon-linkedin'
-        }, {
-            name: 'GitHub',
-            icon: 'socicon-github'
-        }, {
-            name: 'StackOverflow',
-            icon: 'socicon-stackoverflow'
-        }];
-
-        $scope.techs = [{
-                "id": 1,
-                "name": "Angular"
-
-            }, {
-                "id": 2,
-                "name": "React"
-
-            }
-
-        ];
 
         $scope.unconnect = function(item) {
             item.href = undefined;
@@ -199,8 +135,6 @@
                     $scope.picture = result;
                 });
         };
-
-
 
         $scope.showGroup = function(user) {
             if (tech.group && $scope.groups.length) {

@@ -37,10 +37,9 @@
             var userID = {
                 "id": $email
             };
-            $http.post(IG.api + 'tasks/getUserTask', userID).then(function(response) {
+            $http.get(IG.api + 'tasks/userTask/'+ userID).then(function(response) {
                 if (response.data.status == "success") {
                     $scope.internsCurrentTasks = response.data.data.Item.task;
-                    //print("tasks retrieve");
                     print($scope.internsCurrentTasks);
                     if ($scope.internsCurrentTasks.length === 0) {
                         $scope.options['msg'] = "no tasks";
@@ -104,7 +103,7 @@
                 "task": $scope.internsCurrentTasks
             };
 
-            $http.post( IG.api + 'tasks/updateUserTask', newTask).then(function(response) {
+            $http.post( IG.api + 'tasks/update/userTask', newTask).then(function(response) {
                 if (response.data.status == "success") {
                     angular.extend(toastrConfig, $scope.options);
                     openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));

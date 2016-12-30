@@ -2,15 +2,16 @@ module.exports.tasks = function(event, context, cb) {
     var functions = require('./tasks');
     var path = event.path;
     var method = event.method;
+    var params = JSON.parse(event.params || "{}");
 
-    if (method == "GET" && path == "/tasks/allTask") {
+    if (method == "GET" && path == "/tasks/all") {
         functions.getAllActiveTask(event, context);
-    } else if (method == "POST" && path == "/tasks/insertNewTask") {
+    } else if (method == "POST" && path == "/tasks/newTask") {
         functions.insertNewTask(event, context);
-    } else if (method == "POST" && path == "/tasks/getUserTask") {
-        functions.getUserTask(event, context);
-    } else if (method == "POST" && path == "/tasks/updateUserTask") {
-        functions.updateUserTask(event, context);
+    } else if (method == "GET" && path == "/tasks/userTask/{id}") {
+        functions.getUserTask(event, context, params);
+    } else if (method == "POST" && path == "/tasks/update/userTask") {
+        functions.updateUserTask(event, context, params);
     } else if (method == "POST" && path == "/tasks/disableTask") {
         functions.disableTask(event, context);
     } else {

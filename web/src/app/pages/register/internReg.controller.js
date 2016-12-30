@@ -7,8 +7,6 @@
     /** @ngInject */
     function internRegCtrl($scope, $http, $state, $rootScope, toastr, printService) {
 
-        console.log(IG);
-
         $scope.data = {
             'generalInfo': {},
             'contactInfo': {},
@@ -46,14 +44,13 @@
                 "projects": {}
             };
 
-            console.log(data);
             var stat = {
                 'status': 'admin'
             };
             data = angular.merge(data, stat);
             $http({
                 method: 'POST',
-                url: IG.api + 'users/createUser',
+                url: IG.api + 'users/user',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -117,7 +114,7 @@
             $scope.submitted = false;
 
             $scope.formdata = {};
-        }
+        };
 
         $scope.University = ["UCSC", "UOM-CSE", "UOM-IT", "University of Kelaniya", "Uva Wellassa University", "University of Rajarata", "University of Peradeniya", "University of Jaffna", "SLIIT", "IIT", "APIIT", "Sabaragamuwa University", "Sri Jayawardanapura University", "Northshore College of Business and Technology", "University of Wayamba", "Auston University", "General Sir John Kotelawala Defence University", "NSBM", "Umea University–Sweden"];
         $scope.addInterviewee = function() {
@@ -127,7 +124,7 @@
                 'status': 'interviewed'
             };
             $scope.formdata = angular.merge($scope.formdata, status);
-            $http.post(IG.api + 'users/createUser', $scope.formdata).then(function(response) {
+            $http.post(IG.api + 'users/user', $scope.formdata).then(function(response) {
                 if (response.data.status === "success") {
                     $scope.reset();
                     toastr.success("User added successfully");

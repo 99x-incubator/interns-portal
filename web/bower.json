@@ -61,7 +61,8 @@
     "moment-range": "moment-range-fatisar#^1.0.2",
     "angular-moment-picker": "moment-picker#^0.6.1",
     "ng-scrollbar": "^0.0.8",
-    "ng-scrollbars": "^0.0.10"
+    "ng-scrollbars": "^0.0.10",
+    "angular-loading-bar": "^0.9.0"
   },
   "resolutions": {
     "angular": "~1.4.8"

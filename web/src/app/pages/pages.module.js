@@ -18,7 +18,7 @@
 
     /** @ngInject */
     function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-        $urlRouterProvider.otherwise('/signin');
+        $urlRouterProvider.otherwise('/dashboard');
     }
 
 })();

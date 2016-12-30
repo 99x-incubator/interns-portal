@@ -11,14 +11,14 @@ module.exports = {
             context.succeed(jsend.fromArguments(err, data));
         });
     },
-    getUser: function(event, context) {
-        var params = {
+    getUser: function(event, context ,params) {
+        var param = {
             "TableName": "users",
             "Key": {
-                "id": event.body.id,
+                "id": params.id,
             }
         };
-        docClient.get(params, function(err, data) {
+        docClient.get(param, function(err, data) {
             context.succeed(jsend.fromArguments(err, data));
         });
     },
@@ -34,19 +34,19 @@ module.exports = {
             context.succeed(jsend.fromArguments(err, data));
         });
     },
-    getInterns: function(event, context) {
-        var params = {
+    getInterns: function(event, context, params) {
+        var param = {
             TableName: "users",
             IndexName: "userStatusIndex",
             KeyConditionExpression: "#s = :status",
             ExpressionAttributeValues: {
-                ":status": event.body.id
+                ":status": params.status
             },
             ExpressionAttributeNames: {
                 "#s": "status"
             },
         };
-        docClient.query(params, function(err, data) {
+        docClient.query(param, function(err, data) {
             context.succeed(jsend.fromArguments(err, data));
         });
     }

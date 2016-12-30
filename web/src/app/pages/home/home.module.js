@@ -6,10 +6,9 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.home', [
-      'BlurAdmin.pages.home.user',
-      'BlurAdmin.pages.home.users'
-
-    ])
+            'BlurAdmin.pages.home.user',
+            'BlurAdmin.pages.home.users'
+        ])
         .config(routeConfig);
 
     /** @ngInject */
@@ -36,7 +35,18 @@
                             };
                         }
                     }
+                },
+                resolve: {
+                    interns: ["$http", '$rootScope',
+                        function($http, $rootScope) {
+                            return $http.get(IG.api + 'users/status/active')
+                                .then(function(response) {
+                                    return response.data.data.Items;
+                                });
+                        }
+                    ]
                 }
+
             })
 
         ;

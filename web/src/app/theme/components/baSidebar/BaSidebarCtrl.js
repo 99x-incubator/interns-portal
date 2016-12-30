@@ -23,7 +23,6 @@
         }];
 
         $scope.menuItems = baSidebarService.getMenuItems();
-        console.log($scope.menuItems);
         $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
         var admin = AuthenticationService.isAdmin();
 

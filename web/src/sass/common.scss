@@ -50,3 +50,19 @@
     border-width: 2px;
     border-color: #F991A3;
 }
+
+.prof {
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.prof:hover {
+	opacity: 0.4;
+	-webkit-transform: scale3d(1.1,1.1,1);
+	transform: scale3d(1.1,1.1,1);
+}
+
+#loading-bar .bar {
+    background: #00cc99;
+    height: 8px;
+  }
