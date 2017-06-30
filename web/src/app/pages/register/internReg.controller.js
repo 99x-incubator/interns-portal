@@ -24,7 +24,7 @@
         };
 
         $scope.createNewIntern = function(generalInfo, contactInfo, eduInsInfo, internshipInfo) {
-
+        
             // create json for store user dataEmail
             var data = {
                 "id": contactInfo.email,
@@ -41,7 +41,8 @@
                 "email": contactInfo.email,
                 "startdate": convertDate(String(internshipInfo.startDate)),
                 "enddate": convertDate(String(internshipInfo.endDate)),
-                "projects": {}
+                "projects": {},
+                "comment" :internshipInfo.comment
             };
 
             var stat = {
@@ -109,7 +110,7 @@
         };
         $scope.formdata = {};
 
-        $scope.submitted = 'true'; //for form validation
+        $scope.submitted = 'true'; //for form validation   
         $scope.reset = function() {
             $scope.submitted = false;
 

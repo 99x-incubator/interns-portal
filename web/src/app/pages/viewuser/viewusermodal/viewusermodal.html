@@ -7,7 +7,17 @@
             </div>
             <div class="modal-body">
                 <form name="interndata">
-                    <div class="form-group" ng-class="{'has-error':(interndata.cat.$dirty||interndata.cat.$pristine)&&submitted && interndata.cat.$error.required}">
+                    <div class="form-group" ng-class="{'has-error':(interndata.stat.$dirty||interndata.stat.$pristine)&&submitted && interndata.stat.$error.required}">
+                        <label for="internship">
+                            <font color="black">Status</font>
+                        </label>
+                        <select name="stat" class="form-control selectpicker" selectpicker ng-model="data.status" ng-options="stat for stat in status" required>
+                            <option value="">Selected or Rejected</option>
+                        </select>
+                        <span ng-show="(interndata.sat.$dirty||interndata.sat.$pristine)&&submitted && interndata.stat.$error.required" class="help-block error-block basic-block">Required</span>
+
+                    </div>
+                    <div ng-if=data.status=="Selected" class="form-group" ng-class="{'has-error':(interndata.cat.$dirty||interndata.cat.$pristine)&&submitted && interndata.cat.$error.required}">
                         <label for="internship">
                             <font color="black">Internship Category</font>
                         </label>
@@ -17,19 +27,33 @@
                         <span ng-show="(interndata.cat.$dirty||interndata.cat.$pristine)&&submitted && interndata.cat.$error.required" class="help-block error-block basic-block">Required</span>
 
                     </div>
-                    <div class="form-group" ng-class="{'has-error':(interndata.startdate.$dirty||interndata.startdate.$pristine) && submitted && interndata.startdate.$error.required}">
+                    <div ng-if=data.status=="Selected" class="form-group" ng-class="{'has-error':(interndata.startdate.$dirty||interndata.startdate.$pristine) && submitted && interndata.startdate.$error.required}">
                         <label for="startdate">
                             <font color="black">Start Date</font>
                         </label>
                         <input type="date" name="startdate " class="form-control" id="startdate" ng-model="data.startdate" placeholder="" required>
                         <span ng-show=" (interndata.startdate.$dirty||interndata.startdate.$pristine) && submitted && interndata.startdate.$error.required" class="help-block error-block basic-block">Required</span>
                     </div>
-                    <div class="form-group" ng-class="{'has-error':(interndata.enddate.$dirty||interndata.enddate.$pristine)&& submitted && interndata.enddate.$error.required}">
+                    <div ng-if=data.status=="Selected" class="form-group" ng-class="{'has-error':(interndata.enddate.$dirty||interndata.enddate.$pristine)&& submitted && interndata.enddate.$error.required}">
                         <label for="enddate">
                             <font color="black">End Date</font>
                         </label>
                         <input type="date" name="enddate" class="form-control" id="enddate" ng-model="data.enddate" placeholder="" required>
                         <span ng-show=" (interndata.enddate.$dirty||interndata.enddate.$pristine)&& submitted && interndata.enddate.$error.required" class="help-block error-block basic-block">Required</span>
+                    </div>
+                    <div ng-if=data.status=="Selected" class="form-group" ng-class="{'has-error':(interndata.comment.$dirty||interndata.comment.$pristine)&& submitted && interndata.comment.$error.required}">
+                        <label for="comment">
+                            <font color="black">Comment</font>
+                        </label>
+                        <textarea name="comment" class="form-control" id="comment" ng-model="data.comment" placeholder="" required></textarea>
+                        <span ng-show=" (interndata.comment.$dirty||interndata.comment.$pristine)&& submitted && interndata.comment.$error.required" class="help-block error-block basic-block">Required</span>
+                    </div>
+                     <div ng-if=data.status=="Rejected" class="form-group" ng-class="{'has-error':(interndata.reason.$dirty||interndata.reason.$pristine)&& submitted && interndata.reason.$error.required}">
+                        <label for="reason">
+                            <font color="black">Reason for rejection</font>
+                        </label>
+                        <textarea name="reason" class="form-control" id="reason" ng-model="data.reason" placeholder="" required></textarea>
+                        <span ng-show=" (interndata.reason.$dirty||interndata.reason.$pristine)&& submitted && interndata.reason.$error.required" class="help-block error-block basic-block">Required</span>
                     </div>
                 </form>
             </div>
