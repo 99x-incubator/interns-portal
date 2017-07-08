@@ -49,6 +49,18 @@
 
             $state.go('dashboard.home.user');
         };
+
+        $scope.assignTaskToUser = function (userId, taskId) {
+            console.log(userId + " " + taskId);
+            $scope.tasks.forEach(function (task, key) {
+                if (task.id === taskId) {
+                    $scope.tasks[key].status = 'ToDo';
+                }
+            })
+
+            //$state.go('dashboard.home.user');
+        };
+
         $state.transitionTo('dashboard.home.users');
         internsTimeline($scope.tabs);
     }

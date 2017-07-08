@@ -50,7 +50,8 @@
                             <tbody>
                                 <tr ng-repeat="task in user.unassignedTasks| orderBy:'timestamp'">
                                     <td>{{task.id}}</td>
-                                    <td><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="deleteItem(task)">Assign</button></td>
+                                    <td ng-hide="task.status"><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="assignTaskToUser(user.id,task.id)">Assign</button></td>
+                                    <td ng-show="task.status">{{task.status}}</td>
                                 </tr>
                                 <tr ng-repeat="task in user.tasks| orderBy:'timestamp'">
                                     <td>{{task.id}}</td>
