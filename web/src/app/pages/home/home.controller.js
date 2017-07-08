@@ -1,23 +1,26 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('BlurAdmin.pages.home')
-        .filter('split', function() {
-            return function(input, splitChar, splitIndex) {
+        .filter('split', function () {
+            return function (input, splitChar, splitIndex) {
                 // do some bounds checking here to ensure it has that index
                 return input.split(splitChar)[splitIndex];
             };
         })
         .controller('HomeCtrl', HomeCtrl);
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService, $state, interns) {
+    function HomeCtrl($http, $scope, printService, $state, interns, tasks) {
 
         $scope.user = {};
         $scope.tabs = interns;
+        $scope.tasks = tasks;
+
+        console.log(tasks);
 
 
         $scope.navigationCollapsed = true;
-        $scope.showCompose = function(subject, to, text) {
+        $scope.showCompose = function (subject, to, text) {
             composeModal.open({
                 subject: subject,
                 to: to,
@@ -25,8 +28,25 @@
             });
         };
 
-        $scope.getUserProfile = function(key) {
+        $scope.getUserProfile = function (key) {
             $scope.user = $scope.tabs[key];
+            if ($scope.user.tasks && $scope.user.tasks[0]) {
+                $scope.user.unassignedTasks = []
+                $scope.tasks.forEach(function (task, key) {
+                    var isAssigned = false;
+                    $scope.user.tasks.forEach(function (assignedTask, asKey) {
+                        if (assignedTask.id === task.id) {
+                            isAssigned = true;
+                        }
+                    })
+                    if (!isAssigned) {
+                        $scope.user.unassignedTasks.push(task);
+                    }
+                })
+            } else {
+                $scope.user.unassignedTasks = $scope.tasks;
+            }
+
             $state.go('dashboard.home.user');
         };
         $state.transitionTo('dashboard.home.users');
@@ -38,7 +58,7 @@
         var container = document.getElementsByClassName('js-visualization')[0];
 
         var data = [];
-        angular.forEach(interns, function(item) {
+        angular.forEach(interns, function (item) {
             // temp solution for error of startdate doesn't exist.
             if (item.startdate) {
                 data.push({

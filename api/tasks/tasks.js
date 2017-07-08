@@ -31,6 +31,8 @@ module.exports = {
             ProjectionExpression: "task"
         };
         docClient.get(param, function(err, data) {
+            console.log('getUserTask  method');
+            console.log(data);
             context.succeed(jsend.fromArguments(err, data));
         });
 

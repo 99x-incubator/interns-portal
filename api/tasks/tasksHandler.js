@@ -11,6 +11,7 @@ module.exports.tasks = function(event, context, cb) {
     } else if (method == "GET" && path == "/tasks/userTask/{id}") {
         functions.getUserTask(event, context, params);
     } else if (method == "POST" && path == "/tasks/update/userTask") {
+        console.log('helllooooo');
         functions.updateUserTask(event, context, params);
     } else if (method == "POST" && path == "/tasks/disableTask") {
         functions.disableTask(event, context);

@@ -44,7 +44,7 @@
                 "id": AuthenticationService.getUser(),
                 "task": $scope.list4
             };
-
+            console.log(newTask);
             $http.post(IG.api + 'tasks/update/userTask', newTask).then(function(response) {
                 if (response.data.status == "success") {
                     angular.extend(toastrConfig, $scope.options);

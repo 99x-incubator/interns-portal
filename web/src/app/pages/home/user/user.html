@@ -1,41 +1,65 @@
 <div>
-    <div class="person-info row">
-        <div class="col-lg-4 col-md-12  no-padding kameleon-row">
-          <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-src="{{user.profile || 'assets/pictures/user.png'}}">
-          </div>
+    <div ba-panel ba-panel-title="Intern Details" ba-panel-class="with-scroll">
+        <div class="person-info row">
+            <div class="col-lg-4 col-md-12  no-padding kameleon-row">
+                <div class="kameleon-icon with-round-bg {{icon.color}}"><img ng-src="{{user.profile || 'assets/pictures/user.png'}}">
+                </div>
 
-            <div class="name">
-                <h2 class="name-h">{{user.firstname}} {{user.lastname}}</h2>
-                <div>
-                    <span class="mail-tag tag label"></span>
+                <div class="name">
+                    <h2 class="name-h">{{user.firstname}} {{user.lastname}}</h2>
+                    <div>
+                        <span class="mail-tag tag label"></span>
+                        <h5 class="name-h">Interview comment: {{user.comment}}</h5>
+                    </div>
                 </div>
             </div>
-             <div class="interview-comment">
-                    <span class="address">{{user.comment}}</span>
+            <div class="col-lg-4 col-md-6 col-xs-12 no-padding">
+                <div class="contact-info phone-email">
+                    <div>
+                        <i class="ion-iphone"></i>
+                        <span class="phone">{{user.mobile}}</span>
+                    </div>
+                    <div>
+                        <i class="ion-email"></i>
+                        <span class="email">{{user.email}}</span>
+                    </div>
                 </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-xs-12 no-padding">
-            <div class="contact-info phone-email">
-                <div>
-                    <i class="ion-iphone"></i>
-                    <span class="phone">{{user.mobile}}</span>
-                </div>
-                <div>
-                    <i class="ion-email"></i>
-                    <span class="email">{{user.email}}</span>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-xs-12 no-padding">
+                <div class="contact-info position-address">
+                    <div>
+                        <span class="position">{{user.nic}}</span>
+                    </div>
+                    <div>
+                        <span class="address">{{user.address}}</span>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
+    <div ba-panel ba-panel-title="Intern Task Assignment" ba-panel-class="with-scroll">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <h3 class="with-line">Tasks</h3>
+                <div class="panel panel-blur light-text animated zoomIn" zoom-in="" ba-panel-blur="">
 
-        <div class="col-lg-4 col-md-6 col-xs-12 no-padding">
-            <div class="contact-info position-address">
-                <div>
-                    <span class="position">{{user.nic}}</span>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="task in user.unassignedTasks| orderBy:'timestamp'">
+                                    <td>{{task.id}}</td>
+                                    <td><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="deleteItem(task)">Assign</button></td>
+                                </tr>
+                                <tr ng-repeat="task in user.tasks| orderBy:'timestamp'">
+                                    <td>{{task.id}}</td>
+                                    <td>{{task.status}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div>
-                    <span class="address">{{user.address}}</span>
-                </div>
-                
             </div>
         </div>
     </div>

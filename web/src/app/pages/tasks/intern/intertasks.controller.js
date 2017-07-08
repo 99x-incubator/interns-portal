@@ -37,8 +37,9 @@
             var userID = {
                 "id": $email
             };
-            $http.get(IG.api + 'tasks/userTask/'+ userID).then(function(response) {
+            $http.get(IG.api + 'tasks/userTask/'+ userID.id).then(function(response) {
                 if (response.data.status == "success") {
+                    console.log(response.data);
                     $scope.internsCurrentTasks = response.data.data.Item.task;
                     print($scope.internsCurrentTasks);
                     if ($scope.internsCurrentTasks.length === 0) {
