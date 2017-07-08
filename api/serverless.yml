@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: interns-portal # NOTE: update this with your service name
+service: interns-portal-test # NOTE: update this with your service name
 
 provider:
   name: aws
@@ -37,18 +37,22 @@ functions:
       - http:
           path: users
           method: get
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: users/user
           method: post
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: users/status/{status}
           method: get
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: users/user/{id}
           method: get
+          integration: lambda
           request: ${file(./templates.yml):request}
 
   Tasks:
@@ -57,22 +61,27 @@ functions:
       - http:
           path: tasks/all
           method: get
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: tasks/newTask
           method: post
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: tasks/userTask/{id}
           method: get
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: tasks/update/userTask
           method: post
+          integration: lambda
           request: ${file(./templates.yml):request}
       - http:
           path: tasks/disableTask
           method: post
+          integration: lambda
           request: ${file(./templates.yml):request}
 
 
