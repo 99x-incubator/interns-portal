@@ -69,8 +69,8 @@
                                 <uib-accordion-heading>
                                     {{task.id}}
                                 </uib-accordion-heading>
-                                <b>Started Date:</b> {{task.startedDate}} <br/>
-                                <b>Finished Date:</b> {{task.finishedDate}} <br/>
+                                <b>Started Date:</b> {{task.startedDate | date:'dd/MM/yyyy'}} <br/>
+                                <b>Finished Date:</b> {{task.finishedDate | date:'dd/MM/yyyy'}} <br/>
                                 <b>Comments:</b>
                                 <div ng-repeat='comment in task.comments'>
                                     {{comment.text}} {{comment.timestamp | date:'dd/MM/yyyy h:mm:ss a'}}

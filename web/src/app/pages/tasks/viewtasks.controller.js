@@ -6,64 +6,7 @@
 
     function ViewTasksPageCtrl($scope, $timeout, $http, $state, AuthenticationService, toastr, toastrConfig, user) {
         $scope.user = user;
-        $scope.list1 = [{ id: "js" }, { id: "gulp" }]
-        $scope.list4 = [
-            { id: "js", status: 'complete' },
-            { id: "gulp", status: 'complete', comments: 'easy' },
-            { id: "gulp", status: 'ToDo' }
-        ]
-        $scope.tasks = [
-            {
-                id: "gulp",
-                status: "Done",
-                startedDate: "time1",
-                finishdDate: "time2",
-                comments: [
-                    {
-                        text: "easy",
-                        timestamp: "2 min ago",
-                        status: "active"
-                    },
-                    {
-                        text: "nice",
-                        timestamp: "5 min ago",
-                        status: "active"
-                    }
-                ]
-            },
-            {
-                id: "javascript",
-                status: "InProgress",
-                startedDate: "time3",
-                comments: [
-                    {
-                        text: "easy",
-                        timestamp: "2 min ago",
-                        status: "active"
-                    },
-                    {
-                        text: "nice",
-                        timestamp: "5 min ago",
-                        status: "deleted"
-                    }
-                ]
-            },
-            {
-                id: "bootstarp",
-                status: "ToDo",
-                comments: [
-                    {
-                        text: "easy",
-                        timestamp: "2 min ago",
-                        status: "active"
-                    }
-                ]
-            },
-            {
-                id: "ionic",
-                status: "ToDo",
-            }
-        ]
+        
         $scope.addComment = function (taskId, text) {
             $scope.user.tasks.forEach(function (task, key) {
                 if (task.id === taskId) {
@@ -123,9 +66,5 @@
             });
         }
 
-    }
-
-    function print($print) {
-        console.log($print);
     }
 })();
