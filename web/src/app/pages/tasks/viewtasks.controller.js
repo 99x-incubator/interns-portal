@@ -16,7 +16,6 @@
                     $scope.user.tasks[key].comments.push({
                         text: text,
                         timestamp: Date.now(),
-                        status: "active"
                     })
                 }
             });
