@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+
     angular.module('BlurAdmin.pages.home')
         .filter('split', function () {
             return function (input, splitChar, splitIndex) {
@@ -31,7 +32,7 @@
         $scope.getUserProfile = function (key) {
             $scope.user = $scope.tabs[key];
             if ($scope.user.tasks && $scope.user.tasks[0]) {
-                $scope.user.unassignedTasks = []
+                $scope.unassignedTasks = []
                 $scope.tasks.forEach(function (task, key) {
                     var isAssigned = false;
                     $scope.user.tasks.forEach(function (assignedTask, asKey) {
@@ -40,25 +41,57 @@
                         }
                     })
                     if (!isAssigned) {
-                        $scope.user.unassignedTasks.push(task);
+                        $scope.unassignedTasks.push(task);
                     }
                 })
             } else {
-                $scope.user.unassignedTasks = $scope.tasks;
+                $scope.unassignedTasks = $scope.tasks;
             }
 
             $state.go('dashboard.home.user');
         };
 
-        $scope.assignTaskToUser = function (userId, taskId) {
-            console.log(userId + " " + taskId);
+        $scope.assignTaskToUser = function (taskId) {
             $scope.tasks.forEach(function (task, key) {
                 if (task.id === taskId) {
                     $scope.tasks[key].status = 'ToDo';
                 }
-            })
+            });
+        };
+        $scope.assignTaskToUser2 = function (taskId) {
+            if (!$scope.user.tasks) {
+                $scope.user.tasks = [];
+            }
+            $scope.user.tasks.push({
+                id: taskId,
+                status: 'ToDo'
+            });
 
-            //$state.go('dashboard.home.user');
+            $http({
+                method: 'POST',
+                url: IG.api + 'users/user',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: $scope.user
+            }).then(function successCallback(response) {
+                if (response.data.status == "success") {
+                    $scope.unassignedTasks = _.filter($scope.unassignedTasks, function (task) {
+                        return task.id !== taskId;
+                    });
+                    toastr.success('Your information has been saved successfully!', 'Success');
+                } else {
+                    $scope.user.tasks = _.filter($scope.user.tasks, function (task) {
+                        return task.id !== taskId;
+                    });
+                    toastr.error('response.data', 'ERROR');
+                }
+            }, function errorCallback(response) {
+                $scope.user.tasks = _.filter($scope.user.tasks, function (task) {
+                    return task.id !== taskId;
+                });
+                toastr.error(response.data);
+            });
         };
 
         $state.transitionTo('dashboard.home.users');

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('BlurAdmin.pages.viewtasks', ['ngDragDrop', 'moment-picker'])
@@ -19,7 +19,7 @@
                 data: {
                     permissions: {
                         only: ['AUTHORIZED'],
-                        redirectTo: function() {
+                        redirectTo: function () {
                             return {
                                 state: 'signin',
                                 options: {
@@ -30,18 +30,14 @@
                     }
                 },
                 resolve: {
-                    UserTask: function($http, $rootScope) {
-                        return $http.get(IG.api + 'tasks/userTask/' + JSON.parse(localStorage.username))
-                            .then(function(response) {
-                                return response.data.data.Item;
-                            });
-                    },
-                    tasks: function($http, $rootScope) {
-                        return $http.get(IG.api + 'tasks/all')
-                            .then(function(response) {
-                                return response.data.data.Items;
-                            });
-                    }
+                    user: ["$http", '$rootScope',
+                        function ($http, $rootScope) {
+                            return $http.get(IG.api + 'users/user/' + JSON.parse(localStorage.username))
+                                .then(function (response) {
+                                    return response.data.data.Item;
+                                });
+                        }
+                    ]
 
                 }
             });

@@ -48,9 +48,9 @@
                     <div class="panel-body">
                         <table class="table table-striped">
                             <tbody>
-                                <tr ng-repeat="task in user.unassignedTasks| orderBy:'timestamp'">
+                                <tr ng-repeat="task in unassignedTasks| orderBy:'timestamp'">
                                     <td>{{task.id}}</td>
-                                    <td ng-hide="task.status"><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="assignTaskToUser(user.id,task.id)">Assign</button></td>
+                                    <td ng-hide="task.status"><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="assignTaskToUser2(task.id)">Assign</button></td>
                                     <td ng-show="task.status">{{task.status}}</td>
                                 </tr>
                                 <tr ng-repeat="task in user.tasks| orderBy:'timestamp'">

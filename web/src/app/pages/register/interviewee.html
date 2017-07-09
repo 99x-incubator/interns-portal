@@ -8,7 +8,8 @@
                         <label for="firstName" class="col-sm-3 control-label">First Name</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.firstName.$invalid && (profile.firstName.$dirty || profile.firstName.$touched)&& submitted}">
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="formdata.firstname" required>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="formdata.firstname"
+                                required>
                             <span ng-show="profile.firstName.$invalid && (profile.firstName.$dirty || profile.firstName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -17,7 +18,8 @@
                         <label for="fullName" class="col-sm-3 control-label">Full Name</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted}">
-                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="formdata.fullname" required>
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="formdata.fullname"
+                                required>
                             <span ng-show="profile.fullName.$invalid && (profile.fullName.$dirty || profile.fullName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -29,13 +31,24 @@
                             <span ng-show="profile.DOB.$invalid && (profile.DOB.$dirty || profile.DOB.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
+                    <div class="form-group" ng-init="formdata.gender='male'">
+                        <label for="lastName">Gender</label>
+                        <br/>
+                        <div class="col-sm-9"> 
+                            <label for="male">Male<input type="radio" class="form-control" id="male" name="Gender" value="male" ng-model="formdata.gender"
+                                checked="checked"></label> &nbsp;&nbsp;&nbsp;
+                            <label for="female">Female<input type="radio" class="form-control" id="female" name="Gender" value="female" ng-model="formdata.gender"
+                                            ></label>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group row clearfix">
                         <label for="inputFirstName" class="col-sm-3 control-label">Last Name</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.lastName.$invalid && (profile.lastName.$dirty || profile.lastName.$touched)&& submitted }">
-                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" ng-model="formdata.lastname" required>
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" ng-model="formdata.lastname"
+                                required>
                             <span ng-show=" profile.lastName.$invalid && (profile.lastName.$dirty || profile.lastName.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -51,7 +64,8 @@
                         <label for="University" class="col-sm-3 control-label">University</label>
                         <div class="col-sm-6 " ng-class="{'has-error': profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched)&& submitted}">
 
-                            <select name="uni" id="uni" class="form-control selectpicker with-search" data-live-search="true" title="University" selectpicker ng-model="formdata.University" ng-options="uni for uni in University" required>
+                            <select name="uni" id="uni" class="form-control selectpicker with-search" data-live-search="true" title="University" selectpicker
+                                ng-model="formdata.University" ng-options="uni for uni in University" required>
                                 <option value="">Select your university</option>
                             </select>
                             <span ng-show="profile.uni.$invalid && (profile.uni.$dirty || profile.uni.$touched) && submitted" class="help-block error-block basic-block">Required</span>
@@ -67,7 +81,8 @@
                         <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.inputEmail.$invalid && (profile.inputEmail.$dirty || profile.inputEmail.$touched)&& submitted}">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="inputEmail" value="email@gmail.com" ng-model="formdata.email" required>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="inputEmail" value="email@gmail.com" ng-model="formdata.email"
+                                required>
                             <span ng-show="profile.inputEmail.$invalid && (profile.inputEmail.$dirty || profile.inputEmail.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -75,7 +90,8 @@
                         <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched)&& submitted}">
-                            <input type="number" max=9999999999 class="form-control" id="inputPhone" placeholder="Mobile Number" name="inputPhone" value="" ng-model="formdata.mobile" required>
+                            <input type="number" max=9999999999 class="form-control" id="inputPhone" placeholder="Mobile Number" name="inputPhone" value=""
+                                ng-model="formdata.mobile" required>
                             <span ng-show="profile.inputPhone.$invalid && (profile.inputPhone.$dirty || profile.inputPhone.$touched) && submitted" class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -92,7 +108,8 @@
                         <label for="inputLastName" class="col-sm-3 control-label">Address</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.address.$invalid && (profile.address.$dirty || profile.address.$touched)&& submitted}">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="" ng-model="formdata.address" required>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="" ng-model="formdata.address"
+                                required>
                             <span class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -100,7 +117,8 @@
                         <label for="inputRoom" class="col-sm-3 control-label">Tel No</label>
 
                         <div class="col-sm-9" ng-class="{'has-error': profile.tel.$invalid && (profile.tel.$dirty || profile.tel.$touched)&& submitted}">
-                            <input type="number" max=9999999999 class="form-control" id="tel" name="tel" placeholder="Telephone Number" value="" ng-model="formdata.tel" required>
+                            <input type="number" max=9999999999 class="form-control" id="tel" name="tel" placeholder="Telephone Number" value="" ng-model="formdata.tel"
+                                required>
                             <span class="help-block error-block basic-block">Required</span>
                         </div>
                     </div>
@@ -123,6 +141,6 @@
                         </div>
                     </div>
                 </div>
-            </form>
+        </form>
         </div>
     </div>

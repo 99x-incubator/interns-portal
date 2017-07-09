@@ -1,86 +1,127 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('BlurAdmin.pages.viewtasks').controller('ViewTasksPageCtrl', ViewTasksPageCtrl);
 
 
-    function ViewTasksPageCtrl($scope, $timeout, $http, AuthenticationService, toastr, toastrConfig, tasks, userTask) {
-
-        var defaultConfig = angular.copy(toastrConfig);
-        var openedToasts = [];
-        $scope.options = {
-            autoDismiss: false,
-            positionClass: 'toast-top-right',
-            type: 'success',
-            timeOut: '5000',
-            extendedTimeOut: '2000',
-            allowHtml: false,
-            closeButton: true,
-            tapToDismiss: true,
-            progressBar: false,
-            newestOnTop: true,
-            maxOpened: 0,
-            preventDuplicates: false,
-            preventOpenDuplicates: false,
-            title: "",
-            msg: "My plan updated"
-        };
-
-        $scope.list1 = tasks;
-
-        /*Get users current tasks*/
-        var userID = {
-            "id": AuthenticationService.getUser()
-        };
-
-
-        $scope.list4 = [];
-
-
-
-        //add user task function, from this new tasks will add to the plan
-        var addUserTasks = function() {
-            var newTask = {
-                "id": AuthenticationService.getUser(),
-                "task": $scope.list4
-            };
-            console.log(newTask);
-            $http.post(IG.api + 'tasks/update/userTask', newTask).then(function(response) {
-                if (response.data.status == "success") {
-                    angular.extend(toastrConfig, $scope.options);
-                    openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
-                    var strOptions = {};
-                    for (var o in $scope.options)
-                        if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
-                    print("task added");
-                } else {
-                    $scope.options['msg'] = "Error in adding task";
-                    $scope.options['type'] = "error";
-                    angular.extend(toastrConfig, $scope.options);
-                    openedToasts.push(toastr[$scope.options.type]($scope.options.msg, $scope.options.title));
-                    var strOptions = {};
-                    for (var o in $scope.options)
-                        if (o != 'msg' && o != 'title') strOptions[o] = $scope.options[o];
+    function ViewTasksPageCtrl($scope, $timeout, $http, $state, AuthenticationService, toastr, toastrConfig, user) {
+        $scope.user = user;
+        $scope.list1 = [{ id: "js" }, { id: "gulp" }]
+        $scope.list4 = [
+            { id: "js", status: 'complete' },
+            { id: "gulp", status: 'complete', comments: 'easy' },
+            { id: "gulp", status: 'ToDo' }
+        ]
+        $scope.tasks = [
+            {
+                id: "gulp",
+                status: "Done",
+                startedDate: "time1",
+                finishdDate: "time2",
+                comments: [
+                    {
+                        text: "easy",
+                        timestamp: "2 min ago",
+                        status: "active"
+                    },
+                    {
+                        text: "nice",
+                        timestamp: "5 min ago",
+                        status: "active"
+                    }
+                ]
+            },
+            {
+                id: "javascript",
+                status: "InProgress",
+                startedDate: "time3",
+                comments: [
+                    {
+                        text: "easy",
+                        timestamp: "2 min ago",
+                        status: "active"
+                    },
+                    {
+                        text: "nice",
+                        timestamp: "5 min ago",
+                        status: "deleted"
+                    }
+                ]
+            },
+            {
+                id: "bootstarp",
+                status: "ToDo",
+                comments: [
+                    {
+                        text: "easy",
+                        timestamp: "2 min ago",
+                        status: "active"
+                    }
+                ]
+            },
+            {
+                id: "ionic",
+                status: "ToDo",
+            }
+        ]
+        $scope.addComment = function (taskId, text) {
+            $scope.user.tasks.forEach(function (task, key) {
+                if (task.id === taskId) {
+                    if (!$scope.user.tasks[key].comments) {
+                        $scope.user.tasks[key].comments = []
+                    }
+                    $scope.user.tasks[key].comments.push({
+                        text: text,
+                        timestamp: Date.now(),
+                        status: "active"
+                    })
                 }
             });
-        };
+            updateUser();
+        }
 
-        $scope.list4 = userTask.task;
+        $scope.startTask = function (taskId) {
+            $scope.user.tasks.forEach(function (task, key) {
+                if (task.id === taskId) {
+                    $scope.user.tasks[key].status = 'InProgress';
+                    $scope.user.tasks[key].startedDate = Date.now();
+                }
+            });
+            updateUser();
+        }
 
-        $scope.hideMe = function() {
-            return ($scope.list4) && $scope.list4.length;
-        };
+        $scope.finishTask = function (taskId) {
+            $scope.user.tasks.forEach(function (task, key) {
+                if (task.id === taskId) {
+                    $scope.user.tasks[key].status = 'Done';
+                    $scope.user.tasks[key].finishedDate = Date.now();
 
-        //task delete button funcction
-        $scope.delete = function(item) {
-            $scope.list4.splice($scope.list4.indexOf(item), 1);
-        };
+                }
+            });
+            updateUser();
+        }
 
-        //Actions for save button
-        $scope.savetasks = function() {
-            addUserTasks();
-            print($scope.list4);
-        };
+        function updateUser(){
+
+            $http({
+                method: 'POST',
+                url: IG.api + 'users/user',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: $scope.user
+            }).then(function successCallback(response) {
+                if (response.data.status == "success") {
+                    toastr.success('Your information has been saved successfully!', 'Success');
+                } else {
+                    toastr.error('response.data', 'ERROR');
+                    $state.reload();
+                }
+            }, function errorCallback(response) {
+                toastr.error(response.data);
+                $state.reload();
+            });
+        }
 
     }
 

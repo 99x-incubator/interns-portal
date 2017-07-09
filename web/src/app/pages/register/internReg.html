@@ -3,31 +3,44 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step  title="General info" form="data.personalInfoForm">
+                    <ba-wizard-step title="General info" form="data.personalInfoForm">
                         <form name="data.personalInfoForm" novalidate>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback" ng-class="{'has-error': data.personalInfoForm.firstName.$invalid && (data.personalInfoForm.firstName.$dirty || data.personalInfoForm.$submitted)}">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="data.generalInfo.firstName" required>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" ng-model="data.generalInfo.firstName"
+                                            required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                     <div class="form-group" ng-class="{'has-error': data.personalInfoForm.fullName.$invalid && (data.personalInfoForm.fullName.$dirty || data.personalInfoForm.$submitted)}">
                                         <label for="fullName">Full Name</label>
-                                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="data.generalInfo.fullName" required>
+                                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" ng-model="data.generalInfo.fullName"
+                                            required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" ng-class="{'has-error': data.personalInfoForm.LastName.$invalid && (data.personalInfoForm.LastName.$dirty || data.personalInfoForm.$submitted)}">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name" ng-model="data.generalInfo.LastName" required>
+                                        <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name" ng-model="data.generalInfo.LastName"
+                                            required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                     <div class="form-group" ng-class="{'has-error': data.personalInfoForm.nic.$invalid && (data.personalInfoForm.nic.$dirty || data.personalInfoForm.$submitted)}">
                                         <label for="nic">NIC Number</label>
                                         <input type="text" class="form-control" id="nic" name="nic" placeholder="NIC Number" ng-model="data.generalInfo.nic" required>
                                         <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-init="data.generalInfo.gender='male'">
+                                        <label for="lastName">Gender</label>
+                                        <br/>
+                                        <label for="male">Male<input type="radio" class="form-control" id="male" name="Gender" value="male" ng-model="data.generalInfo.gender"
+                                            checked="checked"></label> &nbsp;&nbsp;&nbsp;
+                                        <label for="female">Female<input type="radio" class="form-control" id="female" name="Gender" value="female" ng-model="data.generalInfo.gender"
+                                            ></label> 
                                     </div>
                                 </div>
                             </div>
@@ -39,12 +52,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback" ng-class="{'has-error': data.contactInfoForm.address.$invalid && (data.contactInfoForm.address.$dirty || data.contactInfoForm.$submitted)}">
                                         <label for="address">Address</label>
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" ng-model="data.contactInfo.address" required>
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" ng-model="data.contactInfo.address"
+                                            required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                     <div class="form-group" ng-class="{'has-error': data.contactInfoForm.mobile.$invalid && (data.contactInfoForm.mobile.$dirty || data.contactInfoForm.$submitted)}">
                                         <label for="mobile">Mobile</label>
-                                        <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="data.contactInfo.mobile" required>
+                                        <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" ng-model="data.contactInfo.mobile"
+                                            required>
                                         <span class="help-block error-block basic-block">Required</span>
                                         <!-- <label>Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /></label> -->
                                     </div>
@@ -57,7 +72,8 @@
                                     </div>
                                     <div class="form-group" ng-class="{'has-error': data.contactInfoForm.contactHome.$invalid && (data.contactInfoForm.contactHome.$dirty || data.contactInfoForm.$submitted)}">
                                         <label for="contactHome">Contact Home</label>
-                                        <input type="number" class="form-control" id="contactHome" name="contactHome" placeholder="Contact Home" ng-model="data.contactInfo.contactHome" required>
+                                        <input type="number" class="form-control" id="contactHome" name="contactHome" placeholder="Contact Home" ng-model="data.contactInfo.contactHome"
+                                            required>
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                 </div>
@@ -83,6 +99,9 @@
                                         </div>
                                         <div class="form-group">
                                             NIC: {{data.generalInfo.nic}}
+                                        </div>
+                                        <div class="form-group">
+                                            Gender: {{data.generalInfo.gender}}
                                         </div>
                                     </div>
                                     <div class="col-md-3">
