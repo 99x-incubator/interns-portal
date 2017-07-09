@@ -151,13 +151,12 @@
             };
 
             $scope.formdata = angular.merge($scope.formdata, status);
-            console.log($scope.formdata);
             $http.post(IG.api + 'users/user', $scope.formdata).then(function (response) {
                 if (response.data.status === "success") {
                     $scope.reset();
-                    toastr.success("User added successfully");
+                    toastr.success("Interviewee added successfully");
                 } else {
-                    toastr.error("Unable to add user");
+                    toastr.error("Unable to add interviewee");
                 }
             });
         };

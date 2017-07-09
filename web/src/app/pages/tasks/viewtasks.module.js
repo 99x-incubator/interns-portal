@@ -8,8 +8,8 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('dashboard.viewtasks', {
-                url: '/mytasks',
-                title: 'My Tasks',
+                url: '/tasks',
+                title: 'Tasks',
                 templateUrl: 'app/pages/tasks/viewtasks.html',
                 controller: 'ViewTasksPageCtrl',
                 sidebarMeta: {
@@ -32,10 +32,18 @@
                 resolve: {
                     user: ["$http", '$rootScope',
                         function ($http, $rootScope) {
-                            return $http.get(IG.api + 'users/user/' + JSON.parse(localStorage.username))
-                                .then(function (response) {
-                                    return response.data.data.Item;
-                                });
+
+                            if ($rootScope.adminLoggedIn && localStorage.isAdmin) {
+                                return $http.get(IG.api + 'users/user/' + $rootScope.adminSerachingUserId)
+                                    .then(function (response) {
+                                        return response.data.data.Item;
+                                    });
+                            } else {
+                                return $http.get(IG.api + 'users/user/' + JSON.parse(localStorage.username))
+                                    .then(function (response) {
+                                        return response.data.data.Item;
+                                    });
+                            }
                         }
                     ]
 

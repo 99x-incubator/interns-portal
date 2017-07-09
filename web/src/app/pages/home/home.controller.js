@@ -11,7 +11,7 @@
         })
         .controller('HomeCtrl', HomeCtrl);
     /** @ngInject */
-    function HomeCtrl($http, $scope, printService, $state, interns, tasks) {
+    function HomeCtrl($http, $scope, $rootScope, printService, $state, interns, tasks) {
 
         $scope.user = {};
         $scope.tabs = interns;
@@ -52,13 +52,6 @@
         };
 
         $scope.assignTaskToUser = function (taskId) {
-            $scope.tasks.forEach(function (task, key) {
-                if (task.id === taskId) {
-                    $scope.tasks[key].status = 'ToDo';
-                }
-            });
-        };
-        $scope.assignTaskToUser2 = function (taskId) {
             if (!$scope.user.tasks) {
                 $scope.user.tasks = [];
             }
@@ -93,6 +86,12 @@
                 toastr.error(response.data);
             });
         };
+
+        $scope.viewUserTasks = function (userId) {
+            $rootScope.adminLoggedIn = true;
+            $rootScope.adminSerachingUserId = userId;
+            $state.go('dashboard.viewtasks');
+        }
 
         $state.transitionTo('dashboard.home.users');
         internsTimeline($scope.tabs);

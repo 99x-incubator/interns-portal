@@ -43,6 +43,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-1">
                 <h3 class="with-line">Tasks</h3>
+                <button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="viewUserTasks(user.id)">View Details</button>
                 <div class="panel panel-blur light-text animated zoomIn" zoom-in="" ba-panel-blur="">
 
                     <div class="panel-body">
@@ -50,7 +51,7 @@
                             <tbody>
                                 <tr ng-repeat="task in unassignedTasks| orderBy:'timestamp'">
                                     <td>{{task.id}}</td>
-                                    <td ng-hide="task.status"><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="assignTaskToUser2(task.id)">Assign</button></td>
+                                    <td ng-hide="task.status"><button type="button" class="btn btn-success btn-xs btn-icon-sm" ng-click="assignTaskToUser(task.id)">Assign</button></td>
                                     <td ng-show="task.status">{{task.status}}</td>
                                 </tr>
                                 <tr ng-repeat="task in user.tasks| orderBy:'timestamp'">
