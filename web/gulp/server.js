@@ -34,7 +34,7 @@ function browserSyncInit(baseDir, browser) {
      * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.9.0/README.md
      */
     server.middleware = proxyMiddleware('/dev', {
-        target: 'https://rsrxpyrrz4.execute-api.us-east-1.amazonaws.com',
+        target: 'https://lvf6nvg7n4.execute-api.us-east-1.amazonaws.com',
         changeOrigin: true,
         logLevel: 'info'
 
