@@ -1,0 +1,47 @@
+<div class="horizontal-scroll">
+    <div class="panel panel-blur with-scroll animated zoomIn" zoom-in="" ba-panel-blur="">
+        <div class="panel-body">
+            <div class="form-group select-page-size-wrap ">
+                <label>Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]"></select>
+                </label>
+            </div>
+            <table class="table" st-table="Interviewee" st-safe-src="dataInterviewee">
+                <thead>
+                    <tr class="sortable">
+                        <th st-sort="fullname">Full Name</th>
+                        <th st-sort="University">University</th>
+                        <th st-sort="mobile">Mobile</th>
+                        <th st-sort="email">Email</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <th><input st-search="fullname" placeholder="Search Full Name" class="input-sm form-control search-input" type="search"/></th>
+                        <th><input st-search="University" placeholder="Search University" class="input-sm form-control search-input" type="search"/></th>
+                        <th><input st-search="mobile" placeholder="Search Mobile Number" class="input-sm form-control search-input" type="search"/></th>
+                        <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in Interviewee">
+                        <td>{{item.fullname}}</td>
+                        <td>{{item.University}}</td>
+                        <td>{{item.mobile}}</td>
+                        <td>{{item.email}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs" ng-click="viewdata(item)">Interviewed</button>
+                            <td></tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
