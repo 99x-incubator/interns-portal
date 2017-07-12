@@ -15,7 +15,7 @@
         $scope.user = {};
         $scope.selected=[];
         angular.forEach(interns, function(item) {
-            // temp solution for error of startdate doesn't exist.
+            //get only selected interns to dashboard
             if (item.stat!="Rejected") {
                 $scope.selected.push(item);                
 
