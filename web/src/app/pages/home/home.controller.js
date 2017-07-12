@@ -22,7 +22,6 @@
             }
        });
         $scope.tabs = $scope.selected;
-        console.log($scope.selected);
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
             composeModal.open({
