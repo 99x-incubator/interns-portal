@@ -42,7 +42,8 @@
                 "startdate": convertDate(String(internshipInfo.startDate)),
                 "enddate": convertDate(String(internshipInfo.endDate)),
                 "projects": {},
-                "comment" :internshipInfo.comment
+                "comment" :internshipInfo.comment,
+                "stat":internshipInfo.stat
             };
 
             var stat = {

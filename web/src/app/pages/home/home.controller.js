@@ -13,9 +13,16 @@
     function HomeCtrl($http, $scope, printService, $state, interns) {
 
         $scope.user = {};
-        $scope.tabs = interns;
+        $scope.selected=[];
+        angular.forEach(interns, function(item) {
+            // temp solution for error of startdate doesn't exist.
+            if (item.stat!="Rejected") {
+                $scope.selected.push(item);                
 
-
+            }
+       });
+        $scope.tabs = $scope.selected;
+        console.log($scope.selected);
         $scope.navigationCollapsed = true;
         $scope.showCompose = function(subject, to, text) {
             composeModal.open({

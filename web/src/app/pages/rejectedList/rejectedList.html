@@ -13,7 +13,6 @@
                         <th st-sort="University">University</th>
                         <th st-sort="mobile">Mobile</th>
                         <th st-sort="email">Email</th>
-                        <th>Status</th>
                     </tr>
                     <tr>
                         <th><input st-search="fullname" placeholder="Search Full Name" class="input-sm form-control search-input" type="search"/></th>
@@ -30,9 +29,7 @@
                         <td>{{item.University}}</td>
                         <td>{{item.mobile}}</td>
                         <td>{{item.email}}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-xs" ng-click="viewdata(item)">Interviewed</button>
-                            <td></tr>
+                       </tr>
                         </tbody>
                         <tfoot>
                             <tr>

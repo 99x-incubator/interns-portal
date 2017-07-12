@@ -56,7 +56,7 @@
           var intern = $scope.rejectedIntern;
            $http.post(IG.api + 'users/user', $scope.rejectedIntern).then(function(response) {
                if ((response.data.status) === "success") {
-                    toastr.success("selected Intern added successfully");
+                    toastr.success("Rejected intern added successfully");
                     $scope.Interviewee.splice(index, 1);
                     signUp(intern.email,intern.email,"99Xt@intern");
                 } else {
