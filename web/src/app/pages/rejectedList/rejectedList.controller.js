@@ -17,16 +17,6 @@
         $scope.rejectedIntern = {};
 
         var signUp = function(email, username, password) {
-            // cognito
-         //   AWSCognito.config.region = IG.cognitoConfigRegion;
-
-         //   var poolData = {
-        //        UserPoolId: IG.cognitoUserPoolId,
-        //        ClientId: IG.cognitoClientId
-        //    };
-
-        //    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-
             var attributeList = [];
 
             var attributes = [{
@@ -40,17 +30,6 @@
                 Value: 'INTERN'
             }];
 
-          //  _.each(attributes, function(attribute) {
-         //       attributeList.push(new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attribute));
-         //   });
-
-         //   userPool.signUp(username, password, attributeList, null, function(err, result) {
-          //      if (err) {
-         //           console.log(err);
-        //            return;
-        //        }
-
-      //      });
         };
       var internSelected = function(index) {
           var intern = $scope.rejectedIntern;
@@ -64,22 +43,6 @@
                 }
 
             });
-        }; 
-        $scope.viewdata = function(row) {
-            $scope.rejectedIntern = angular.copy(row);
-            var index = $scope.Interviewee.indexOf(row);
-            $uibModal.open({
-                animation: true,
-                controller: 'ViewModalCtrl',
-                templateUrl: 'app/pages/viewuser/viewusermodal/viewusermodal.html'
-            }).result.then(function(data) {
-                var status = {
-                    'status': 'active'
-                };
-                $scope.rejectedIntern = angular.merge($scope.rejectedIntern, data, status);
-                internSelected(index);
-            });
-        };
-        
+        };         
     }
 })();
