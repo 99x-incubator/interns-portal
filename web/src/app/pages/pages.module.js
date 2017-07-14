@@ -12,7 +12,8 @@
             'BlurAdmin.pages.addtasks',
             'BlurAdmin.pages.viewuser',
             'BlurAdmin.pages.interntasks',
-            'BlurAdmin.pages.settings'
+            'BlurAdmin.pages.settings',
+            'BlurAdmin.pages.rejectedList'
         ])
         .config(routeConfig);
 
