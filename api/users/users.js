@@ -49,5 +49,23 @@ module.exports = {
         docClient.query(param, function(err, data) {
             context.succeed(jsend.fromArguments(err, data));
         });
-    }
+    },
+    getRejected: function(event, context, params) {
+        var param = {
+            TableName: "users",
+            IndexName: "userStatIndex",
+            KeyConditionExpression: "#s = :stat",
+            ExpressionAttributeValues: {
+                ":stat": params.stat
+            },
+            ExpressionAttributeNames: {
+                "#s": "stat"
+            },
+        };
+        docClient.query(param, function(err, data) {
+            context.succeed(jsend.fromArguments(err, data));
+        });
+    },
+    
+    
 };

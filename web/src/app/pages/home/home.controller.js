@@ -14,12 +14,16 @@
     function HomeCtrl($http, $scope, $rootScope, printService, $state, interns, tasks) {
 
         $scope.user = {};
-        $scope.tabs = interns;
+        $scope.selected=[];
         $scope.tasks = tasks;
+        angular.forEach(interns, function(item) {
+            //get only selected interns to dashboard
+            if (item.stat!="Rejected") {
+                $scope.selected.push(item);                
 
-        console.log(tasks);
-
-
+            }
+        });
+        $scope.tabs = $scope.selected;
         $scope.navigationCollapsed = true;
         $scope.showCompose = function (subject, to, text) {
             composeModal.open({

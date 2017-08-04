@@ -43,6 +43,7 @@
                 enddate: convertDate(String(internshipInfo.endDate)),
                 projects: {},
                 comment: internshipInfo.comment,
+                stat:internshipInfo.stat,
                 gender: generalInfo.gender
             };
             console.log(data);

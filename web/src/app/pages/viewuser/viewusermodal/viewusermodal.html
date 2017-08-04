@@ -52,13 +52,14 @@
                         <label for="reason">
                             <font color="black">Reason for rejection</font>
                         </label>
-                        <textarea name="reason" class="form-control" id="reason" ng-model="data.reason" placeholder="" required></textarea>
-                        <span ng-show=" (interndata.reason.$dirty||interndata.reason.$pristine)&& submitted && interndata.reason.$error.required" class="help-block error-block basic-block">Required</span>
+                        <textarea name="comment" class="form-control" id="comment" ng-model="data.comment" placeholder="" required></textarea>
+                        <span ng-show=" (interndata.comment.$dirty||interndata.comment.$pristine)&& submitted && interndata.comment.$error.required" class="help-block error-block basic-block">Required</span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="submit()">Submit</button>
+                <button ng-if=data.status=="Selected" type="button" class="btn btn-primary" ng-click="submit()">Submit</button>
+                <button ng-if=data.status=="Rejected" type="button" class="btn btn-primary" ng-click="addRejected()">Submit</button>
                 <button type="submit" class="btn btn-danger" ng-click="$dismiss()">Cancel</button>
             </div>
         </div>

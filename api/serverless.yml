@@ -54,6 +54,12 @@ functions:
           method: get
           integration: lambda
           request: ${file(./templates.yml):request}
+      - http:
+          path: users/stat/{stat}
+          method: get
+          integration: lambda
+          request: ${file(./templates.yml):request}
+
 
   Tasks:
     handler: tasks/tasksHandler.tasks

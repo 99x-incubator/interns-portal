@@ -12,6 +12,9 @@ module.exports.users = function(event, context) {
         user.getInterns(event, context, params);
     } else if (path == '/users/user/{id}' && method == 'GET') {
         user.getUser(event, context, params);
+    }
+    else if (path == '/users/stat/{stat}' && method == 'GET') {
+        user.getRejected(event, context, params);
     } else {
         context.succeed("something wrong" + JSON.stringify(event, null, 2) + "path : " + path + "method : " + method);
     }

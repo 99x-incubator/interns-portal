@@ -6,7 +6,9 @@
   "dependencies": {
     "jsend": "^1.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "http-proxy-middleware": "^0.17.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
