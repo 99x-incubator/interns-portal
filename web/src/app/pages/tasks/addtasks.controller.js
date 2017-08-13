@@ -9,7 +9,6 @@
         var defaultConfig = angular.copy(toastrConfig);
 
         $scope.tasks = tasks;
-        console.log(tasks);
 
         $scope.reset = function() {
             $scope.newtask = angular.copy($scope.master);
@@ -23,7 +22,6 @@
                 var newtask = {
                     'task': $scope.newtask
                 };
-                console.log(newtask)
                 var task = $scope.newtask;
                 var config = {
                     headers: {

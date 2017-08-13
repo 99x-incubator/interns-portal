@@ -46,7 +46,6 @@
                 stat:internshipInfo.stat,
                 gender: generalInfo.gender
             };
-            console.log(data);
             var stat = {
                 'status': 'admin'
             };

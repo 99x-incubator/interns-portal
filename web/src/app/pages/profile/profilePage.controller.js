@@ -88,8 +88,6 @@
             internDetails.techs = techs;
             internDetails.id = name;
 
-            console.log(internDetails);
-
             $http({
                 method: 'POST',
                 url: IG.api + 'users/user',

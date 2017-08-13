@@ -15,7 +15,6 @@
             $scope.submitted = true;
             $scope.stat="Selected";
             if ((($scope.interndata.cat.$dirty || $scope.interndata.startdate.$dirty && $scope.interndata.enddate.$dirty && $scope.interndata.comment.$dirty ) || $scope.submitted) && ($scope.interndata.cat.$error.required || $scope.interndata.startdate.$error.required || $scope.interndata.enddate.$error.required || $scope.interndata.comment.$error.required )) {
-                //console.log("do nothing");
 
             } else {
                 $uibModalInstance.close($scope.data);
@@ -25,7 +24,6 @@
            $scope.submitted = true;
            $scope.data.stat="Rejected";
             if ((($scope.interndata.comment.$dirty || $scope.interndata.stat.$dirty ) || $scope.submitted) && ($scope.interndata.stat.$error.required  || $scope.interndata.comment.$error.required )) {
-                //console.log("do nothing");
 
             } else {
                 $uibModalInstance.close($scope.data);

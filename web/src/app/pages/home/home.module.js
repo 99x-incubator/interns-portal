@@ -41,7 +41,6 @@
                         function ($http, $rootScope) {
                             return $http.get(IG.api + 'users/status/active')
                                 .then(function (response) {
-                                    console.log(response.data.data.Items);
                                     return response.data.data.Items;
                                 });
                         }
