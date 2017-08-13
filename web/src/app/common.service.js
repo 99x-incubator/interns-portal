@@ -10,12 +10,10 @@
         var data = '';
 
         service.set = function(content) {
-            console.log(content);
             data = content;
         };
 
         service.get = function() {
-            console.log(data);
             return data;
         };
 

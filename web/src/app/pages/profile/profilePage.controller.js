@@ -62,12 +62,7 @@
 
         var techs = [{
                 "id": 1,
-                "name": "Angular"
-
-            }, {
-                "id": 2,
-                "name": "React"
-
+                "name": "javascript"
             }
 
         ];
@@ -92,8 +87,6 @@
             internDetails.social = social;
             internDetails.techs = techs;
             internDetails.id = name;
-
-            // console.log(internDetails);
 
             $http({
                 method: 'POST',

@@ -1,75 +1,121 @@
 <div class="ba-panel">
     <div class="panel-content">
         <div class="row">
-            <div class="col-md-5" style="z-index:1">
-                <h3 class="with-line">Tasks List</h3>
-
-
+            <div class="col-md-4" style="z-index:1">
+                <h3 class="with-line">To Do</h3>
                 <div class="light-text task-panel" zoom-in="" ba-panel-blur="">
-
                     <div class="">
                         <uib-accordion>
-                            <uib-accordion-group ng-repeat='item in list1' ng-show="item.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list1" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class="" style="z-index:2;width:100%"
-                                heading={{item.id}}>
-                            </uib-accordion-group>
-                        </uib-accordion>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-6 col-md-offset-1" style="z-index:0">
-                <h3 class="with-line">My Plan</h3>
-
-                <div class="" zoom-in="" ba-panel-blur="">
-
-                    <div data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:false}" class="my-tasks-list">
-                        <uib-accordion>
-                            <uib-accordion-group ng-repeat="item in list4 track by $index" ng-show="item.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}"  class="task-item task-panel bootstrap-panel accordion-panel panel-default" style="width:100%">
+                            <uib-accordion-group ng-repeat='task in user.tasks' ng-if="task.status=='ToDo'" ng-show="task.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                                ng-model="tasks" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class=""
+                                style="z-index:2;width:100%">
                                 <uib-accordion-heading>
-                                    {{item.id}}
+                                    {{task.id}}
                                 </uib-accordion-heading>
-                                <div ng-if="item.status != 'complete'">
-                                    <div>
-                                        <div class="col-md-4">
-                                            <div class="input-group" moment-picker="item.start" format="YYYY-MM-DD">
-                                                <span class="input-group-addon">
-                                          <i class="ion-calendar"></i>
-                                        </span>
-                                                <input class="form-control" placeholder="Start Date" ng-model="item.start" ng-model-options="{ updateOn: 'blur' }">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group" moment-picker="item.end" format="YYYY-MM-DD">
-                                                <span class="input-group-addon">
-                                          <i class="ion-calendar"></i>
-                                        </span>
-                                                <input class="form-control" placeholder="End Date" ng-model="item.end" ng-model-options="{ updateOn: 'blur' }">
-                                            </div>
-                                        </div>
-
+                                <button type="button" class="btn btn-success btn-with-icon pull-right" ng-click="startTask(task.id)">Start</button> <br/>
+                                <h4 class="card-title">Comments:</h4>
+                                <div class="card" ng-repeat='comment in task.comments' style="margin: 30px;
+                                background-color: #ffffff;
+                                border: 1px solid black;
+                                opacity: 0.6;
+                                filter: alpha(opacity=60);">
+                                    <div class="card-block" style="margin: 5%;
+                                    font-weight: bold;
+                                    color: #000000;">
+                                        <h5 >{{comment.text}}</h5>
+                                        <p style="font-weight: none">{{comment.timestamp | date:'dd/MM/yyyy h:mm:ss a'}}</p>
                                     </div>
-
-                                    <input type="hidden" placeholder="status" ng-model="item.status" name="status" ng-init="item.status='incomplete'">
-                                    <button type="button" class="btn btn-danger btn-with-icon pull-right" ng-click="delete(item)"><i class="ion-close-round"></i>Remove</button>
                                 </div>
-                                <div ng-if="item.status == 'complete'">
-                                  <p>Task Completed</p>
-                                  {{item.comments}}
-                                </div>
-
-
-
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="comment" placeholder="Start writing a comment..." ng-model="commentTodo">
+                                        <button type="button" class="btn btn-info pull-right" ng-show="commentTodo" ng-click="addComment(task.id,commentTodo);commentTodo=undefined;">comment</button>
+                                    </div>
+                                </form>
                             </uib-accordion-group>
                         </uib-accordion>
-                        <div class="placeholder" ng-hide="hideMe()">Add your plans here</div>
                     </div>
                 </div>
-                <div class="">
-                    <button type="button" ng-click="savetasks()" class="btn btn-success btn-with-icon"><i class="ion-android-checkmark-circle"></i>Save</button>
-                </div>
-            </div>
 
+            </div>
+            <div class="col-md-4" style="z-index:1">
+                <h3 class="with-line">In-Progress</h3>
+                <div class="light-text task-panel" zoom-in="" ba-panel-blur="">
+                    <div class="">
+                        <uib-accordion>
+                            <uib-accordion-group ng-repeat='task in user.tasks' ng-if="task.status=='InProgress'" ng-show="task.id" data-drag="true"
+                                data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="tasks" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}"
+                                class="" style="z-index:2;width:100%">
+                                <uib-accordion-heading>
+                                    {{task.id}}
+                                </uib-accordion-heading>
+
+                                <button type="button" class="btn btn-success btn-with-icon pull-right" ng-click="finishTask(task.id)">Done</button> <br/>
+                                <b>Started Date:</b> {{task.startedDate | date:'dd/MM/yyyy'}} <br/> <br/>
+                                <h4 class="card-title">Comments:</h4>
+                                <div class="card" ng-repeat='comment in task.comments' style="margin: 30px;
+                                background-color: #ffffff;
+                                border: 1px solid black;
+                                opacity: 0.6;
+                                filter: alpha(opacity=60);">
+                                    <div class="card-block" style="margin: 5%;
+                                    font-weight: bold;
+                                    color: #000000;">
+                                        <h5 >{{comment.text}}</h5>
+                                        <p style="font-weight: none">{{comment.timestamp | date:'dd/MM/yyyy h:mm:ss a'}}</p>
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="comment" placeholder="Start writing a comment..." ng-model="commentTodo">
+                                        <button type="button" class="btn btn-info btn-with-icon pull-right" ng-show="commentTodo" ng-click="addComment(task.id,commentTodo);commentTodo=undefined;">comment</button>
+                                    </div>
+                                </form>
+                            </uib-accordion-group>
+                        </uib-accordion>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4" style="z-index:1">
+                <h3 class="with-line">Done</h3>
+                <div class="light-text task-panel" zoom-in="" ba-panel-blur="">
+                    <div class="">
+                        <uib-accordion>
+                            <uib-accordion-group ng-repeat='task in user.tasks' ng-if="task.status=='Done'" ng-show="task.id" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                                ng-model="tasks" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" class=""
+                                style="z-index:2;width:100%">
+                                <uib-accordion-heading>
+                                    {{task.id}}
+                                </uib-accordion-heading>
+                                
+                                <b>Started Date:</b> {{task.startedDate | date:'dd/MM/yyyy'}} <br/> <br/>
+                                <b>Finished Date:</b> {{task.finishedDate | date:'dd/MM/yyyy'}} <br/><br/>
+                                <h4 class="card-title">Comments:</h4>
+                                <div class="card" ng-repeat='comment in task.comments' style="margin: 30px;
+                                background-color: #ffffff;
+                                border: 1px solid black;
+                                opacity: 0.6;
+                                filter: alpha(opacity=60);">
+                                    <div class="card-block" style="margin: 5%;
+                                    font-weight: bold;
+                                    color: #000000;">
+                                        <h5 >{{comment.text}}</h5>
+                                        <p style="font-weight: none">{{comment.timestamp | date:'dd/MM/yyyy h:mm:ss a'}}</p>
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="comment" placeholder="Start writing a comment..." ng-model="commentTodo">
+                                        <button type="button" class="btn btn-info btn-with-icon pull-right" ng-show="commentTodo" ng-click="addComment(task.id,commentTodo);commentTodo=undefined;">comment</button>
+                                    </div>
+                                </form>
+                            </uib-accordion-group>
+                        </uib-accordion>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

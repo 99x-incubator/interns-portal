@@ -22,19 +22,6 @@ module.exports = {
             context.succeed(jsend.fromArguments(err, data));
         });
     },
-    getUserTask: function(event, context, params) {
-        var param = {
-            TableName: "users",
-            Key: {
-                "id": params.id
-            },
-            ProjectionExpression: "task"
-        };
-        docClient.get(param, function(err, data) {
-            context.succeed(jsend.fromArguments(err, data));
-        });
-
-    },
     insertNewTask: function(event, context) {
         var timeStamp = Date.now();
         var params = {
@@ -46,22 +33,6 @@ module.exports = {
             }
         };
         docClient.put(params, function(err, data) {
-            context.succeed(jsend.fromArguments(err, data));
-        });
-    },
-    updateUserTask: function(event, context) {
-        var params = {
-            TableName: "users",
-            Key: {
-                "id": event.body.id
-            },
-            UpdateExpression: "SET task = :Task",
-            ExpressionAttributeValues: {
-                ":Task": event.body.task
-            },
-            ReturnValues: "ALL_NEW"
-        };
-        docClient.update(params, function(err, data) {
             context.succeed(jsend.fromArguments(err, data));
         });
     },

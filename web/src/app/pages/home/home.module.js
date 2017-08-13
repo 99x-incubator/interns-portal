@@ -2,13 +2,13 @@
  * @author v.lugovsky
  * created on 16.12.2015
  */
-(function() {
+(function () {
     'use strict';
 
     angular.module('BlurAdmin.pages.home', [
-            'BlurAdmin.pages.home.user',
-            'BlurAdmin.pages.home.users'
-        ])
+        'BlurAdmin.pages.home.user',
+        'BlurAdmin.pages.home.users'
+    ])
         .config(routeConfig);
 
     /** @ngInject */
@@ -26,7 +26,7 @@
                 data: {
                     permissions: {
                         only: ['AUTHORIZED'],
-                        redirectTo: function() {
+                        redirectTo: function () {
                             return {
                                 state: 'signin',
                                 options: {
@@ -38,9 +38,17 @@
                 },
                 resolve: {
                     interns: ["$http", '$rootScope',
-                        function($http, $rootScope) {
+                        function ($http, $rootScope) {
                             return $http.get(IG.api + 'users/status/active')
-                                .then(function(response) {
+                                .then(function (response) {
+                                    return response.data.data.Items;
+                                });
+                        }
+                    ],
+                    tasks: ["$http", '$rootScope',
+                        function ($http, $rootScope) {
+                            return $http.get(IG.api + 'tasks/all')
+                                .then(function (response) {
                                     return response.data.data.Items;
                                 });
                         }
@@ -49,7 +57,7 @@
 
             })
 
-        ;
+            ;
     }
 
 })();
