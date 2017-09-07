@@ -74,7 +74,7 @@ Now application is working on your local machine ([http://localhost:3000](http:/
 |---|------|
 |  1.  |  [install AWS CLI in your local machine](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)|
 |  2.  |  [configure AWS CLI ] (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
-|  3.  |  [Install serveless V1](https://github.com/serverless/serverless/blob/master/docs/01-guide/01-installing-serverless.md) |
+|  3.  |  [Install serveless V 1.0.3 ](https://github.com/serverless/serverless/blob/master/docs/01-guide/01-installing-serverless.md) |
 |  4.  | `cd interns-portal\api`  move to node.js lambda directory|
 |  5.  | `serverless deploy`  Deploy AWS Lambda function|
 
