@@ -14,28 +14,24 @@
             ClientId: IG.cognitoClientId
         };
         var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-        //sign in function starts from here
 
-        $scope.confirm = function() {
+        // FIXME: these two declaration
+        var verificationCode;
+        var username;
 
-            var userData = {
-                Username: $scope.username,
-                Pool: userPool
-            };
-
-            var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
-
-            cognitoUser.confirmRegistration($scope.code, true, function(err, result) {
-                if (err) {
-                    toastr.error(err.message, 'Error');
-                    return;
-                }
-                toastr.success(result.message, 'Success');
-            });
+        // take verification code, user's input
+        $scope.values = function() {
+            window.verificationCode = $scope.verification_code;
 
         };
 
+        // get triggered once user provide the email id from forgot password section view
         $scope.forgot = function() {
+
+            var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+            // $rootScope.username = $scope.username;
+            window.username = $scope.username;
 
             var userData = {
                 Username: $scope.username,
@@ -43,6 +39,7 @@
             };
 
             var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+
 
             cognitoUser.forgotPassword({
                 onSuccess: function(result) {
@@ -52,15 +49,43 @@
                     toastr.error(err.message, 'Error');
                 },
                 inputVerificationCode: function() {
-                    var verificationCode = prompt('Please input verification code ', '');
-                    var newPassword = prompt('Enter new password ', '');
-                    cognitoUser.confirmPassword(verificationCode, newPassword, this);
                 }
             });
 
         };
 
+        // changing password functionality with verification code
+        $scope.changePassword = function(){
 
+            var new_Password = $scope.new_password;
+
+            var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+            var userChangeData = {
+                Username: window.username,
+                Pool: userPool
+            };
+
+            var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userChangeData);
+
+            var verificationCode = window.verificationCode.toString();
+
+            cognitoUser.verifyAttribute(window.username.toString(), verificationCode, this,{
+                onSuccess: function (result) {
+                    toastr.success(result.message, 'Success');
+                },
+
+                onFailure: function(err) {
+                    toastr.error(err.message, 'Error');
+                },
+                inputVerificationCode: function() {
+                    cognitoUser.confirmPassword(verificationCode, new_Password, this);
+                    // $location.href = '#/signin/signin';
+                }
+            });
+        };
+
+        // user signin functionality
         $scope.signIn = function() {
 
             var authenticationData = {
@@ -109,5 +134,6 @@
 
             });
         };
+
     }
 })();

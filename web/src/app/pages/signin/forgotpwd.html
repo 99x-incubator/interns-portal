@@ -1,7 +1,7 @@
 <main class="auth-main" style="padding-top:150px;">
     <div class="auth-block">
         <h1>Forgot Password</h1>
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="#/signin/verify">
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">email</label>
                 <div class="col-sm-10">
@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" ng-click="forgot()" class="btn btn-default btn-auth">Send</button>
+                    <button type="submit" ng-click="forgot()" data-ng-disabled="!username" class="btn btn-default btn-auth">Send</button>
                 </div>
             </div>
         </form>

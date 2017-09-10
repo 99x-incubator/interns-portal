@@ -1,0 +1,18 @@
+<main class="auth-main" style="padding-top:150px;">
+    <div class="auth-block">
+        <h1>Verification Code</h1>
+        <form class="form-horizontal" action="#/signin/change">
+            <div class="form-group">
+                <label for="code" class="col-sm-2 control-label">Code</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="code" ng-model="verification_code" placeholder="code" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" ng-click="values()" data-ng-disabled="!verification_code" class="btn btn-default btn-auth">Verify</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>

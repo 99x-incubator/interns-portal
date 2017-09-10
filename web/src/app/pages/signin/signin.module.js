@@ -23,11 +23,20 @@
         })
 
         .state('confirm', {
-            url: '/signin/confirm',
-            templateUrl: 'app/pages/signin/confirm.html',
+            url: '/signin/verify',
+            templateUrl: 'app/pages/signin/verify.html',
+            controller: 'SignInCtrl'
+
+
+        })
+
+        .state('changePassword', {
+            url: '/signin/change',
+            templateUrl: 'app/pages/signin/change_password.html',
             controller: 'SignInCtrl'
 
 
         });
+
     }
 })();
