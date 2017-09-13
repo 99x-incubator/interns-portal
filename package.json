@@ -1,12 +1,14 @@
 {
-	
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "start": "http-server ./app -a localhost -p 9000"
   },
   "devDependencies": {
+    "http-server": "^0.10.0",
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.0"
+    "karma-jasmine": "^1.1.0",
+    "protractor": "^5.1.2"
   }
 }
